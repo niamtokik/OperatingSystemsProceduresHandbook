@@ -1,0 +1,19 @@
+== FreeBSD - Gestion des logs avec syslogd (logger)
+
+FreeBSD fournit `logger`, un outil permettant de générer des logs basé
+sur la RFC3164.
+
+.Utilisation de logger en local
+[sh]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+logger -p local0.emerg "test"
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.Utilisation de logger à distance
+[sh]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+logger -h target.com -P 514 -p local1.debug "network test"
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+ * https://www.freebsd.org/cgi/man.cgi?query=logger
+

@@ -1,0 +1,85 @@
+== FreeBSD - Création d'un utilisateur
+
+FreeBSD possède 3 outils pour la création d'utilisateur:
+
+ * `adduser`: un script interactif permettant de rajouter un ou
+              plusieurs utilisateurs;
+
+ * `pw user`: l'outil standard pour la modification, l'ajout, et la
+              suppression de compte utilisateur;
+
+ * `vipw`: un wrapper permettant d'éditer manuellement le fichier
+           `/etc/passwd` et `/etc/master-passwd`.
+
+.Utilisation d'`adduser`
+[sh]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+adduser << EOF
+alice
+alice
+default
+sh
+/home/alice
+
+yes
+no
+no
+alicepassword
+alicepassword
+no
+no
+EOF
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+`adduser` peut-être configuré avec des valeurs par défaut présent dans
+le fichier `/etc/adduser.conf`. Ce  fichier de configuration peut-être
+automatiquement créé avec la commande `adduser -C`.
+
+.Utilisation de `pw user add`
+[sh]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+printf -- "bobpassword"       \
+  | pw user add bob           \
+                -L default    \
+		-s /bin/sh    \
+		-d /home/bob  \
+		-m            \
+		-g bob        \
+		-h 0
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.Utilisation de `vipw`
+[sh]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+vipw
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+`vipw` va  afficher le  contenu des  fichiers `/etc/passwd`  ainsi que
+celui de `/etc/master-passwd`. Les 2 fichiers sont logiquement séparé,
+vipw ne  fait que les  rassembler pour permettre plus  simplement leur
+édition.
+
+NOTE: le password a besoin d'être  chiffré. Pour se faire, vous pouvez
+utiliser plusieurs  méthodes, en passant Perl,  Python, ou directement
+via la bibliothèque en C.
+
+[txt]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+root::0:0::0:0:Charlie &:/root:/bin/csh
+toor:*:0:0::0:0:Bourne-again Superuser:/root:
+daemon:*:1:1::0:0:Owner of many system processes:/root:/usr/sbin/nologin
+# ...
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+NOTE: les fichiers `/etc/passwd` et `/etc/master-passwd` ne sont pas
+      les seuls à contenir les informations.  2 bases de données au
+      format BDB `/etc/pwd.db` et `/etc/spwd.db` contiennent aussi la
+      liste des utilisateurs. Cette base de donnée peut-être généré
+      manuellement avec la commande `pwd_mkdb`.
+
+ * https://www.freebsd.org/doc/handbook/users-synopsis.html
+ * https://www.freebsd.org/cgi/man.cgi?query=adduser
+ * https://www.freebsd.org/cgi/man.cgi?query=rmuser
+ * https://www.freebsd.org/cgi/man.cgi?query=pw
+ * https://www.freebsd.org/cgi/man.cgi?query=vipw
+ 

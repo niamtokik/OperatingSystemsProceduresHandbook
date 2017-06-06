@@ -1,0 +1,98 @@
+== FreeBSD - thin jail (introduction)
+
+Différentes versions de jails existent. La méthode la plus facile à
+déployer est la "huge-jail", elle contient directement une copie
+fonctionnelle du système. Malheureusement cette méthode à des
+inconvénients tel que le management du système et l'espace utilisé est
+proportionnel au nombre de jails déployé.
+
+Les thin-jails permettent de créer un système en lecture seul partagé
+par plusieurs jails. Les thins-jails peuvent se répartir elle-même en
+plusieurs méthodes de déploiement:
+
+ * partage de la racine du système hôte avec
+   https://www.freebsd.org/cgi/man.cgi?query=mount_nullfs[nullfs]
+ 
+ * partage d'un espace dédié en lecture seule avec
+   https://www.freebsd.org/cgi/man.cgi?query=mount_nullfs[nullfs]
+ 
+ * partage d'un espace dédié en lecture seule avec
+   https://www.freebsd.org/cgi/man.cgi?query=mount_unionfs[unionfs]
+
+Par ailleurs, les thin-jails utilisant nullfs partagent tous une
+arborescence du système de fichier similaire:
+
+.Création du répertoire pour le template
+[sh]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+mkdir thinjailtemplate
+cd thinjailtemplate
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.Initialisation des répertoires appartenant à la thin-jail
+[sh]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+mkdir -p base dev etc media mnt proc root tmp var
+mkdir -p usr/games usr/local usr/src
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.Initialisation des répertoires partagés de premier niveau
+[sh]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ln -s bin     /base/bin
+ln -s boot    /base/boot
+ln -s lib     /base/lib
+ln -s libexec /base/libexec
+ln -s rescue  /base/rescue
+ln -s sbin    /base/sbin
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.Initialisation des répertoires partagés de second niveau
+[sh]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ln -s usr/include /base/usr/include
+ln -s usr/bin /base/usr/bin
+ln -s usr/libdata /base/usr/libdata
+ln -s usr/lib32 /base/usr/lib32
+ln -s usr/libexec /base/usr/libexec
+ln -s usr/sbin /base/usr/sbin
+ln -s usr/share /base/usr/share
+ln -s usr/lib /base/usr/lib
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.Initialisation des droits d'accès
+[sh]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+chmod 777 tmp
+chmod 700 root
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Si votre jail nécessite une sécurité importante, il est possible
+d'utiliser différents mécanismes pour éviter qu'un utilisateur mal
+intentionné dans la jail modifie la template précédemment crée. Nous
+pouvons utiliser les flags étendus au niveau du système de fichiers
+(via `chflags`)
+
+.Initialisation des flags `immutable` et `nounlink` avec `chflags`
+[sh]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+chflags simmutable bin boot lib libexec rescue sbin
+chflags sunlnk bin boot lib libexec rescue sbin
+chflags simmutable usr/include usr/bin usr/libdata usr/lib32 \
+                   usr/libexec usr/sbin usr/share usr/lib
+chflags sunlnk usr/include usr/bin usr/libdata usr/lib32 \
+               usr/libexec usr/sbin usr/share usr/lib
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Attention, si vous voulez pouvoir supprimer simplement la jail après
+le déploiement, vous devrez supprimer les flags activés via la
+commande `chflags -R 0 /path/to/your/jail`. Effectivement, les flags
+configurés empechent la suppression ou la modification des fichiers
+possédant ces flags actifs.
+
+.Création de la template sous forme d'un tarball
+[sh]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tar czvfpP ../template-thinjail.tgz thinjailtemplate
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+

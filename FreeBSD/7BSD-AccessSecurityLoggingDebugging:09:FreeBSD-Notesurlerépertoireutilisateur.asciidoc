@@ -1,0 +1,28 @@
+== FreeBSD - Note sur le répertoire utilisateur
+
+Le  répertoire utilisateur  peut-être  initialisé par  défaut avec  un
+squelette  (skeleton).  Le squelette  par  défaut  se trouve  dans  le
+répertoire  `/etc/skel`  et contient  toutes  les  données par  défaut
+devant être copié dans le répertoire utilisateur après sa création.
+
+Le  répertoire utilisateur  est  aussi l'endroit  ou,  en théorie,  la
+grande majorité des données de l'utilisateur seront stockées. Il est a
+noté que ce  répertoire est normalement en lecture seul  pour tous les
+utilisateurs  du  systèmes.  Si  vous   avez  un  besoin  de  sécurité
+important, vous  avez toujours  la possibilité  de changer  les droits
+d'accès de ce répertoire:
+
+[sh]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+chmod o-rwx /home/${user}
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Le répertoire  est aussi accessible  à tous les  utilisateurs présents
+dans  le groupe  de l'utilisateur.  Ce  droit peut  aussi être  retiré
+simplement:
+
+[sh]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+chmod g-rwx /home/${user}
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+

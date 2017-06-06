@@ -1,0 +1,29 @@
+== FreeBSD - Upgrade (source)
+
+La méthode reste sensiblement similaire à la méthode binaire, à part
+qu'un build du kernel et du world est fait au lieu de récupérer les
+binaires sur les dépôts officiels.
+
+[sh]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+cd /usr
+svnlite co https://svn.freebsd.org/base/releng/11.0 src
+cd src
+make buildkernel
+make buildworld
+make installkernel
+reboot
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Finalement, après un reboot, l'installation du world est requis.
+
+[sh]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+cd /usr/src
+make installworld
+make check-old
+make delete-old
+sysmerge -a
+reboot
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+

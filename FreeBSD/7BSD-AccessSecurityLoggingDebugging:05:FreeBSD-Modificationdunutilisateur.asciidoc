@@ -1,0 +1,22 @@
+== FreeBSD - Modification d'un utilisateur
+
+Les informations d'un utilisateur peuvent être modifié par la commande
+`vipw` ou `pw user mod`. Cette dernière est recommandé car elle permet
+d'ajouter rapidement les informations sans risque d'erreur.
+
+ * `vipw`
+ * `pw user mod`
+ * `chpass`
+
+.Utilisation de la commande `pw user mod`
+[sh]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+pw user mod bob
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.Utilisation de la commande `vipw`
+[sh]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+vipw
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+

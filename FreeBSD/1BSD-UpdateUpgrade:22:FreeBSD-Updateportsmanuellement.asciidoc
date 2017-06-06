@@ -1,0 +1,17 @@
+== FreeBSD - Update ports (manuellement)
+
+Cette méthode est fastidieuse, surtout si vous devez mettre à jour de
+nombreux serveurs. 
+
+[sh]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+# récupération de la liste des packages installés
+LIST=$(pkg info -oa | awk '{ print $NF }' | sort)
+
+# bulk build
+for package in $LIST
+do
+  cd /usr/ports/${package} && make BATCH=yes && make package
+done
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+

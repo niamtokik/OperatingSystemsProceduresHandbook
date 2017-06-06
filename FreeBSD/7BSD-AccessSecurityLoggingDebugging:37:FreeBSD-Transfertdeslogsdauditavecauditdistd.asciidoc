@@ -1,0 +1,32 @@
+== FreeBSD - Transfert des logs d'audit avec auditdistd
+
+OpenBSM fournit aussi un daemon pour pouvoir envoyer ou recevoir des
+informations d'audit au travers d'une connexion TCP/IP. Cet outil
+s'appel `auditdistd`.
+
+`/etc/auditdistd.conf` est le fichier contenant la configuration
+d'`auditdistd`:
+
+[txt]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+sender {
+  host "receiver.host.com" {
+    remote "192.168.1.1"
+    fingerprint "SHA256=$fingerprint"
+    password "test"
+  }
+}
+
+receiver {
+  certfile "/etc/auditdistd.conf.d/cert.pem"
+  keyfile "/etc/auditdistd.conf.d/key.pem"
+  host "sender.host.com" {
+    remote "192.168.1.2"
+    directory "/path/to/sender.host.com"
+    password "test"
+  }
+}
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+ * https://www.freebsd.org/cgi/man.cgi?query=auditdistd
+

@@ -1,0 +1,43 @@
+== FreeBSD - GEOM et la concaténation de disques (gconcat)
+
+https://www.freebsd.org/cgi/man.cgi?query=gconcat[`gconcat`] permet de
+regrouper 2 disques entre eux pour en faire qu'un seul.
+
+.Chargement explicite du module geom_concat
+[sh]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kldload geom_concat
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.Initialisation de 2 disques mémoire sur la heap
+[sh]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+MDA=$(mdconfig -t malloc -s 512m)
+MDB=$(mdconfig -t malloc -s 512m)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.Création de 2 tables de partitions GPT
+[sh]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+gpart create -s gpt ${MDA}
+gpart create -s gpt ${MDB}
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.Création de 2 partitions de type freebsd-ufs
+[sh]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+PARTA=$(gpart add -t freebsd-ufs -i1 ${MDA}|cut -d" " -f1)
+PARTB=$(gpart add -t freebsd-ufs -i1 ${MDB}|cut -d" " -f1)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.Création de la concaténation et formatage du geom
+[sh]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+gconcat create myconcat ${PARTA} ${PARTB}
+gconcat list
+gconcat status
+newfs /dev/concat/myconcat
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+ * https://www.freebsd.org/cgi/man.cgi?query=gconcat
+

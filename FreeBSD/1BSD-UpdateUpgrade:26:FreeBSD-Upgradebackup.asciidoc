@@ -1,0 +1,9 @@
+== FreeBSD - Upgrade (backup)
+
+Énormément d'outils sont à la disposition de l'utilisateur désirant
+faire un backup de FreeBSD avant une upgrade:
+
+ * `mksnap_ffs`
+ * `zfs snapshot` + `zfs send` + `zfs receive`
+ * `dump` + `restore`
+

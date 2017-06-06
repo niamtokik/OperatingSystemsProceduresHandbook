@@ -1,0 +1,16 @@
+== FreeBSD - Visualiser les processus (top)
+
+La commande https://www.freebsd.org/cgi/man.cgi?query=top[`top`]
+permet de visualiser l'état des processus fonctionnement sur le
+système. Par défaut, il se lance en mode interactif, offrant une
+vision sous forme d'un tableau récapitulant l'activité du système.
+
+[sh]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+# montre tous les processus fonctionnant sur le système
+top
+
+# montre seulement les processus actif du système
+top -I
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+

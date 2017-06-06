@@ -1,0 +1,105 @@
+== FreeBSD - Introduction à PAM (Pluggable Authentification Modules)
+
+PAM pour Pluggable Authentification Module est un framework permettant
+de  gérer  l'authentification  des  utilisateur  sur  le  système.  Il
+fonctionne  sur un  modèle de  règle  mise à  la suite.  Si une  règle
+l'emporte l'utilisateur a le droit de se connecter sur le système.
+
+La  bibliothèque  PAM cherche  les  polices  dans les  répertoires  et
+fichiers suivants:
+
+ * `/etc/pam.d/$SERVICE`
+ * `/etc/pam.conf`
+ * `/usr/local/etc/pam.d/$SERVICE`
+ * `/usr/local/etc/pam.conf`
+
+PAM  est  découpé  en  4 catégories  (facility)  faisant  référence  à
+plusieurs étapes de l'authentification:
+
+ * `auth`
+ * `account`
+ * `session`
+ * `password`
+
+Chacune   de  ces   catégories  peuvent   être  controlé   et  affecte
+l'authentification de l'utilisateur par des `control-flags`:
+
+ * `required`:
+ ** si succès sans erreur dans la chaine => succès final;
+ ** si erreur => chaine non brisé, erreur final;
+ ** si succès avec erreur dans la chaine => erreur final.
+ 
+ * `requisite`:
+ ** si succès sans erreur dans la chaine => succès;
+ ** si erreur => chaine brisé, erreur final.
+ 
+ * `sufficient`:
+ ** si succès => chaine brisé, succès final
+ ** si erreur => chaine non brisé, erreur final
+ 
+ * `binding`:
+ ** si succès => chaine brisé, succès final;
+ ** si erreur => chaine non brisé, erreur final.
+ 
+ * `optional`:
+ ** si succès => succès final sauf si erreur;
+ ** si erreur => erreur final sauf si succès.
+
+Finalement, PAM se sert de module pour valider l'accès. Les modules se
+trouvent  habituellement  dans  le  répertoire  `/usr/lib/`.  Quelques
+modules souvent utilisés:
+
+ * /usr/lib/pam_chroot.so
+ * /usr/lib/pam_deny.so
+ * /usr/lib/pam_echo.so
+ * /usr/lib/pam_exec.so
+ * /usr/lib/pam_group.so
+ * /usr/lib/pam_guest.so
+ * /usr/lib/pam_login_access.so
+ * /usr/lib/pam_nologin.so
+ * /usr/lib/pam_passwdqc.so
+ * /usr/lib/pam_permit.so
+ * /usr/lib/pam_rhosts.so
+ * /usr/lib/pam_rootok.so
+ * /usr/lib/pam_securetty.so
+ * /usr/lib/pam_self.so
+ * /usr/lib/pam_ssh.so
+ * /usr/lib/pam_unix.so
+
+Les   fichiers  de   configuration   présent   dans  les   répertoires
+précédemment listé contiennent ces  informations. Une ligne représente
+une  action.    Une  ligne  commence   par  une  catégorie,   puis  un
+control-flag, puis le nom d'un module pam et finalement, les arguments
+du module. Chaque terme est séparé par un espace.
+
+.Un fichier d'authentification d'exemple
+[txt]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+auth     required pam_unix.so no_warn try_first_pass
+account  required pam_unix.so
+session  required pam_unix.so
+password requisite pam_unix.so
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+La configuration de  l'authentification se fait simplement  par le nom
+du service  concerné. Dans le cas  de `sshd`, un fichier  de configuré
+nommé `/etc/pam.d/sshd` sera créé contenant la chaine à utiliser.
+
+.Configuration de PAM pour `sshd` par défaut sous FreeBSD
+[txt]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+auth      sufficient pam_opie.so             no_warn no_fake_prompts
+auth      requisite  pam_opieaccess.so       no_warn allow_local
+auth      required   pam_unix.so             no_warn try_first_pass
+account   required   pam_nologin.so
+account   required   pam_login_access.so
+account   required   pam_unix.so
+session   required   pam_permit.so
+password  required   pam_unix.so             no_warn try_first_pass
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+ * https://www.freebsd.org/doc/en_US.ISO8859-1/articles/pam/
+ * https://www.freebsd.org/cgi/man.cgi?query=pam.conf
+ * https://www.freebsd.org/cgi/man.cgi?query=pam
+ * https://www.freebsd.org/cgi/man.cgi?query=openpam
+

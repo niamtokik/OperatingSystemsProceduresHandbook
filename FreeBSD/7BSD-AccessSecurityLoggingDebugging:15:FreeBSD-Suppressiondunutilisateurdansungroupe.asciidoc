@@ -1,0 +1,9 @@
+== FreeBSD - Suppression d'un utilisateur dans un groupe
+
+
+.Utilisation de la commande `pw group mod`
+[sh]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+pw group mod alice -d bob
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+

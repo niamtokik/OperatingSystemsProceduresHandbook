@@ -1,0 +1,12 @@
+== FreeBSD - Interaction avec un ou plusieurs processus (pkill)
+
+https://www.freebsd.org/cgi/man.cgi?query=pkill[`pkill`] permet
+d'envoyer un message à un groupe de processus définis par
+l'utilisateur.
+
+[sh]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+# envois le signal Hangup au processus
+pkill -HUP cron
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+

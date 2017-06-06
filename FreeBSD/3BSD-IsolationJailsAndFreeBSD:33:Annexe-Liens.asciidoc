@@ -1,0 +1,39 @@
+== Annexe - Liens
+
+=== Pages du manuel
+
+ * https://www.freebsd.org/cgi/man.cgi?query=ps
+ * https://www.freebsd.org/cgi/man.cgi?query=top
+
+ * https://www.freebsd.org/cgi/man.cgi?query=kill
+ * https://www.freebsd.org/cgi/man.cgi?query=killall
+ * https://www.freebsd.org/cgi/man.cgi?query=pkill
+
+ * https://www.freebsd.org/cgi/man.cgi?query=chroot
+ * https://www.freebsd.org/cgi/man.cgi?query=jail
+
+=== Outils externes
+
+ * ezjail
+ ** https://www.freshports.org/sysutils/ezjail/
+ ** https://erdgeist.org/arts/software/ezjail/
+
+ * iocage
+ ** https://www.freshports.org/sysutils/iocage/
+ ** https://github.com/iocage/iocage
+
+ * cbsd
+ ** https://www.freshports.org/sysutils/cbsd/
+ ** https://www.bsdstore.ru/en/about.html
+
+=== Références
+
+ * https://www.freebsd.org/doc/en_US.ISO8859-1/books/design-44bsd/book.html#overview-process-management
+ * https://www.freebsd.org/doc/handbook/basics-processes.html
+ * https://www.netbsd.org/docs/internals/en/chap-processes.html
+ * https://www.dragonflybsd.org/docs/handbook/UnixBasics/#index9h2
+ * https://minixnitc.github.io/implementation.html
+ * http://sankofa.loc.edu/chu/web/Courses/Cosi410/Ch2/MINIX.html
+
+ * https://www.freebsd.org/doc/handbook/jails.html
+

@@ -1,0 +1,29 @@
+== FreeBSD - Update world et kernel (binaire)
+
+https://www.freebsd.org/cgi/man.cgi?query=freebsd-update[`freebsd-update`]
+est un utilitaire permettant de simplifié les mises à jour en offrant
+des patchs binaires à appliquer.
+
+[sh]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+freebsd-update fetch
+freebsd-update install
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+En cas de problème, il est toujours possible de faire un rollback:
+
+[sh]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+freebsd-update rollback
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Si votre kernel, ou certains de vos outils ont été modifiés, il est
+préférable de configurer `freebsd-update` pour lui dire de faire une
+mise à jour sélective en éditant le fichier `/etc/freebsd-update.conf`
+
+[sh]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Components world kernel
+IgnorePaths /path/to/your/modified/software
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+

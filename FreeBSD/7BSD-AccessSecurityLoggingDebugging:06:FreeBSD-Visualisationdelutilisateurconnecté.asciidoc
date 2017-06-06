@@ -1,0 +1,23 @@
+== FreeBSD - Visualisation de l'utilisateur connecté
+
+Un utilisateur connecté peut avoir accès à ses informations à tout
+moment. Les commands `id` et `whoami` permettent de récupérer ces
+données:
+
+.Utilisation de la commande `id`
+[sh]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+id
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.Utilisation de la commande `whoami`
+[sh]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+whoami
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+ * https://www.freebsd.org/cgi/man.cgi?query=id
+ * https://www.freebsd.org/cgi/man.cgi?query=whoami
+ * http://pubs.opengroup.org/onlinepubs/9699919799/utilities/id.html
+ * http://pubs.opengroup.org/onlinepubs/9699919799/utilities/logname.html
+

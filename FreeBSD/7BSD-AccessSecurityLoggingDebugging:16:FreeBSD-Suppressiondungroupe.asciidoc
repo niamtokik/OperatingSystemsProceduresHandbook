@@ -1,0 +1,11 @@
+== FreeBSD - Suppression d'un groupe
+
+Un groupe peut-être simplement supprimé avec la commande `pw group
+del` ou une simple édition manuelle du fichier `/etc/passwd`.
+
+.Utilisation de la commande `pw group del`
+[sh]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+pw group del bob
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+

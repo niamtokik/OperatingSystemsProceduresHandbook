@@ -1,0 +1,31 @@
+== FreeBSD - Outils externe (iocage)
+
+https://www.freebsd.org/cgi/man.cgi?query=iocage&apropos=0&sektion=0&manpath=FreeBSD+11.0-RELEASE+and+Ports&arch=default&format=html[`iocage`]
+est un outil permettant de gérer facilement des jails.
+
+.Installation
+[sh]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+# via les packages
+pkg install iocage
+
+# via les ports
+cd /usr/ports/sysutils/iocage
+make && make install
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+`iocage` utilise des fonctionnalités récentes qui ne sont pas par
+défaut dans le kernel GENERIC. `VIMAGE`, `RACCT` et `RCTL` devront
+alors être activé pour pouvoir utiliser toutes les options
+d'`iocage`. `ZFS` est aussi recommandé, les fonctions de snapshots,
+backup et réplication s'appuyant sur ce système de fichier.
+
+.Utilisation
+[sh]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+iocage fetch
+iocage create tag=myjail
+iocage start myjail
+iocage stop myjail
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+

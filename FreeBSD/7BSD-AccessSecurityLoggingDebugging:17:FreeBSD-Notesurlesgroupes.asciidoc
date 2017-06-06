@@ -1,0 +1,13 @@
+== FreeBSD - Note sur les groupes
+
+Un utilisateur rajouté dans un groupe ne pourra utiliser ces nouveaux
+droits qu'en rechargeant sa session. Effectivement, si on décide de
+rajouter l'utilisateur `bob` dans le groupe `alice`, ce dernier devra
+se déconnecter de sa session actuelle puis se reconnecter pour qu'il
+puisse avoir accès à ses nouveaux droits.
+
+Pourquoi? Parce que la session garde en mémoire les informations des
+groupes et de l'utilisateur et ne peuvent être modifié qu'en modifier
+le contexte d'exécution du logiciel qui utilise l'utilisateur en
+question.
+

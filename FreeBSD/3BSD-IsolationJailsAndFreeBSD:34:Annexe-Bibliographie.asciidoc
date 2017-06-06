@@ -1,0 +1,23 @@
+== Annexe - Bibliographie
+
+ * https://www.amazon.fr/Design-UNIX-Operating-System/dp/0132017997[The
+   Design of Unix Operating System]
+ 
+ * https://www.amazon.com/Design-Implementation-UNIX-Operating-System/dp/0201061961[The
+   Design and Implementation of the 4.3BSD Unix Operating System]
+ 
+ * https://www.amazon.com/Implementation-Operating-paperback-Addison-Wesley-Systems/dp/0132317923[The Design and Implementation of the 4.4BSD Unix Operating System]
+ 
+ * https://www.amazon.com/Design-Implementation-FreeBSD-Operating-System/dp/0201702452[The
+   Design and Implementation of the FreeBSD Operating System 1st
+   Edition]
+ 
+ * https://www.amazon.com/Design-Implementation-FreeBSD-Operating-System/dp/0321968972/ref=dp_ob_title_bk[The
+   Design and Implementation of the FreeBSD Operating System 2nd
+   Edition]
+
+ * http://zeus.nyf.hu/~bajalinov/LevOpRend/Tanenbaum_Woodhull_Operating%20Systems%20Design%20&%20Implementation%203rd%20Edition.pdf[Operating
+   System Design and Implementation]
+ 
+ * https://vowi.fsinf.at/images/b/bc/TU_Wien-Verteilte_Systeme_VO_(G%C3%B6schka)_-_Tannenbaum-distributed_systems_principles_and_paradigms_2nd_edition.pdf[Distributed Systems, Principles and Paradigms]
+

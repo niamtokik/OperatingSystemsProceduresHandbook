@@ -1,0 +1,18 @@
+== FreeBSD - Update ports (poudrière)
+
+https://www.freebsd.org/cgi/man.cgi?query=poudriere[poudrière] est
+builder relativement récent permettant de packager à la volée une
+liste de package.
+
+[sh]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+# création d'une jail
+poudriere jail -c -j jail
+
+# création d'un ports tree
+poudriere ports -c -p ports
+
+# bulk build
+poudriere bulk -j jail -p ports -f /path/to/pkg_list
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+

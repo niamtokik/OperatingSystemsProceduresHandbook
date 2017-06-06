@@ -1,0 +1,29 @@
+== FreeBSD - Introduction au debugging avec dtrace
+
+`dtrace` est  un outil  pour tracer l'exécution  des fonctions  sur le
+système,  permettant de  voir  l'état d'un  programme  ou d'un  module
+kernel.  `dtrace`  est  un   outil  extrèmement  puissant  mais  aussi
+extrèmement complexe. Il est présent par défaut sous FreeBSD depuis la
+version 10.
+
+`dtrace` fonctionne avec des sondes (probes) permettant de filtrer les
+données que nous voulons récupérer.
+
+[sh]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+dtrace -l
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.Exemple des appels systèmes de la commande `dd`
+[sh]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+dtrace -n 'syscall:freebsd:*:entry /execname == "dd"/ { ustack(); }' \
+  | less
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+ * http://dtrace.org/guide
+ * https://www.freebsd.org/doc/handbook/dtrace.html
+ * https://wiki.freebsd.org/DTrace
+ * https://www.freebsd.org/cgi/man.cgi?query=dtrace
+ * https://www.freebsd.org/cgi/man.cgi?query=dtruss
+

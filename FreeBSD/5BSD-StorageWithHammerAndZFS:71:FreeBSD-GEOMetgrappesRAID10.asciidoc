@@ -1,0 +1,64 @@
+== FreeBSD - GEOM et grappes RAID10
+
+Il est tout à fait possible d'utiliser les fonctionnalées de GEOM sous
+forme de grappe et ainsi de cumuler les avantages (et/ou les
+inconvénients). Les commandes
+https://www.freebsd.org/cgi/man.cgi?query=gstripe[`gstripe`] et
+https://www.freebsd.org/cgi/man.cgi?query=gmirror[`gmirror`]
+associées permettent d'effectuer ce genre d'actions.
+
+.Chargement explicite des modules kernels
+[sh]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kldload geom_stripe
+kldload geom_mirror
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.Création de 4 disques mémoire de 256MB sur la heap
+[sh]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+MDA=$(mdconfig -t malloc -s 256m)
+MDB=$(mdconfig -t malloc -s 256m)
+MDC=$(mdconfig -t malloc -s 256m)
+MDD=$(mdconfig -t malloc -s 256m)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.Création du raid0
+[sh]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+gstripe create mystripe0 ${MDA} ${MDB}
+gstripe create mystripe1 ${MDC} ${MDD}
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.Création du mirroir sur les 4 disques en raid0
+[sh]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+gmirror label mymirror0 mystripe0 mystripe1
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.Création d'une partition GPT sur la grappe
+[sh]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+gpart create -s GPT mymirror0
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.Création d'une partition de type freebsd-ufs
+[sh]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+gpart add -t freebsd-ufs -i1 mymirror0
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.Création du système de fichiers
+[sh]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+newfs /dev/mirror/mymirror0p1
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.Suppression de la grappe
+[sh]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+gmirror destroy mymirror0
+gstripe destroy mystripe1
+gstripe destroy mystripe0
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+

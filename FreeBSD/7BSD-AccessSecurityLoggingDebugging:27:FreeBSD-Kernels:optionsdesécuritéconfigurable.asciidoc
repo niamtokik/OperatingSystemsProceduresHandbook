@@ -1,0 +1,27 @@
+== FreeBSD - Kernels: options de sécurité configurable
+
+Le kernel FreeBSD est livré  avec de nombreuses fonctionnalités liée à
+la sécurité. Ces  options de sécurité sont accessible  via la commande
+`sysctl` au niveau du noeud `security.bsd`
+
+[sh]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+sysctl security.bsd
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Quelques exemples de configuration:
+
+ * `stack_guard_page`: active la protection de stack au niveau de la
+                       mémoire virtuelle;
+ 
+ * `see_other_gids`: permet de voir les processus des utilisateurs
+                     ayant le même groupe;
+ 
+ * `see_others_uids`: permet de voir les processus des autres
+                      utilisateurs.
+
+NOTE: HardenedBSD est  un fork de FreeBSD activant un  grand nombre de
+      ces fonctionnalités par défaut.
+
+ * https://www.freebsd.org/cgi/man.cgi?query=sysctl
+

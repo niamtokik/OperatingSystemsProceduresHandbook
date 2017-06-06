@@ -1,0 +1,23 @@
+== FreeBSD - Manipuler un chroot (chroot)
+
+A quoi sert un changement de racine? Tout d'abord un changement de
+racine n'a pas pour but d'augmenter la sécurité d'un processus lancé,
+mais de l'isoler logiquement du reste du système. Le processus avec
+une racine différente aura toujours accès aux informations concernant
+le système.
+
+En pratique, le changement de racine est utilisé pour différentes
+tâches:
+
+ * Lancement d'un processus avec un utilisateur et un groupe
+   différent
+ * Récupération d'un accès sur un serveur 
+ * Modification de password
+ * Isolation d'application non critique
+
+[sh]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+# lance un shell avec l'utilisateur nobody et le groupe nobody
+chroot -unobody -gnobody / /bin/sh
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+

@@ -1,0 +1,26 @@
+== FreeBSD - Ajout d'un utilisateur dans un groupe
+
+Un utilisateur peut-être rajouté avec la command `pw group mod` de 2
+façon:
+
+ * `pw group mod $group -m $user`: rajoute un utilisateur
+                                   supplémentaire dans le groupe en
+                                   gardant les autres utilisateurs
+
+ * `pw group mod $group -M $user`: supprime tous les utilisateurs dans
+                                   le groupe et rajoute simplement
+                                   l'utilisateur `$user`
+
+.Ajout d'un utilisateur supplémentaire
+[sh]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+pw group mod alice -m bob
+pw group mod alice -m alice
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.Reset du groupe avec un seul utilisateur
+[sh]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+pw group mod alice -M root
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+

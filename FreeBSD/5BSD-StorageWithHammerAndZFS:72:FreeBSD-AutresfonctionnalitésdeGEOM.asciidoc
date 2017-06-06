@@ -1,0 +1,11 @@
+== FreeBSD - Autres fonctionnalités de GEOM
+
+GEOM permet de gérer:
+
+ * Compression des images disques avec `geom_uzip` ou `geom_uncompress`;
+ * Support des LVM Linux avec `geom_linux_lvm`;
+ * Gestion des journaux GEOM via `gjournal`;
+ * Gestion de larges espaces disques avec `gvirstor`;
+ * Gestion du stockage de secret avec `gshsec`;
+ * et bien plus.
+

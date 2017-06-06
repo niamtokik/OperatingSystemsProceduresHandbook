@@ -1,0 +1,44 @@
+== FreeBSD - Jail et stack réseau dédié (VIMAGE)
+
+`VIMAGE` est une option du kernel FreeBSD permettant de créer, pour
+chaque nouvelle jail, une stack réseau dédié. Cette option offre alors
+à la nouvelle jail créée une interface loopback et la possibilité de
+gérer ses propres flux et paquets. Malheureusement, cette
+fonctionnalité étant encore considéré comme expérimentale, très peu de
+documentation est disponible, il est possible d'avoir des informations
+sur le fonctionnement directement dans le
+https://svnweb.freebsd.org/base/releng/10.3/sys/net/vnet.c?revision=296373&view=markup[code
+source].
+
+.Configuration du kernel
+[sh]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+cd /usr/src/sys/$(uname -m)/conf
+cp GENERIC VIMAGE
+echo "options VIMAGE" >> VIMAGE
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.Compilation et installation du kernel
+[sh]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+cd /usr/src
+make -j4 buildkernel KERNCONF=VIMAGE
+make -j4 installkernel KERNCONF=VIMAGE
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.Création d'une jail avec vnet
+[sh]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+jail -c name=myjail path=/path/to/my/chroot vnet
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.Raccordement au monde réel
+[sh]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ifconfig epair0 create
+ifconfig bridge0 create up
+ifconfig bridge0 addm epair0a
+ifconfig bridge0 addm em0
+ifconfig epair0b vnet myjail
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+

@@ -1,0 +1,18 @@
+== FreeBSD - Gestion des valeurs par défaut (pw.conf)
+
+La commande d'administration et de management `pw` est utilisé pour la
+gestion des  utilisateurs et des  groupes. Cette commande  possède une
+configuration  permettant de  rajouter des  valeurs par  défaut. Cette
+configuration se trouve dans `/etc/pw.conf`.
+
+.Exemple de contenu du fichier `/etc/pw.conf`
+[txt]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+skeleton /etc/skel
+newmail /etc/welcome
+defaultshell sh
+minuid 5000
+mingid 5000
+password_days 120
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+

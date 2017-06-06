@@ -1,0 +1,47 @@
+== FreeBSD - Slices (fdisk)
+
+Traditionnellement, les systèmes BSD supportent tous le système de
+slices. L'édition des slices se fait via la commande
+https://www.freebsd.org/cgi/man.cgi?query=fdisk[`fdisk`].
+
+.Afficher la table de slices du disque `/dev/md0`
+[sh]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+fdisk /dev/md0
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.Éditer la table de slices du disque `/dev/md0`
+[sh]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+fdisk -u /dev/md0
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.Réinitialiser la table de slices du disque `/dev/md0`
+[sh]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+fdisk -i /dev/md0
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Après la configuration des slices, un nouveau fichier `/dev/md0s1`
+devrait apparaitre. Le kernel FreeBSD a tout simplement identifié
+qu'un nouveau slice a été créé. Le nom de ce nouveau fichier est
+standardisé de la façon suivante:
+
+ * `md0`: disque dur complet;
+ * `s1`: premier slice.
+
+Si nous avions configuré par exemple le slice4, nous aurions eu aussi
+le fichier `/dev/md0s4` qui aurait été créé.
+
+[NOTE]
+======================================================================
+Chaque slice (comme les partitions) ont besoin d'un typage, pour
+définir dans quel format sera le slice. Par exemple, sous FreeBSD, le
+slice attendu sera au format FreeBSD (type 165).
+
+La liste des types de format supportés peut être récupéré dans le
+https://svnweb.freebsd.org/base/head/sbin/fdisk/fdisk.c?view=markup#l132[code
+source de fdisk]. Cette liste peut être aussi récupéré dans le fichier
+`/usr/include/sys/diskmbr.h` (en hexadecimal).
+======================================================================
+

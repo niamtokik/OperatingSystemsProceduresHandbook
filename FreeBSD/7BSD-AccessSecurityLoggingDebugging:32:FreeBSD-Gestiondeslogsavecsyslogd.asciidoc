@@ -1,0 +1,112 @@
+== FreeBSD - Gestion des logs avec syslogd
+
+`syslogd` est le  daemon natif pour la gestion des  logs. Les messages
+en provenance du kernel ou de toute autre application sont envoyés via
+le socket UNIX présent dans `/dev/log`.  Un autre socket par défaut se
+trouve dans `/var/run/log`.
+
+`syslogd` implémente le protocole définis dans la RFC3164 (syslog bsd)
+et  supporte en  conséquence  le  fait d'envoyer  et  de recevoir  des
+messages via un réseau, au travers de paquet UDP. La RFC5424 n'est pas
+supporté par syslogd mais est rétrocompatible avec la RFC3164.
+
+Chaque message généré est normalement  marqué par une priorité (emerg,
+alert, crit, err, warning, notice, info, debug) et une facilité (auth,
+authpriv,  console, cron,  daemon, ftp,  kern, lpr,  mail, news,  ntp,
+security, syslog, user, uucp, local0 à local7). Ces tags permettent de
+filtrer les messages en provenance d'un ou plusieurs services.
+
+`syslogd`  se   configure  à   l'aide  du  fichier   de  configuration
+`/etc/syslog.conf`.  Il  permet de  rediriger les messages  du système
+vers un  fichier sur le  système hôte ou  de le retransmettre  vers un
+serveur tier en UDP.
+
+`syslogd` peut  se démarrer en  standalone, permettant par  exemple de
+tester la configuration ou de debugger le logiciel:
+
+.Commande pour debugger `syslogd`
+[sh]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+syslogd -Fdvvv
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Si il  a besoin d'être lancé  lors du démarrage du  système, il suffit
+d'utiliser le fichier `/etc/rc.conf`:
+
+.Configuration du fichier `/etc/rc.conf`
+[sh]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+syslogd_enable="YES"
+syslogd_flags="-ss"
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Le  démarrage et  l'arrêvent peut  alors se  faire avec  les commandes
+standards:
+
+.Démarrage et arrêt de `syslogd`
+[sh]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+service syslogd start
+/etc/rc.d/syslogd start
+
+service syslogd stop
+/etc/rc.d/syslogd stop
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Pour  des  raisons  évidentes  de   sécurité,  il  est  préférable  de
+désactiver  certaines   fonctionnalités  de  `syslogd`  lors   de  son
+lancement, le  flag `-ss`  permet de désactiver  le support  réseau de
+`syslogd`. Ce  logiciel fonctionnant en  root, un bug dans  ce dernier
+pourrait causer de nombreux dommages.
+
+Pour une  utilisation de  collecteur, il  sera préférable  d'avoir une
+configuration strict:
+
+ 1. définir le port d'écoute avec le flag `-b`;
+ 
+ 2. définir  les hotes autorisés à  envoyer les messages avec  le flag
+    `-a`;
+
+ 3. la désactivation  de la  résolution  avec le  flag `-n`  pourrait
+    éviter des problèmes de performance voir de sécurité;
+
+ 4. utiliser le temps local  (configuré sur le système) peut permettre
+    d'éviter  des problèmes  de cohérence  dans les  logs ou  rajouter
+    cette fonctionnalité à des systèmes  embarqués ou trop vieux, avec
+    le flag `-T`.
+
+.Exemple d'un fichier de configuration `syslog.conf`
+[txt]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+daemon.* /var/log/daemon
+authpriv.* /var/log/secure
+*.* /var/log/message
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.Exemple de filtrage en provenance de log externe (réseau)
+[txt]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
++192.168.0.1:514
+*.* /var/log/router.log
+
++[fe80:1:a:b:c::1]:514
+*.* /var/log/firewall.log
+
++172.16.1.1
+*.* @remote.host.com
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Lors  d'une  modification  de  configuration,  il  est  nécessaire  de
+recharger `syslogd`:
+
+[sh]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+service syslogd restart
+service syslogd reload
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+ * https://www.freebsd.org/doc/handbook/configtuning-syslog.html
+ * https://www.freebsd.org/cgi/man.cgi?query=syslogd
+ * https://www.freebsd.org/cgi/man.cgi?query=syslog.conf
+ * https://www.ietf.org/rfc/rfc3164.txt
+

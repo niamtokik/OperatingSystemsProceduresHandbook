@@ -1,0 +1,8 @@
+== FreeBSD - Unix et processus (1)
+
+Avant de parler d'isolation et de jails, il est nécessaire de définir
+ce qu'est un programme puis un processus, et comment fonctionne ces
+concepts sur Unix.
+
+image:jailed.gif[]
+

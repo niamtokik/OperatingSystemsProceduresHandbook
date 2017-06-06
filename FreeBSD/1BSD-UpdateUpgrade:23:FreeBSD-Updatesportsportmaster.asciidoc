@@ -1,0 +1,11 @@
+== FreeBSD - Updates ports (portmaster)
+
+https://www.freebsd.org/cgi/man.cgi?query=portmaster[portmaster] permet
+de gérer les ports simplement. La commande pour la mise à jour est
+simple:
+
+[sh]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+portmaster -a
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+

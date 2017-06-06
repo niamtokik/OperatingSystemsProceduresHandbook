@@ -1,0 +1,16 @@
+== FreeBSD - Système de fichiers et droits étendus (chflags)
+
+Le système de fichier possède aussi des droits étendus, permettant de
+rajouter des options de protection supplémentaires. Ces droits sont
+pour la plupart modifiable seulement par l'utilisateur root ou
+le propriétaire (utilisateur) du fichier.
+
+[sh]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+chflags +arch test
+chflags +sunlnk test1
+chflags +uchg test2
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+ * https://www.freebsd.org/cgi/man.cgi?query=chflags
+

@@ -1,0 +1,20 @@
+== FreeBSD - GEOM (introduction)
+
+GEOM est une interface universelle de gestion des disques dur
+présents sur FreeBSD. Cette interface est apparu sur FreeBSD 5.3 et
+permet de standardiser les fonctionnalités et les comportements du
+matériel sous forme de classes. D'un point de vue implémentation,
+GEOM s'appuit sur le concept d'objets (attributs, méthodes, classes).
+
+[NOTE]
+======================================================================
+Les exemples de codes qui suivent sont des exemples. La création du
+partitionnement GPT ou des partitions FreeBSD ne sont là que pour
+montrer qu'il est possible d'utiliser des partitions typés pour
+d'autres finalités que le type attendu. Il n'est pas nécessaire de
+partitionner un espace mémoire pour l'utilisation de GEOMs.
+======================================================================
+
+ * https://www.freebsd.org/cgi/man.cgi?query=geom
+ * https://www.freebsd.org/cgi/man.cgi?query=libgeom
+

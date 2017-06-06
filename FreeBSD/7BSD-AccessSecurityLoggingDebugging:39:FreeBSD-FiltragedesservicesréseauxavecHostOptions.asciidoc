@@ -1,0 +1,10 @@
+== FreeBSD - Filtrage des services réseaux avec Host Options
+
+FreeBSD supporte le filtrage des hôtes autorisés ou non à accéder à un
+service, sans  pour autant  utiliser de  firewall ou  de configuration
+supplémentaire. Ce  support est fait  via l'utilisation du  fichier de
+configuration `/etc/hosts.allow`.
+ 
+ * https://www.freebsd.org/cgi/man.cgi?query=hosts_options
+ * https://www.freebsd.org/cgi/man.cgi?query=hosts_access&sektion=5
+

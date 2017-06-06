@@ -1,0 +1,49 @@
+== FreeBSD - GEOM et le RAID1 (gmirror)
+
+GEOM permet de gérer le RAID1 d'un point de vue logiciel via la
+commande
+https://www.freebsd.org/cgi/man.cgi?query=gcache[`gmirror`]. Le RAID1
+ou `mirroring` copie les données sur un ou plusieurs disques. Tous les
+disques présents sur cette grappe sont des copies d'eux même. Si un
+des disques est défectueux, les données sont toujours  présentes sur les
+autres disques.
+
+.Chargement explicite du module kernel geom_mirror
+[sh]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kldload geom_mirror
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.Création de 2 disques mémoire de 512MB sur la heap
+[sh]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+MDA=$(mdconfig -t malloc -s 512m)
+MDB=$(mdconfig -t malloc -s 512m)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.Création de la table de partitions GPT
+[sh]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+gpart create -s gpt ${MDA}
+gpart create -s gpt ${MDB}
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.Ajout d'une partition de type freebsd-ufs
+[sh]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+PARTA=$(gpart add -t freebsd-ufs -i1 ${MDA}|cut -d" " -f1)
+PARTB=$(gpart add -t freebsd-ufs -i1 ${MDB}|cut -d" " -f1)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.Création du mirroir
+[sh]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+gmirror label mymirror ${PARTA} ${PARTB}
+newfs /dev/mirror/mymirror
+gmirror list
+gmirror status
+gmirror destroy mymirror
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+ * https://www.freebsd.org/cgi/man.cgi?query=gmirror
+

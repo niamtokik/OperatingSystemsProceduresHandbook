@@ -1,0 +1,15 @@
+== FreeBSD - Diagnostiquer un processus (dtruss)
+
+https://www.freebsd.org/cgi/man.cgi?query=dtruss[`dtruss`] est un
+outil permettant de tracer l'activité d'un processus (appels systèmes)
+en utilisant le framework `dtrace`.
+
+[sh]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+# examine l'activité du pid ${pid}
+dtruss -p ${pid}
+
+# examine l'activité du processus nommé ${name}
+dtruss -n ${name}
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+

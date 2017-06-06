@@ -1,0 +1,16 @@
+== FreeBSD - Update
+
+Dans le monde de FreeBSD l'update consiste à mettre à jour la version
+courante de son système pour corriger des bugs ou des failles de
+sécurité.
+
+Le projet FreeBSD utilise plusieurs vecteurs de communication pour
+diffuser les mises à jours:
+
+ * https://www.freebsd.org/security/advisories.html[Security Advisories]
+ * https://www.freebsd.org/security/notices.html[Errata Notices]
+ * https://lists.freebsd.org/pipermail/freebsd-announce[Mailing-list announce]
+ * https://twitter.com/freebsderrata×[@freebsderrata]
+ * https://twitter.com/freebsdsecurity[@freebsdsecurity]
+ * https://twitter.com/VuXML[@VuXML] (base et ports)
+

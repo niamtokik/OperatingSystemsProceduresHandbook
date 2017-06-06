@@ -1,0 +1,49 @@
+== FreeBSD - Upgrade (binaire)
+
+Cette méthode comporte de nombreux risque et n'est pas recommandée
+pour la mise à jour d'un serveur, mais plutôt pour la mise à jour des
+jails. Dans tous les cas, cette méthodologie reste fonctionnelle mais
+comporte de nombreux risques.
+
+[sh]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+REPO=http://ftp.freebsd.org/pub/FreeBSD/releases/amd64/11.0-RELEASE/
+mkdir /usr/rel
+cd /usr/rel
+for i in base doc kernel lib32 ports src test
+do
+  fetch ${REPO}/${i}.txz
+done
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Un backup de l'ancien kernel fonctionnel est nécessaire, nous
+installons ensuite le nouveau kernel précédemment téléchargé.
+
+[sh]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+cd /boot
+cp -rp kernel kernel.old
+cd /
+tar xJvfp /usr/rel/kernel.txz
+reboot
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+finalement, après un reboot, nous pouvons installer l'userland.
+
+[sh]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+cd /
+for i in base doc lib32
+do
+  tar xJvfp /usr/rel/${i}.txz
+done
+reboot
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+pour finir, les tâches classiques après une upgrade:
+
+[sh]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+mergemaster -a
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+

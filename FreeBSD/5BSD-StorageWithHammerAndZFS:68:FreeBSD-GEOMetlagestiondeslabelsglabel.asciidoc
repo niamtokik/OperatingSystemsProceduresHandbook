@@ -1,0 +1,15 @@
+== FreeBSD - GEOM et la gestion des labels (glabel)
+
+Chaque GEOM peut recevoir un label. La commande
+https://www.freebsd.org/cgi/man.cgi?query=glabel[`glabel`] permet de
+créer, modifier ou de supprimer des labels présents sur les GEOMS.
+
+.Récupération de tous les labels GEOM
+[sh]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+glabel list
+glabel status
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+ * https://www.freebsd.org/cgi/man.cgi?query=glabel
+

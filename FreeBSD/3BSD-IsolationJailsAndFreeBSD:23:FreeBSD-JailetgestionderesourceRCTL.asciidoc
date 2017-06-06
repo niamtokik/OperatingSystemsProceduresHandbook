@@ -1,0 +1,46 @@
+== FreeBSD - Jail et gestion de resource (RCTL)
+
+`RCTL` est une fonctionnalité récente du kernel
+(https://www.freebsd.org/releases/9.0R/relnotes.html[FreeBSD 9.0])
+permettant de gérer les ressources des processus et par extension, les
+ressources d'une jail. Cette option n'est pas compilée par défaut, il
+est donc nécessaire de créer un kernel dédié. La commande pour
+utiliser cette fonctionnalité se nomme
+http://www.freebsd.org/cgi/man.cgi?query=rctl[`rctl`]
+
+.Configuration du kernel
+[sh]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+cd /usr/src/sys/$(uname -m)/conf
+cp GENERIC RCTL
+echo "options RCTL" >> RCTL
+echo "options RACCT" >> RCTL
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.Compilation et installation du kernel
+[sh]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+cd /usr/src/
+make -j4 buildkernel KERNCONF=RCTL
+make -j4 installkernel KERNCONF=RCTL
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.Création d'une jail
+[sh]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+jail -c name=rctljail path=/path/to/my/jail
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.Limitation des ressources avec `rctl`
+[sh]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+# limite le nombre de processus à 32 dans la jail rctl
+rctl -a jail:rctljail:maxproc:32
+
+# affiche les règles de ressources pour la jail rctljail
+rctl -l jail:rctljail
+
+# supprime toutes les règles pour la jail rctljail
+rctl -r jail:rctljail
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+

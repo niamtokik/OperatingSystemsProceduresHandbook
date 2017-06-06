@@ -1,0 +1,36 @@
+== FreeBSD - Base de donnée d'authentification (nsswitch.conf)
+
+Les systèmes  Unix ont  besoin de savoir  où trouver  les informations
+d'authentifications, une base  de donnée sous forme  d'un fichier plat
+permet de  répondre à ce besoin  en indiquant au système  où se trouve
+les informations  désiré. Ce  fichier se  nomme `nsswitch.conf`  et se
+trouve dans le répertoire `/etc`.
+
+.Exemple de contenu du fichier `/etc/nsswitch.conf`
+[txt]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+group: compat
+group_compat: nis
+hosts: files dns
+networks: files
+passwd: compat
+passwd_compat: nis
+shells: files
+services: compat
+services_compat: nis
+protocols: files
+rpc: files
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+La  configuration est  simple,  le premier  terme  désigne le  service
+demandé,  par  exemple  `groupe`  ou `passwd`,  ce  terme  est  suivit
+directement du caractère `:`. Le type  de méthode utilisé est marqué à
+la suite, séparé  par des espaces. Imaginons que  nous avons plusieurs
+méthodes pour nous connecter, une méthode locale, une méthode distante
+avec NIS et une autre méthode avec LDAP:
+
+[txt]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+passwd: compat nis ldap
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+

@@ -1,0 +1,67 @@
+== FreeBSD - Systèmes de fichiers et droits (chmod, chown)
+
+Les systèmes  de fichiers UNIX  (c-à-d UFS, FFS, EXT,  etc) supportent
+nativement des droits  sur les fichiers. Un fichier  peut appartenir à
+une personne (`u` pour  user), à un groupe (`g` pour  group) ou à tout
+le monde (`o` pour other).
+
+.Utilisation de chown
+[sh]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+touch test
+chown alice:bob test
+chown bob:alice test
+chown root:wheel test
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Les propriétaires du fichiers  peuvent avoir différents droits dessus,
+tel que  l'écriture (`w` pour write),  la lecture (`r` pour  read), et
+l'exécution (`x` pour eXecution).
+
+[txt]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+ | user      |    | group     |    | other     |
+ |           |    |           |    |           |
+ | r   w   x |    | r   w   x |    | r   w   x |
+ |           |    |           |    |           |
+ | 0 | 0 | 0 |    | 0 | 0 | 0 |    | 0 | 0 | 0 |
+ | 0 | 0 | 0 | 00 | 0 | 0 | 0 | 00 | 0 | 0 | 0 | 00  -> 000
+ | 1 | 0 | 1 | 05 | 0 | 1 | 0 | 02 | 1 | 1 | 0 | 06  -> 526
+ | 1 | 1 | 1 | 07 | 1 | 1 | 1 | 07 | 1 | 1 | 1 | 07  -> 777
+
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.Utilisation de `chmod`
+[sh]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+touch test1
+chmod 777 test1
+chmod 640 test1
+chmod 007 test1
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+En  plus  de l'utilisateur,  du  groupe  et  des autres,  une  colonne
+spéciale   existe   permettant   de  rajouter   des   droits   d'accès
+supplémentaire. Cette colonne  est souvent nommé "sticky  bit" mais ce
+terme ne fait référence qu'à une seule fonctionnalité.
+
+[txt]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+ | user execution | group execution | stiky bit |
+ |                |                 |           |
+ |              0 |               0 |         0 | -> 00
+ |              1 |               1 |         1 | -> 07
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.Utilisation de `chmod` (sticky-bit, setuid, setgid)
+[sh]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+touch test2
+chmod 1700 test2
+chmod 2700 test2
+chmod 4700 test2
+chmod 7700 test2
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+

@@ -1,0 +1,34 @@
+== FreeBSD - Introduction à l'audit système (praudit et auditreduce)
+
+Si `auditd` est correctement configuré, un fichier de log binaire
+contenant les évènement filtrés devraient être créé dans
+`/var/audit/current`.
+
+Vu que c'est un fichier binaire, il est nécessaire d'utiliser des
+outils adaptés.
+
+ * `praudit`: permet de lire le contenu binaire du fichier de log et
+              de le convertir en plusieurs format (texte, XML)
+
+.Exemple d'impression de log (texte et XML)
+[sh]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+praudit /var/audit/current
+praudit -x /var/audit/current
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+ * `auditreduce`: filtre le contenu binaire du fichier de log et
+                  n'affiche que les données désirées. Il ne transforme
+                  pas la sortie du fichier mais la filtre juste, donc,
+                  la sortie standard sera un flux binaire.
+
+.Exemple de filtrage sur l'UID 0
+[sh]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+auditreduce -r 0 /var/audit/current \
+  | praudit
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+ * https://www.freebsd.org/cgi/man.cgi?query=praudit
+ * https://www.freebsd.org/cgi/man.cgi?query=auditreduce
+

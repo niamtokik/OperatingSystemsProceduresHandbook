@@ -1,0 +1,152 @@
+== FreeBSD - Scripts de démarrage et d'arrêts (rc)
+
+Après le lancement du kernel, le programme `init` est lancé. Ce
+dernier fait alors appel au script `/etc/rc` contenant la liste des
+instructions pour l'initialisation du système ainsi que des daemons
+présents. Durant l'exécution de ce script, `rcorder` est invoqué pour
+connaitre l'ordre de démarrage des scripts de gestion des daemons.
+
+Les scripts pour la gestion des démons, leur démarrage, ainsi que leur
+arrêt se trouvent dans le répertoire `/etc/rc.d` pour les daemons
+présent dans la base du système ainsi que dans le répertoire
+`/usr/local/etc/rc.d/` pour les outils externes installés via les
+packages.
+
+L'ordre de démarrage dépend de certains termes présents en
+commentaires, dans l'header du script:
+
+[sh]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+# PROVIDE:
+# REQUIRE:
+# BEFORE:
+# KEYWORD:
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Il est possible de voir visuellement l'ordre de démarrage grâce à la
+commande `rcorder`:
+
+[sh]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+rcorder /etc/rc.d /usr/local/etc/rc.d
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+La création de script de démarrage est aidé par une librairie de
+fonction prédéfinie permettant de simplifier la gestion des daemons
+(`/etc/rc.subr`). Il se charge habituellement au début du script.
+
+[sh]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+. /etc/rc.subr
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+La variable `name` contient le nom du daemon ou du programme qui sera
+controlé et lancé lors du boot.
+
+[sh]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+name="daemon_name"
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+`rcvar` contient le nom de la variable présente dans le fichier
+`/etc/rc.conf` qui devra être configuré par "YES" ou "NO", définissant
+si le daemon devra être lancé ou non lors du démarrage du système.
+
+[sh]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+rcvar="daemon_name_enable"
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+la variable `command` contient le chemin absolu du programme présent
+sur le système de fichier.
+
+[sh]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+command="/path/to/${name}"
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Il est possible de définir directement les arguments par défaut de la
+commande qui sera lancé sur le système.
+
+[sh]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+commands_args="my command arguments"
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+`pidfile` est le paramètre qui contiendra le numéro de PID du daemon
+lors de son lancement. Ce fichier est important car il permet de
+vérifier si le programme est actif ou non sur le système.
+
+[sh]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+pidfile="/var/run/daemon_name.pid"
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+`required_dirs` et `required_files` contiennent respectivement la
+liste des répertoires ainsi que des fichiers réquis pour le démarrage
+de ce daemon. Certains daemon nécessitent le chargement d'un module
+kernel. Ce module qui est indispensable au service est à rajouter dans
+la variable `required_modules`.
+
+[sh]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+required_files="/path/to/${name}.conf"
+required_dirs="/path /another_path"
+required_modules="my_module"
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Si des commandes supplémentaires sont utilisables, il est possible de
+les rajouter dans le paramètre `extra_commands`.
+
+[sh]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+extra_commands="reload"
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Après l'introduction et l'initialisation des variables, le script
+contient des fonctions définis par l'utilisateurs permettant de
+démarrage proprement le daemon. Un script de démarrage se termine
+habituellement par:
+
+[sh]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+load_rc_config ${name}
+run_rc_command "${1}"
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+la fonction `load_rc_config` suivit du nom du script va lire les
+configurations par défaut présentes dans les fichiers `/etc/rc.conf`
+ou `/etc/rc.conf.local` si il existent et préchargent les variables.
+
+la fonction `run_rc_command` suivit du premier argument est la
+fonction qui va permettre d'ordonner une action sur le service
+(par exemple `start`, `stop` ou `restart`).
+
+Plusieurs configurations existent actuellement pour configurer les
+paramètres d'initialisation d'un daemon sous FreeBSD, les fichiers
+`/etc/rc.conf` et `/etc/rc.conf.local` étant les principaux. Il est
+aussi possible de rajouter des fichiers de configuration séparés dans
+le répertoire `/etc/rc.conf.d`
+
+L'édition de ces fichiers de configuration peut se faire manuellement
+avec l'éditeur de texte de votre choix ou via la commande
+`sysrc`. Cette dernière permet par exemple d'afficher les paramètres
+par défaut d'une variable ou les commentaires présents dans le script
+de démarrage.
+
+[sh]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+sysrc sshd_enable
+sysrc sshd_enable=YES
+sysrc -d sshd_enable
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Le démarrage d'un script se fait habituellement avec l'appel direct du
+script de démarrage ou via la commande `service`.
+
+[sh]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/etc/rc.d/syslogd restart
+service syslogd restart
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+

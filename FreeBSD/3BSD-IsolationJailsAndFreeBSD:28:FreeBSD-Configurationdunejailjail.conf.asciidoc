@@ -1,0 +1,30 @@
+== FreeBSD - Configuration d'une jail (jail.conf)
+
+https://www.freebsd.org/cgi/man.cgi?query=jail.conf[`jail.conf`] est
+un fichier de configuration permettant de sauvegarder la configuration
+d'une jail. Lors de la création d'une jail, la commande `jail` regarde
+d'abord si le fichier `/etc/jail.conf` existe et parse son contenu
+pour savoir si la jail demandé est bien présente dans ce
+fichier. Ci-dessous un exemple simple du fichier de configuration des
+jails.
+
+[txt]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+$jail_roots = "/path/to/myroot";
+
+# configuration globale
+allow.sysvipc = 1;
+allow.socket_af = 1;
+allow.raw_sockets = 1;
+
+# configuration de la jail myjail
+myjail {
+  name = "myjail";
+  path = "${jail_roots}/myjail/root";
+  host = "new";
+  host.hostname = "myjail.localhost";
+  ip4 = "inherit";
+  ip6 = "inherit";
+}
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+

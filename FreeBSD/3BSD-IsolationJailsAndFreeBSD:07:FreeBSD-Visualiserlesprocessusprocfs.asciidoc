@@ -1,0 +1,13 @@
+== FreeBSD - Visualiser les processus (procfs)
+
+https://www.freebsd.org/cgi/man.cgi?query=procfs[`procfs`] est un
+pseudo-système de fichier permettant de voir la liste des processus
+ainsi que leurs informations sous forme de fichier.
+
+[sh]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+mount -tprocfs procfs /proc
+cd /proc
+ls
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+

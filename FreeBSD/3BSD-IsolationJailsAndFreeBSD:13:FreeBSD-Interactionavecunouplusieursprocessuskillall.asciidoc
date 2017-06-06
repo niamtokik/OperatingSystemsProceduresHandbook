@@ -1,0 +1,12 @@
+== FreeBSD - Interaction avec un ou plusieurs processus (killall)
+
+https://www.freebsd.org/cgi/man.cgi?query=killall[`killall`] est
+similaire à la commande `kill` excepté qu'elle utilise le nom au lieu
+du PID.
+
+[sh]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+# envois le signal Hangup au processus portant le nom "cron"
+killall -HUP cron
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+

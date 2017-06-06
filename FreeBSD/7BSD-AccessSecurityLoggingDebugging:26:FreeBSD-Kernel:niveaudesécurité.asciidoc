@@ -1,0 +1,44 @@
+== FreeBSD - Kernel: niveau de sécurité
+
+Après  le démarrage  du système,  le kernel  peut-être configuré  avec
+plusieurs niveau de sécurité. Les  niveaux de sécurité font références
+à des droits étendus à tout le  système en cours d'utilisation. Il y a
+5 niveaux:
+
+ * -1:  non sécurisé  permanent, valeur  par défaut,  aucune règle  de
+       sécurité est appliquée;
+ 
+ * 0: mode  non sécurisé, les  drapeaux étendus du système  de fichier
+      `immutable` et `append-onlye` peuvent être désactivé. Les règles
+      d'écritures et de lectures  sont strictement respectés au niveau
+      des devices présents dans `/dev/`;
+ 
+ * 1:  mode sécurisé,  Les disques  monté comme  systèmes de  fichiers
+      ainsi  que  les fichiers  /dev/mem,  /dev/kmem  ne peuvent  être
+      ouvert pour  une écriture, les  modules kernels ne  peuvent être
+      chargés ou déchargés.  Le debugger du kernel ne  pourra pas être
+      exécuté  et il  n'est pas  possible  de lancer  un kernel  panic
+      manuellement via `debug.kdb.panic`.
+ 
+ * 2:  mode sécurité  élevé: les  disques  ne peuvent  être ouvert  en
+      écriture, qu'ils soient montés ou  non. La modification du temps
+      sur  le système  ne  peut  être modifié  que  par l'ajout  d'une
+      seconde.
+
+ * 3: mode  sécurité réseau:  les rèrgles des  firewalls (ipfw,  pf et
+      ipfirewall) ne peuvent être changé.
+
+Chaque niveau prend  en compte les niveau précédents. Le  niveau 3 est
+équivalent au niveau 0 + 1 + 2. La configuration du niveau de sécurité
+se fait au niveau du fichier `/etc/rc.conf`:
+
+[sh]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kern_securelevel_enable="YES"
+kern_securelevel=3
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+ * https://www.freebsd.org/cgi/man.cgi?query=securelevel
+ * https://www.freebsd.org/cgi/man.cgi?query=rc.conf
+ * https://www.freebsd.org/cgi/man.cgi?query=sysctl
+

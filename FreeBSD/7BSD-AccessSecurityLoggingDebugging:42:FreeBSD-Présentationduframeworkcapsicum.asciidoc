@@ -1,0 +1,13 @@
+== FreeBSD - Présentation du framework capsicum
+
+`capsicum` est un  framework permettant de limiter  les capacités d'un
+programme. Ce n'est pas un logiciel  ou un outil, mais un regroupement
+de code  et de bibliothèques en  C permettant de garantir  une surface
+d'attaque moins grande en cas de bug.
+
+Nous ne présenterons pas d'exemple en C ici.
+
+ * https://www.cl.cam.ac.uk/research/security/capsicum/
+ * https://www.cl.cam.ac.uk/research/security/capsicum/
+ * https://www.freebsd.org/cgi/man.cgi?query=capsicum
+  

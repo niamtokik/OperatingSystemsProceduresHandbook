@@ -1,0 +1,16 @@
+== FreeBSD - Diagnostiquer un processus (procstat)
+
+La commande
+https://www.freebsd.org/cgi/man.cgi?query=procstat[`procstat`] permet
+d'afficher les informations pour un processus donné ou pour tous (avec
+l'argument `-a`)
+
+[sh]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+# affiche les informations concernant tous les processus
+procstat -a
+
+# affiche les informations concernant un processus
+procstat $processus
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+

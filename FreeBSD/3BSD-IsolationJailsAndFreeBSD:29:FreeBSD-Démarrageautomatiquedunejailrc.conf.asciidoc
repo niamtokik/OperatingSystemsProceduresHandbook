@@ -1,0 +1,28 @@
+== FreeBSD - Démarrage automatique d'une jail (rc.conf)
+
+Évidemment, il est possible de démarrer une jail au démarrage du
+système, et de l'arrêter lorsque celui-ci doit s'éteindre. Sous
+FreeBSD, la gestion des services se fait à partir du fichier
+https://www.freebsd.org/cgi/man.cgi?query=rc.conf[`rc.conf`] ou
+`rc.conf.local`. Depuis peu, il est aussi possible d'utiliser le
+fichier `/etc/rc.conf.d/jail`.
+
+[sh]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+jail_enable="YES"
+# jail_parallel_start="YES"
+# jail_list="myjail anotherjail"
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Il est éventuellement possible de configurer directement les jails via
+ces fichiers de configuration, mais cette méthode n'est plus
+recommandé depuis FreeBSD9 et FreeBSD10. Utiliser cette fonctionnalité
+dans les dernières versions de FreeBSD génèrera une configuration dans
+`/var/run/jail.myjailname.conf`:
+
+[sh]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+jail_myjailname_rootdir="/path/to/jail"
+jail_myjailname_hostname="myjailname.local"
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+

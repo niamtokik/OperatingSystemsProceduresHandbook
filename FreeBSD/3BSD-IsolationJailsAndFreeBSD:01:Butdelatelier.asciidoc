@@ -1,0 +1,7 @@
+== But de l'atelier
+
+ * Comprendre les buts de l'isolation
+ * Créer un chroot
+ * Créer une jail
+ * Utiliser les outils
+

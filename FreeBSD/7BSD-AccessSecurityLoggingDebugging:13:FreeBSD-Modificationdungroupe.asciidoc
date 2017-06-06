@@ -1,0 +1,19 @@
+== FreeBSD - Modification d'un groupe
+
+La  modification  d'un  groupe   consiste  globalement  à  ajouter  un
+utilisateur, supprimer un  utilisateur ou changer le GID  du groupe en
+question. Les outils suivant peuvent être utilisés:
+
+ * `pw  group mod`:  est  la commande  recommandée  pour l'édition  du
+                    fichier `/etc/group`.
+ 
+ * édition manuelle:  le fichier `/etc/group` étant  simple, l'édition
+                      peut  se  faire  directement avec  votre  éditeur
+                      préféré.
+
+.Utilisation de la commande `pw group mod`
+[sh]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+pw group mod bob
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+

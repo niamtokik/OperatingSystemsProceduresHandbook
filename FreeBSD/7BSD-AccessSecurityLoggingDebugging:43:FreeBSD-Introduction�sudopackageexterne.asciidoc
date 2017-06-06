@@ -1,0 +1,62 @@
+== FreeBSD - Introduction à sudo (package externe)
+
+`sudo` est un  outil permettant d'offrir des  droits supplémentaires à
+un ou plusieurs utilisateurs ou groupes.  Au lieu de se connecter avec
+un  compte   utilisateur  priviligié,  `sudo`  permet   de  simplement
+d'exécuter la ou les commandes désirés avec l'utilisateur courant.
+
+.Installation via les sources
+[sh]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+cd /usr/ports/security/sudo
+make && make install
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.Installation via les packages
+[sh]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+pkg install sudo
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+La  configuration   de  `sudo`   (nommé  `sudoers`)  se   trouve  dans
+`/usr/local/etc/sudoers`.  Ce fichier  est  éditable  via la  commande
+`visudo`, permettant de valider la  bonne syntaxe du fichier avant son
+enregistrement définitif sur le système de fichier.
+
+.Exemple de fichier de configuration `sudoers`
+[txt]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+alice ALL = (root:wheel) NOPASSWD:/bin/shutdown -r
+alice ALL = (www) NOPASSWD:/usr/local/rc.d/apache2 restart
+alice ALL = (www) NOPASSWD:/usr/local/rc.d/apache2 reload
+bob ALL = ALL /usr/bin/vi
+ ALL = ALL
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Avec  cette  configuration,  l'utilisateur  alice  peut  exécuter  les
+commandes `shutdown  -r ` et le  script `/usr/local/rc.d/apache2` avec
+les arguments  `restart` ou  `reload` sans avoir  besoin de  donner de
+password.
+
+[sh]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+sudo -u root -g wheel shutdown -r
+sudo -u www /usr/local/rc.d/apache2 restart
+sudo -u www /usr/local/rc.d/apache2 reload
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+bob peut exécuter la commande  `vi` avec n'importe quelle utilisateur,
+mais il  sera obligé de  donner son mot de  passe pour valider  que la
+personne en question est bien bob.
+
+[sh]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+sudo -u alice -g alice vi /tmp/test
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+ * https://www.sudo.ws/
+ * https://www.freshports.org/security/sudo/
+ * https://www.freebsd.org/cgi/man.cgi?query=sudo
+ * https://www.freebsd.org/cgi/man.cgi?query=visudo
+ * https://www.freebsd.org/cgi/man.cgi?query=sudoers
+

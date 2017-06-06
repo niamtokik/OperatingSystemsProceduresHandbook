@@ -1,0 +1,11 @@
+== FreeBSD - lister les jails (jls)
+
+La commande https://www.freebsd.org/cgi/man.cgi?query=jls[`jls`]
+permet de visualiser la liste des jails actives sur le système.
+
+[sh]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+jls
+jls -n
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+

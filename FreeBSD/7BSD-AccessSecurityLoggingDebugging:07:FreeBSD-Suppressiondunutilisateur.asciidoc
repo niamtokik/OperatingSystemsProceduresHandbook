@@ -1,0 +1,40 @@
+== FreeBSD - Suppression d'un utilisateur
+
+Un utilisateur peut-être supprimé de plusieurs façon:
+
+ * `rmuser`: cette  commande est l'inverse d'`adduser`  et supprime un
+             grand  nombre  d'information  utilisateur,  tel  que  les
+             entrées  `crontab`,  les  jobs  `at`,  le  répertoire  de
+             l'utilisateur, les mails  présents dans `/var/mail`. Elle
+             est recommandé pour la gestion des utilisateurs locaux et
+             réels.
+
+ * `pw  user  del`: supprime  simplement  l'utilisateur  des bases  de
+                 données mais laisse en  place toutes les informations
+                 sur  le  système  de  fichier.   Cette  commande  est
+                 recommandé pour la  gestion des utilisateurs systèmes
+                 ou dédiés à des daemons.
+
+ * `vipw`: laisse la possibilité  à l'administration de supprimer soit
+           même la ligne  de l'utilisateur. Tout comme  `pw user del`,
+           cette  commande ne  nettoie pas  le système  de fichier  et
+           laisse donc en place toutes les données de l'utilisateur.
+
+.Utilisation de la commande `rmuser`
+[sh]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+rmuser bob
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.Utilisation de la commande `pw user del`
+[sh]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+pw user del bob
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.Utilisation de la commande `vipw`
+[sh]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+vipw
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+

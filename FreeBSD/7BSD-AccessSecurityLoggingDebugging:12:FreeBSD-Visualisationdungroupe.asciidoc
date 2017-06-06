@@ -1,0 +1,52 @@
+== FreeBSD - Visualisation d'un groupe
+
+Tout comme la  gestion des utilisateurs, la  visualisation d'un groupe
+peu se faire au travers de différents outils:
+
+ * `getent`: affiche toutes les informations d'un groupe;
+ 
+ * `pw  group   show`:  tout   comme  `getent`,  affiche   toutes  les
+                        informations d'un groupe donné;
+
+ * script maison:  le fichier  `/etc/group` ayant globalement  la même
+                   structure que le  fichier `/etc/passwd` (séparation
+                   des  informations  par  `:`, 4  colonnes),  il  est
+                   relativement facile d'en extraire les données.
+
+.Utitilisation de la commande `getent`
+[sh]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+getent group bob
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.Utilisation de la commande `pw group show`
+[sh]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+pw group show bob
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.Exemple d'un script shell standard
+[sh]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+cat /etc/group \
+  | while read line; do
+      if [ "$(echo $line | cut -d: -f1)" = "bob" ]; then
+        echo $line
+      fi
+    done
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.Exemple d'un script shell avec `awk`
+[sh]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+cat /etc/group \
+  | awk -F: '$1~/bob/ { print $0 }'
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.Exemple d'un script shell avec `sed`
+[sh]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+cat /etc/group \
+  | sed -Ee '/^bob/{ p; }' -e 'd'
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+

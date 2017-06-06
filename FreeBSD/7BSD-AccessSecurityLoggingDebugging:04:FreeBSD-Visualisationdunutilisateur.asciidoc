@@ -1,0 +1,64 @@
+== FreeBSD - Visualisation d'un utilisateur
+
+Les informations publiques d'un utilisateur peuvent visualisé à l'aide
+de plusieurs outils:
+
+ * `pw user  show`: commande standard pour  récupérer les informations
+                   publiques d'un utilisateur;
+ 
+ * `getent`: commande administrative, permettant d'afficher toutes les
+             informations d'un utilisateur (dont le password chiffré);
+ 
+ * par un script maison.
+
+.Utilisation de la commande `pw user show`
+[sh]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+pw user show bob
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Le fichier `passwd` possède un  standard simple et facilement parsable
+avec une  grande majorité de  scripts et d'outils.  Chaque utilisateur
+est inscrit  sur une  ligne. Chaque  information de  l'utilisateur est
+séparé par `:`. Chaque utilisateur possède 7 attributs.
+
+.Utilisation de la commande `getent`
+[sh]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+getent passwd bob
+# retourne
+#   bob:*:1004:1004:User &:/home/bob:/bin/sh
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+`getent` est souvent utilisé dans les scripts mais aussi pour vérifier
+et tester la validé du fonctionnement  d'un login externe (avec NIS ou
+LDAP par exemple).
+
+.Exemple d'un script shell classique
+[sh]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+cat /etc/passwd \
+  | while read line; do
+      if [ "$(echo $line | cut -d':' -f1)" = "bob" ]; then
+        echo $line
+      fi
+    done
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.Exemple d'un script avec `awk`
+[sh]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+cat /etc/passwd \
+  | awk -F: '$1~/bob/ { print $0 }'
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.Exemple d'un script avec sed
+[sh]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+cat /etc/passwd \
+  | sed -Ee  '/^bob:/ { p; }' -e 'd'
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+ * https://www.freebsd.org/cgi/man.cgi?query=awk
+ * https://www.freebsd.org/cgi/man.cgi?query=sed
+

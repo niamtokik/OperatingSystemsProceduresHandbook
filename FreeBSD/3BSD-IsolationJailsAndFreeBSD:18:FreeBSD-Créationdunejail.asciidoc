@@ -1,0 +1,32 @@
+== FreeBSD - Création d'une jail
+
+Une jail étant en quelque sorte un chroot amélioré, cette dernière a
+besoin d'un environnement pour être lancé. Cet environnement contient
+un ou plusieurs programmes voir un système complet. Pour faire simple,
+une jail est une installation de FreeBSD dans un répertoire choisis.
+
+Tout comme pour l'installation, ou la mise à jour, il est possible
+d'utiliser 2 méthodes.
+
+.Création depuis les binaires
+[sh]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+cd /tmp
+ARCH=$(uname -a)
+REL=$(uname -r|sed -E 's/^([0-9]+\.[0-9]+-RELEASE).*//')
+REPO=http://ftp.fr.freebsd.org/pub/FreeBSD/releases
+TARGET=$REPO/$ARCH/$REL
+fetch ${TARGET}/base.txz
+mkdir /path/to/your/jail
+cd /path/to/your/jail
+tar Jxvf /tmp/base.txz
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.Création depuis les sources
+[sh]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+cd /usr/src
+make -j4 buildworld
+make -j4 installworld DESTDIR=/path/to/your/jail
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+

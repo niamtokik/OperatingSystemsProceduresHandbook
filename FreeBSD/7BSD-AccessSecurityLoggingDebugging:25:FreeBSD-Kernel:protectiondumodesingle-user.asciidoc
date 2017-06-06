@@ -1,0 +1,24 @@
+== FreeBSD - Kernel: protection du mode single-user
+
+Le mode single-user est utilisé  quand une maintenant particulière est
+requise.   Ce  mode  permet  d'avoir  un accès  root  si  on  a  accès
+physiquement à la machine. Il est possible de demander le mot de passe
+root  lors du  passage en  single-user via  la configuration  des ttys
+(présent  dans `/etc/ttys`),  et  de changer  la  valeur "secure"  par
+"insecure" au niveau de la ligne contenant le terme "console":
+
+[txt]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+console none unknown off insecure
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+NOTE: Si l'attaquant  à un accès physique à vos  machines, il lui sera
+      facile  d'utiliser un  livecd pour  pouvoir modifier  le mot  de
+      passe root et avoir accès à  toute la machine. La seule solution
+      pour se  protéger de ça  est de chiffrer les  données présentent
+      sur le disque  dur. FreeBSD fournit les outils  `gbde` et `geli`
+      pour pouvoir réaliser facilement ces actions.
+
+ * https://www.freebsd.org/cgi/man.cgi?query=boot
+ * https://www.freebsd.org/cgi/man.cgi?query=ttys
+

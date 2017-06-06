@@ -1,0 +1,14 @@
+== FreeBSD - thin jail (racine système partagée)
+
+Cette méthode est la plus simple à créer, elle utilisable facilement
+sur un poste client et permet d'avoir un système de jails synchroniser
+avec le système hôte.
+
+[sh]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tar zxvf thinjailtemplate.tgz
+mv thinjailtemplate mynewjail
+mount -oro -tnullfs / mynewjail/base
+jail -c name=mynewjail path=$(pwd)/mynewjail
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+

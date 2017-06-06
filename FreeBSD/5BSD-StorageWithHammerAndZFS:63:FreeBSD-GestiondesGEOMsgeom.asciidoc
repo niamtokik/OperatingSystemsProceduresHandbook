@@ -1,0 +1,15 @@
+== FreeBSD - Gestion des GEOMs (geom)
+
+La commande https://www.freebsd.org/cgi/man.cgi?query=geom[`geom`]
+permet de visualiser les GEOMs présents sur le système, basé sur leur
+classe.
+
+.Récupération de la liste des GEOMs ayant pour classe `disk`
+[sh]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+geom disk list
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Les classes sont liées directement aux fonctionnalitées d'un geom en
+cours d'utilisation.
+

@@ -1,0 +1,48 @@
+== FreeBSD - GEOM et le RAID0 (gstripe)
+
+GEOM permet avant tout la gestion des méthodes de stockage classiques.
+https://www.freebsd.org/cgi/man.cgi?query=gstripe[`gstripe`] permet de
+supporter le RAID0 d'un point de vue logiciel. Le principe du RAID0 est
+de diviser l'écriture sur le nombre de support(s) disponible(s), permettant
+d'améliorer les performances. Par ailleurs, si un des disques devient 
+défectueux, alors toutes les données sont perdues.
+
+.Chargement explicite du module kernel
+[sh]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kldload geom_stripe
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.Création de 2 disques mémoire sur la heap (512MB)
+[sh]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+MDA=$(mdconfig -t malloc -s 512m)
+MDB=$(mdconfig -t malloc -s 512m)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.Création d'une table de partitions GPT
+[sh]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+gpart create -s gpt ${MDA}
+gpart create -s gpt ${MDB}
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.Ajout de partitions de type freebsd-ufs
+[sh]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+PARTA=$(gpart add -t freebsd-ufs -i1 ${MDA}|cut -d" " -f1)
+PARTB=$(gpart add -t freebsd-ufs -i1 ${MDB}|cut -d" " -f1)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.Création du raid0 et du système de fichiers
+[sh]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+gstripe create myraid0 ${PARTA} ${PARTB}
+newfs /dev/stripe/myraid0
+gstripe list
+gstripe status
+gstripe destroy myraid0
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+ * https://www.freebsd.org/cgi/man.cgi?query=gstripe
+

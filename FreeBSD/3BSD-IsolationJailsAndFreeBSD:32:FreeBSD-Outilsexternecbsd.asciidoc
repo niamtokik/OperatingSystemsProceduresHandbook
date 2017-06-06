@@ -1,0 +1,22 @@
+== FreeBSD - Outils externe (cbsd)
+
+https://www.freebsd.org/cgi/man.cgi?query=cbsd&apropos=0&sektion=0&manpath=FreeBSD+11.0-RELEASE+and+Ports&arch=default&format=html[`cbsd`]
+est un outil permettant de gérer des jails et des machines virtuelles
+bhyves. Il supporte un nombre important de fonctionnalité, tel que la
+gestion de nœuds, les backups, snapshots, la configuration via webui
+ou curse...
+
+.Installation
+[sh]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+# via les packages
+pkg install cbsd
+
+# via les ports
+cd /usr/ports/sysutils/cbsd
+make && make install
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Une documentation plus que complète se trouve sur le
+https://www.bsdstore.ru/en/docs.html[site officiel de cbsd].
+

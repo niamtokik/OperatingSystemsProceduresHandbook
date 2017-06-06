@@ -1,0 +1,28 @@
+== FreeBSD - Outils externe (ezjail)
+
+https://www.freebsd.org/cgi/man.cgi?query=ezjail&apropos=0&sektion=0&manpath=FreeBSD+11.0-RELEASE+and+Ports&arch=default&format=html[`ezjail`]
+est un outil permettant de gérer facilement des jails. Historiquement,
+il se trouve être l'un des outils les plus anciens. Il a le mérite
+d'être simple d'usage mais n'a pas réellement de flexibilité.
+
+.Installation
+[sh]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+# via les packages
+pkg install ezjail
+
+# via les ports
+cd /usr/ports/sysutils/ezjail
+make && make install
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.Utilisation
+[sh]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ezjail-admin install
+ezjail-admin create myezjail
+ezjail-admin start myezjail
+ezjail-admin console myezjail
+ezjail-admin stop myezjail
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+

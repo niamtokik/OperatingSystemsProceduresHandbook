@@ -1,0 +1,43 @@
+== FreeBSD - Protection de devfs
+
+`devfs`  est un  pseudo système  de fichier  permettant de  mapper les
+devices associés au systèmes. Lors  du branchement d'une clé-usb, d'un
+disque dur ou  d'un matériel tiers, `devfs` créé le  fichier associé à
+cet équipement.
+
+`devfs` possède un système de règle, permettant de caché ou d'afficher
+un équipement, modifier le mode ainsi que l'appartenance à un
+utilisateur ou à un groupe. Ce comportement est utile pour sécuriser
+des jails. Effectivement, une jail ne devrait pas avoir accès au
+matériel de l'hote ou, du moins, n'avoir besoin que d'un équipement
+sélectionné.
+
+.Afficher les règles
+[sh]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+devfs rule show
+devfs rule showsets
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+NOTE: la configuration de devfs n'est pas recommandé sur l'hôte. Il
+      est préférable de tester cet outil dans une jail via un mount
+      point devfs dédié.
+
+.Rajouter une règle
+[sh]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+devfs -m $jail/dev rule add path kmem hide
+devfs -m $jail/dev rule applyset
+devfs -m $jail/dev rule add path kmem unhide
+devfs -m $jail/dev rule applyset
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.Supprimer une règle
+[sh]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+devfs -m $jail/dev rule del 400
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+ * https://www.freebsd.org/cgi/man.cgi?query=devfs
+ * https://www.freebsd.org/cgi/man.cgi?query=devfs.rules
+

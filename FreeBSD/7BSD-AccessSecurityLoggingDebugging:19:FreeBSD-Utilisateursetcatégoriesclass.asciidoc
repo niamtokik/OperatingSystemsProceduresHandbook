@@ -1,0 +1,84 @@
+== FreeBSD - Utilisateurs et catégories (class)
+
+Le système de  catégorie (class) est propre au monde  BSD et permet de
+créer des  regroupements d'utilisateur  possédants des  règles stricts
+d'utilisation du système ou des limitations de ressources.
+
+Le fichier  `/etc/login.conf` contient les règles  pour les catégories
+et permet de configurer, les ressources en configurant:
+
+ * le temps d'utilisation CPU avec `cputime`;
+ * le nombre maximum de processus avec `maxproc`;
+ * le nombre maximum de fichier ouvert avec `openfiles`;
+ * la valeur maximale de mémoire utilisé avec `memoryuse`;
+ * l'espace maximum swap utilisé avec `swapuse`.
+
+De controler et de modifier l'environnement utilisateur en
+configurant:
+
+ * le type de charset avec la `charset`;
+ * un controle d'accès basé sur le module MAC avec `label`;
+ * la valeur du path par défaut avec `path`;
+ * la priorité par défaut de l'utilisateur avec `priority`;
+ * la zone de temporel de l'utilisateur avec `timezone`;
+ * le message d'accueil avec `welcome`.
+
+De controler l'authentification d'une catégorie en configurant:
+
+ * les hôtes autorisés à utiliser la catégorie avec `host.allow`;
+ * les hôtes interdits d'utiliser la catégorie avec `host.deny`;
+ * le nombre maximum de login autorisé avec `login-backoff`;
+ * le format du mot de passe dans `passwd` avec `passwd_format`.
+
+De filter l'accès par des capacitées spécifiques en configurant:
+
+ * le type d'authentification (passwd ou opie) avec `auth`;
+ * le temps d'inactivité autorisé avec `idletime`;
+ * la taille minimale du password avec `minpasswordlen`;
+ * le temps maximum d'utilisation par session avec `sessiontime`.
+
+La catégorie par défaut est représenté de la façon suivante:
+
+[txt]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+default:\
+        :passwd_format=sha512:\
+        :copyright=/etc/COPYRIGHT:\
+        :welcome=/etc/motd:\
+        :setenv=MAIL=/var/mail/$,BLOCKSIZE=K:\
+        :path=/sbin /bin /usr/sbin /usr/bin /usr/games /usr/local/sbin /usr/local/bin:\
+        :nologin=/var/run/nologin:\
+        :cputime=unlimited:\
+        :datasize=unlimited:\
+        :stacksize=unlimited:\
+        :memorylocked=64K:\
+        :memoryuse=unlimited:\
+        :filesize=unlimited:\
+        :coredumpsize=unlimited:\
+        :openfiles=unlimited:\
+        :maxproc=unlimited:\
+        :sbsize=unlimited:\
+        :vmemoryuse=unlimited:\
+        :swapuse=unlimited:\
+        :pseudoterminals=unlimited:\
+        :priority=0:\
+        :ignoretime@:\
+        :umask=022:\
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+En  cas  de  rajout  d'une  catégorie, une  base  de  donnée  associée
+(`/etc/login.conf.db`) au  fichier est  à reconfiguré via  la commande
+`cap_mkdb`.
+
+[sh]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+cap_mkdb /etc/login.conf
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Tout  comme   les  autres   droits,  pour  qu'ils   soient  effectifs,
+l'utilisateur doit se déconnecter et réouvrir une nouvelle session.
+
+ * https://www.freebsd.org/cgi/man.cgi?query=login
+ * https://www.freebsd.org/cgi/man.cgi?query=login.conf
+ * https://www.freebsd.org/cgi/man.cgi?query=cap_mkdb
+

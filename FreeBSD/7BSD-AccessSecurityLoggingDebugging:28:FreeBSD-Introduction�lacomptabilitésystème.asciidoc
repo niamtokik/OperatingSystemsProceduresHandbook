@@ -1,0 +1,68 @@
+== FreeBSD - Introduction à la comptabilité système
+
+La  "compatabilité système"  (system  accounting)  permet d'avoir  des
+statistiques et un enregistrement des actions  qui ont été fait par un
+ou plusieurs utilisateurs  sur un système en  cours d'exécution. Cette
+fonctionnalité est activé au niveau du kernel.
+
+Les outils permettant de réaliser ces actions sont:
+
+ * `accton`: permet d'activer ou de désactiver la fonctionnalité;
+
+ * `lastcomm`: permet de voir les dernières commandes exécutés par un
+               ou plusieurs utilisateurs;
+
+ * `sa`: permet d'afficher les statistiques concernant les
+         utilisateurs présents sur le système.
+
+.Activation de la compatibilité système (script rc)
+[sh]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+service accounting start
+# service accounting onestart
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.Activation automatique au démarrage du système (`/etc/rc.conf`
+[sh]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+accounting_enable="YES"
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.Activation manuelle
+[sh]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+accton
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.Affichage des statistiques
+[sh]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+sa | less
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.Affichage des dernières commandes exécutées sur le système
+[sh]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+lastcomm | less
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.Désactivation
+[sh]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+service accounting stop
+# service accounting onestop
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.Désactivation manuelle (si le service est activé)
+[sh]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+accton
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+ * https://www.freebsd.org/doc/handbook/security-accounting.html
+ * https://www.freebsd.org/cgi/man.cgi?query=accton
+ * https://www.freebsd.org/cgi/man.cgi?query=sa
+ * https://www.freebsd.org/cgi/man.cgi?query=lastcomm
+ * https://www.freebsd.org/cgi/man.cgi?query=last
+ * https://www.freebsd.org/cgi/man.cgi?query=ac
+

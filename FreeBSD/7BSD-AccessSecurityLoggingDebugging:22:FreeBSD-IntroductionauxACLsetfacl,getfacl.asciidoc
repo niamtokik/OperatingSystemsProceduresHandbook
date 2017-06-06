@@ -1,0 +1,49 @@
+== FreeBSD - Introduction aux ACL (setfacl, getfacl)
+
+ACL  pour  Access  Control  List  est  une  fonctionnalité  permettant
+d'ajouter une couche  de controle supplémentaire au  niveau du système
+de  fichier.   Les  ACL  permettent  d'étendre   le  comportement  des
+permissions  standard,  en  permettant, par  exemple,  d'autoriser  un
+utilisateur ou un  groupe un droit sur un fichier  ou un répertoire en
+particulier.
+
+Les commandes permettant de modifier les ACLs sont compatibles avec
+`chmod` et `chown`.
+
+.Ajout d'ACL
+[sh]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+cd /tmp
+touch testfile
+setfacl -m u:alice:p:allow testfile  # autorise append only
+setfacl -m u:alice:rwx:deny testfile # interdit read/write/execute
+setfacl -m g:alice:rwx:deny testfile # interdit read/write/e
+setfacl -m u:root:full_set:allow testfile # autorise tout
+setfacl -m g:wheel:read_set:allow testfile # autorise read only
+setfacl -m o::full_set:deny testfile # refuse tout
+getfacl testfile
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.Suppression d'une ACL (via index)
+[sh]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+setfacl -x 0 testfile
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.Suppresion d'une ACL (via entrée)
+[sh]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+setfacl -x g:alice:rwx:deny testfile
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.Remise à zéro des ACL
+[sh]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+setfacl -b testfile
+getfacl testfile
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+ * https://www.freebsd.org/doc/handbook/fs-acl.html
+ * https://www.freebsd.org/cgi/man.cgi?query=setfacl
+ * https://www.freebsd.org/cgi/man.cgi?query=getfacl
+

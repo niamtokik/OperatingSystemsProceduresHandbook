@@ -1,0 +1,25 @@
+== FreeBSD - Isolation forte (jail)
+
+Une jail est un changement de racine "sous stéroïde". Une jail permet
+de créer une isolation forte. Les processus fonctionnant dans la jail
+n'ont plus accès au reste du système et ne partage que la mémoire
+disponible dans la jail.
+
+D'autres systèmes d'exploitations ont mis en place ce type de
+fonctionnalité:
+
+ * zones (solaris)
+ * openvz (linux)
+ * lxc & cgroups (linux)
+
+En pratique, les jails sont utilisés depuis maintenant presque 20ans
+dans le monde Unix. Cette solution permet de mutualiser facilement les
+ressources d'un serveur en offrant une isolation forte et à bas
+coût. Étant donné que la virtualisation est opéré au niveau du noyau
+et non pas sous forme d'émulation (comme qemu, virtualbox ou xen), il
+n'y a pratiquement aucune perte de performance.
+
+Par ailleurs, si une faille de sécurité est trouvé dans le kernel, la
+jail pourra permettre d'accéder à cette faille malgré le fait qu'elle
+soit isolé du reste du système.
+

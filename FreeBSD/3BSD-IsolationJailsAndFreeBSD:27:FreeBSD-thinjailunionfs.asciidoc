@@ -1,0 +1,13 @@
+== FreeBSD - thin jail (unionfs)
+
+Cette méthode utilise les propriétés de
+l'https://www.freebsd.org/cgi/man.cgi?query=mount_unionfs[`unionfs`]
+permettant de monter un système de fichier sur un autre système de
+fichier sans cacher les fichiers présents sur le premier.
+
+Docker utilise cette solution avec les containers sous
+linux. Malheureusement, l'unionfs n'est pas un système de fichier
+stable et de nombreux problèmes peuvent altérer la stabilité ainsi que
+la sécurité de la jail voir du système hôte. Par conséquent, cette
+méthode ne sera donc pas présenté ici.
+

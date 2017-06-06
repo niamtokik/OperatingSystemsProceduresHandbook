@@ -1,0 +1,23 @@
+== FreeBSD - Création d'un groupe
+
+Un groupe peut-être créé via les méthodes suivants:
+
+ * `newgrp`
+ * `pw group add`
+
+.Utilisation de la commande `newgrp`
+[sh]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+newgrp bob
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.Utilisation de la commande `pw group add`
+[sh]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+pw group add bob
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+NOTE: l'édition manuelle peut provoquer des erreurs. La commande
+      `chkgrp` permet de valider le contenu du fichier en cas d'erreur
+      d'édition.
+

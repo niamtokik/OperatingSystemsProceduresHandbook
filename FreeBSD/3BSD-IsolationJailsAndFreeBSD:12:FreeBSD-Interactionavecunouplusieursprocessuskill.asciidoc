@@ -1,0 +1,19 @@
+== FreeBSD - Interaction avec un ou plusieurs processus (kill)
+
+Les processus peuvent recevoir des messages. Ces messages
+correspondent à des actions précisent ou configurables. L'utilitaire
+https://www.freebsd.org/cgi/man.cgi?query=kill[`kill`] permet donc
+d'envoyer un message à un processus en cours de fonctionnement.
+
+[sh]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+# envois le signal Hang Up sur le processus $pid
+kill -HUP $pid
+
+# envois le signal Interrupt 
+kill -2 $pid
+
+# envois le signal Kill 
+kill -9 $pid
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+

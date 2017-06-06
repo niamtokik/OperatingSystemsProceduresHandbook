@@ -1,0 +1,11 @@
+== FreeBSD - Controler l'état de son système avec periodic
+
+`periodic` est une  suite de script permettant de gérer  aussi bien la
+sécurité que les tâches courantes  de l'administrateur. Il permet, par
+exemple de  gérer automatiquement les backups  des fichiers important,
+en  passant  par l'envois  de  mail  automatique contenant  l'état  du
+système (comportant la sortie des commandes les plus utilisées).
+
+ * https://www.freebsd.org/cgi/man.cgi?query=periodic
+ * https://www.freebsd.org/cgi/man.cgi?query=periodic.conf
+

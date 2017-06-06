@@ -1,0 +1,15 @@
+== FreeBSD - Controle des ressources avec RCTL
+
+Lors  de  l'étude  des  jails   dans  FreeBSD,  nous  avions  survoler
+rapidement  RCTL.   RCTL est  un  outil  permettant de  controler  les
+ressources  utiliser par  un utilisateur,  ou groupe  ou une  jail. Il
+permet par exemple de configurer la quantité de mémoire utilisé par un
+utilisateur.
+
+Cette option n'est  pas présente par défaut dans le  kernel FreeBSD et
+nécessite une modification de la configuration par défaut.
+
+ * https://www.freebsd.org/doc/handbook/security-resourcelimits.html
+ * https://www.freebsd.org/cgi/man.cgi?query=rctl
+ * https://www.freebsd.org/cgi/man.cgi?query=rctl.conf
+

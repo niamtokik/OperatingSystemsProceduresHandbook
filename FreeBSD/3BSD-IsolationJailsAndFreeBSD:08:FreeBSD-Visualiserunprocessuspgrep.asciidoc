@@ -1,0 +1,19 @@
+== FreeBSD - Visualiser un processus (pgrep)
+
+https://www.freebsd.org/cgi/man.cgi?query=pgrep[`pgrep`] permet de
+visualiser un ou processus basé sur des critères définis par
+l'utilisateur.
+
+[sh]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+# retourne la liste de tous les PIDs du système
+pgrep ".*"
+
+# retourne la liste de tous les processus ayant pour nom "cron"
+pgrep cron
+
+# retourne la liste tous les PIDs fonctionnant sur la jail $jail_name
+pgrep -j $jail_name ".*"
+
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+

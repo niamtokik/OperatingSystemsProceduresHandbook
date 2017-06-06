@@ -1,0 +1,98 @@
+== FreeBSD - Introduction à l'audit système (auditd)
+
+L'audit des évènements de sécurité (Security Event Audit) est possible
+sous FreeBSD via l'utilisation d'`auditd`, un daemon qui s'appuie sur
+le standard BSM (Basic Security Module) développé par Solaris. Cette
+fonctionnalité permet entre autre de configurer et de filtrer les
+évènements relatif à la sécurité.
+
+Un évènement est simplement une action prise par un utilisateur, par
+un logiciel ou par le kernel. L'audit se passe directement au niveau
+des appels systèmes (syscall), le module kernel filtre le syscall et
+envois un message à `auditd` contenant les informations sur
+l'évènement, puis le module kernel exécute le syscall.
+
+.Démarrage d'`auditd` en standalone
+[sh]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/sbin/auditd -d
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.Activation d'`auditd` au démarrage du système
+[txt]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+auditd_enable="YES"
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.Démarrage d'`auditd`
+[sh]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+service auditd start
+# /etc/rc.d/auditd start
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.Arrêt d'`auditd`
+[sh]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+service auditd stop
+# /etc/rc.d/auditd stop
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+`auditd` utilise plusieurs fichiers de configuration présent dans
+`/etc/security`. Le fichier `audit_control` permet de configurer le
+comportement d'`auditd`:
+
+[txt]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+dir:/var/audit    # répertoire contenant les fichiers de logs
+dist:off          # hardlink sur /var/audit/dist
+flags:all         # catégories à auditer
+minfree:500M      # minimum d'espace libre pour écrire les logs
+naflags:lo,aa     # 
+policy:cnt,argv   #
+filesz:2M         # taille maximale du fichier de rétention
+expire-after:10M  # expiration des logs (temps ou taille)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+`audit_class` contient les catégories d'évènements, le premier terme
+correspont à l'évènements, le second terme définis l'événement,
+finalement, la troisième colonne donne une description de la
+catégorie.
+
+[txt]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+0x00000000:no:invalid class
+0x00000001:fr:file read
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+`audit_event` contient les informations concernant les évènements
+système qui pourront être utilisé lors du lancement d'`auditd`. 
+
+`audit_user` permet de configurer l'audit d'évènement sur des
+utilisateurs définis. Ces évènements seront rajoutés dans le fichier
+de log `/var/audit/current` (lien vers le fichier de log courant).
+
+[txt]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+root:lo:no                 # supervise le logout
+alice:fr,fw,fa,fm,fc,fd:nt # supervise les catégorie de fichier
+bob:ex,aa:no               # supervise l'exécution et l'authent.
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+`audit_warn` est un script permettant d'exécuter une commande lors
+d'une action automatique d'`auditd`. Par exemple, lors de la rotation
+d'un fichier de log, ce dernier va exécuter le script `audit_warn`
+avec les arguments relatifs à cette action (dans notre cas
+`close_file`). Les paramètres passés à ce script sont définis dans le
+fichier `/usr/src/contrib/openbsm/bin/auditd/auditd.h`.
+
+.Script par défaut sous FreeBSD
+[sh]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+logger -p security.warning "audit warning: $@"
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+ * https://www.freebsd.org/doc/handbook/audit.html
+ * https://www.freebsd.org/cgi/man.cgi?query=audit
+ * https://www.freebsd.org/cgi/man.cgi?query=auditd
+

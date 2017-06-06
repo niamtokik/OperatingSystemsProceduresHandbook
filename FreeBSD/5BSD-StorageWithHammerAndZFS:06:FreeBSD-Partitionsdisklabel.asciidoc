@@ -1,0 +1,36 @@
+== FreeBSD - Partitions (disklabel)
+
+Après avoir configuré les slices, il est nécessaire, si vous utilisez
+une partition de type FreeBSD, de partitionner cet espace mémoire. Le
+partitionnement sur les slices se fait via la commande
+https://www.freebsd.org/cgi/man.cgi?query=disklabel[`disklabel`] ou
+https://www.freebsd.org/cgi/man.cgi?query=bsdlabel[`bsdlabel`].
+
+.Initialisation de la table de partitions BSD (label)
+[sh]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+disklabel -w /dev/md0s1
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.Edition de la table de partitions
+[sh]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+disklabel -e /dev/md0s1
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+L'édition de la table de partitions ouvre votre éditeur de texte par
+défaut (vi dans le cas d'un système fraichement installé) et permet
+d'écrire la table à la main. Les tables de partitions sont
+représentées par une lettre. La partition `c` est particulière, et
+représente le slice complet (par convention).
+
+Après écriture de la table, un fichier `/dev/md0s1a` est créé. Ce
+fichier représente la première partition (`a`) du slice `s1` sur le
+disque `md0`.
+
+[NOTE]
+======================================================================
+Le type de système de fichier peut être récupéré depuis le fichier
+`/usr/include/sys/disklabel.h` (ligne 240)
+======================================================================
+

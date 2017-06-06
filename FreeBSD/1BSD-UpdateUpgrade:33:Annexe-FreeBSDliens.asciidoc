@@ -1,0 +1,37 @@
+== Annexe - FreeBSD (liens)
+
+=== Manual
+
+ * https://www.freebsd.org/cgi/man.cgi?freebsd-update
+
+ * Backup:
+ ** https://www.freebsd.org/cgi/man.cgi?query=dump
+ ** https://www.freebsd.org/cgi/man.cgi?query=restore
+ ** https://www.freebsd.org/cgi/man.cgi?query=zfs
+ ** https://www.freebsd.org/cgi/man.cgi?query=periodic
+ ** https://www.freebsd.org/cgi/man.cgi?query=periodic.conf
+
+ * Build:
+ ** https://www.freebsd.org/cgi/man.cgi?query=svn
+ ** https://www.freebsd.org/cgi/man.cgi?query=build
+ ** https://www.freebsd.org/cgi/man.cgi?query=release
+ ** https://www.freebsd.org/cgi/man.cgi?query=make.conf
+ ** https://www.freebsd.org/cgi/man.cgi?query=src.conf
+
+ * Ports:
+ ** https://www.freebsd.org/cgi/man.cgi?query=ports
+ ** https://www.freebsd.org/cgi/man.cgi?query=pkg
+ ** https://www.freebsd.org/cgi/man.cgi?query=portsnap
+
+=== Handbook
+
+ * https://www.freebsd.org/doc/handbook/updating-upgrading.html
+ * https://www.freebsd.org/doc/en_US.ISO8859-1/articles/releng/
+ * https://www.freebsd.org/doc/en_US.ISO8859-1/books/developers-handbook/
+
+=== External resources
+
+ * www.bsdnow.tv/tutorials/upgrade
+ * https://www.digitalocean.com/community/tutorials/how-to-upgrade-freebsd-from-version-10-2-to-10-3
+ * https://www.digitalocean.com/community/tutorials/an-introduction-to-basic-freebsd-maintenance
+

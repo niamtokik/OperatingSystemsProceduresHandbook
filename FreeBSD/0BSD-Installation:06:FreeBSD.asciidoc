@@ -1,0 +1,21 @@
+== FreeBSD
+
+Ce que nous allons faire:
+
+ * présentation de l'installeur (semi-graphique)
+ * installation ZFS
+ * configuration du système de base
+
+[sh]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+cd vm/freebsd
+ISO=releases/amd64/amd64/ISO-IMAGES/10.3/FreeBSD-10.3-RELEASE-amd64-disc1.iso 
+fetch -o freebsd.iso "http://10.83.116.1/FreeBSD/${ISO}"
+./freebsd.sh
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+______________________________________________________________________
+The power to serve
+______________________________________________________________________
+
+

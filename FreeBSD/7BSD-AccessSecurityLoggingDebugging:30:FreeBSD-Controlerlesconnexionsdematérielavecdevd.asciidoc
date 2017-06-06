@@ -1,0 +1,24 @@
+== FreeBSD - Controler les connexions de matériel avec devd
+
+`devd` affiche et exécute des actions en fonction des messages envoyés
+par le kernel.  Il permet, par exemple, de configurer  les actions par
+défaut quand  une clé USB  est branché  sur l'ordinateur ou  encore de
+réagir lors d'une forte température CPU en arrêtant le système.
+
+Les fichiers de configuration de devd se trouvent dans `/etc/devd`, le
+fichier de configuration principal est `/etc/devd.conf`. Ces fichiers
+permettent de configurer les actions à prendre en cas de découverte
+d'un équipement sur l'ordinateur. Le filtrage se fait à partir de
+différents terme permettant de reconnaitre un équipement.
+
+[txt]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+notify 1 {
+  match "subsystem" "da[0-9]+";
+  action "logger -p login0.info new device $subsystem";
+}
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+ * https://www.freebsd.org/cgi/man.cgi?query=devd
+ * https://www.freebsd.org/cgi/man.cgi?query=devd.conf
+

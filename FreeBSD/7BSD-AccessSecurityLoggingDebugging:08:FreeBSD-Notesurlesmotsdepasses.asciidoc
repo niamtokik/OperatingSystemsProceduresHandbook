@@ -1,0 +1,36 @@
+== FreeBSD - Note sur les mots de passes
+
+La gestion  et l'utilisation  de jeton  d'accès sous  forme de  mot de
+passe à toujours  posé de nombreux problèmes. Tout d'abord,  le mot de
+passe est  hashé via  un algorithme,  cet algorithme  est configurable
+dans  le  fichier   `/etc/login.conf`  (passwd_format).  Actuellement,
+FreeBSD utilise par défaut sha512.
+
+Lors de  la génération  du password, un  pattern aléatoire  est généré
+(sel) permettant  de complexifié l'attaque  du mot de passe  stocké et
+permettant de lutter contre les  attaques par bruteforce. Le format du
+password est standardisé et est compatible avec une grande majorité de
+système UNIX, chaque donnée étant séparé par le caractère `$`.
+
+[txt]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+$6$xTaWzGydrFDI/U1b$aew7SufeXguMtE4jMpLVE18HKTLQ9hMIrjUOP/qk69q5VUTz5QzPtbxKdP4dSY0co/Ls9V07EYILFoGUxyw9W.
+$Version$Salt$Algorithme(Salt+Password)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+D'autres méthodes d'authentifications existent, tel que la méthode OTP
+(One  Time  Password), permettant  d'utiliser  un  password jetable  à
+chaque connexion. FreeBSD utilise le package `OPIE` pour la génération
+des jetons.  Cette méthode alternative d'authentification  utilise les
+outils suivants:
+
+ * `opiepasswd`
+ * `opieinfo`
+ * `opiekey`
+
+Ces  méthodes  d'authentifications  sont   compatibles  avec  PAM  (et
+nécessite sa configuration pour être pleinement fonctionel).
+
+ * https://www.freebsd.org/cgi/man.cgi?query=passwd
+ * https://www.cs.swarthmore.edu/help/password-security.html
+

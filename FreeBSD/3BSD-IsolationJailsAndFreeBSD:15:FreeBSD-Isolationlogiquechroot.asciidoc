@@ -1,0 +1,18 @@
+== FreeBSD - Isolation "logique" (chroot)
+
+Un https://www.freebsd.org/cgi/man.cgi?query=chroot[`chroot`]
+(changement de racine) est une méthode d'isolation simple permettant
+de changer simplement l'emplacement de référence d'un processus.
+
+La racine (`/`) est le point le plus haut de votre système de
+fichier. Lors de l'exécution d'un programme, le système utilisera donc
+`/` comme référence si il a besoin d'agir sur le système de fichier.
+
+Le changement de racine permet de changer de racine, donc, de changer
+`/` en, par exemple `/home/chroot`. Le processus lancé verra alors
+`/home/chroot` comme sa nouvelle racine (`/`).
+
+[sh]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
