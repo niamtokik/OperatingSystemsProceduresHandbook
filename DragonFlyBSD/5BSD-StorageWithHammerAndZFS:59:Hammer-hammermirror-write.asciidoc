@@ -1,0 +1,11 @@
+== Hammer - (hammer mirror-write)
+
+Si Hammer permet de lire un flux de données depuis un PFS, il peut
+aussi le récupérer et ainsi restaurer les données depuis un flux
+externe ou interne.
+
+[sh]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+hammer mirror-write /your/backup.stream
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+

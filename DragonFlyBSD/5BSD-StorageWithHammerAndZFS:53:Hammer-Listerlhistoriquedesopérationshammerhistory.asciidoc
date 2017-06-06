@@ -1,0 +1,12 @@
+== Hammer - Lister l'historique des opérations (hammer history)
+
+La commande `hammer history` permet de voir l'historique des
+modifications sur les données et les inodes relatif à un fichier.
+
+.Affichage de l'historique des systèmes de fichiers racines
+[sh]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+hammer history /
+hammer history /mnt/test/
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+

@@ -1,0 +1,21 @@
+== Hammer - Initialisation (newfs_hammer)
+
+Comme tous les systèmes de fichiers, il est nécessaire d'initialiser un
+espace mémoire. La création d'un système de fichiers Hammer se fait
+avec la commande
+https://leaf.dragonflybsd.org/cgi/web-man?command=newfs_hammer[`newfs_hammer`].
+
+.Initialisation d'un noeud virtuel
+[sh]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+dd if=/dev/zero of=/tmp/disk.vnode bs=1m count=1000
+vnconfig vn0 /tmp/disk.vnode
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.Création et montage d'un système de fichiers HAMMER
+[sh]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+newfs_hammer -L test -f /dev/vnd0s0
+mount -t hammer /dev/vnd0s0 /mnt
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+

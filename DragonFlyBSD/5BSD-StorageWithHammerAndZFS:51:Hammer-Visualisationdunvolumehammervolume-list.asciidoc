@@ -1,0 +1,12 @@
+== Hammer - Visualisation d'un volume (hammer volume-list)
+
+Les volumes disponibles sur un système de fichiers Hammer sont visible à
+partir de la commande `hammer volume-list`
+
+.Récupération de la liste des volumes
+[sh]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+hammer volume-list /
+hammer volume-list /mnt
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+

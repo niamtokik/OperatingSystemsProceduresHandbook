@@ -1,0 +1,27 @@
+== Hammer - Création d'un Pseudo File System maitre (hammer pfs-master)
+
+Un PFS (pseudo filesystem) maitre peut-être utilisé pour lire, écrire
+et comme source pour le mirroring. C'est l'équivalent d'un dataset
+sous ZFS.
+
+.Création de 2 PFS maitres
+[sh]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+hammer pfs-master /mnt/toto
+hammer pfs-master /mnt/test
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Les PFS Hammer ont des contraintes:
+
+ 1. Seulement 65535 PFS peuvent être créés;
+ 2. Un PFS ne peut-être créé qu'à la racine du système de fichier
+    Hammer;
+ 3. Si l'espace alloué par le PFS est requis par le système, il est
+    recommandé d'utiliser un montage nullfs.
+
+.Montage du PFS /mnt/test sur le répertoire /home/myuser
+[sh]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+mount -t null /mnt/test /home/myuser
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+

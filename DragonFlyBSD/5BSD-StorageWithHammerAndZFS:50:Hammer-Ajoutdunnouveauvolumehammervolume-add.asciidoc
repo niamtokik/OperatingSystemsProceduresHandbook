@@ -1,0 +1,19 @@
+== Hammer - Ajout d'un nouveau volume (hammer volume-add)
+
+Hammer supporte le rajout de volume à la volée et à chaud. Un volume
+est un espace mémoire attribué au système de fichiers Hammer en cours
+d'utilisation.
+
+.Initialisation d'un nouveau noeud virtuel
+[sh]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+dd if=/dev/zero of=/tmp/disk2.vnode bs=1m count=1000
+vnconfig vn1 /tmp/disk2.vnode
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.Ajout du noeud virtuel vn1s0
+[sh]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+hammer volume-add /dev/vn1s0 /mnt
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+

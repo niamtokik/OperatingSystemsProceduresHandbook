@@ -1,0 +1,10 @@
+== Hammer - Destruction d'un volume (hammer volume-del)
+
+Un volume peut aussi être supprimé à chaud avec la commande `hammer
+volume-del`. Le volume en question ne sera alors plus disponible.
+
+[sh]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+hammer volume-del /dev/vn1s0 /mnt
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+

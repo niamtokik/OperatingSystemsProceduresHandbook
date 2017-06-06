@@ -1,0 +1,15 @@
+== Hammer - Création d'un Pseudo File System esclave (hammer pfs-slave)
+
+Un PFS esclave est utilisé comme système de fichiers mirroir. Tant que
+ce système de fichiers n'est pas initialisé, il est impossible de
+l'utilisé.
+
+.Création d'un PFS esclave (/mnt/tata)
+[sh]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+hammer pfs-slave /mnt/tata
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+L'initialisation se fait depuis les commandes `hammer write` ou
+`hammer write-stream` que nous verrons plus loin.
+

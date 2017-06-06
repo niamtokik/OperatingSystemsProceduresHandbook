@@ -1,0 +1,18 @@
+== Hammer - (hammer mirror-read)
+
+Une des fonctionnalitées les plus utiles de Hammer est la possibilité
+de lire le contenu d'un PFS et de pouvoir l'exporter sous forme binaire
+sur un autre système.
+
+.Visualisation du flux de données binaire avec hexdump
+[sh]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+hammer mirror-read /mnt/test | hexdump -C | less
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.Sauvegarde du flux de données binaire
+[sh]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+hammer mirror-read /mnt/test > /your/backup.stream
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+

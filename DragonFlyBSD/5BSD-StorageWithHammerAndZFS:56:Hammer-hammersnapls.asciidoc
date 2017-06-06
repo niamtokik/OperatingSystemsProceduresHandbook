@@ -1,0 +1,11 @@
+== Hammer - (hammer snapls)
+
+La visualisation des snapshots en cours d'utilisation est possible à
+partir de la commande `hammer snapls`.
+
+[sh]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+hammer snapls /
+hammer snapls /mnt/test
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+

@@ -1,0 +1,10 @@
+== Hammer - Suppression d'un snapshot (snaprm)
+
+Il est possible de supprimer manuellement un snapshot avec la commande
+`hammer snaprm`.
+
+[sh]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+hammer snaprm /mnt/
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+

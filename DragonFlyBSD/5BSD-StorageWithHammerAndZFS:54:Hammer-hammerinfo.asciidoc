@@ -1,0 +1,11 @@
+== Hammer - (hammer info)
+
+La liste des informations concernant un PFS ou d'un système de fichiers
+Hammer est disponible à partir de la commande `hammer info`.
+
+[sh]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+hammer info /
+hammer info /mnt
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+

@@ -1,0 +1,14 @@
+== Hammer - (hammer snap)
+
+Un snapshot peut être pris à n'importe quel moment sur un système de
+fichiers Hammer. Cette fonctionnalité est utilisé avec la commande
+`hammer snap`.
+
+[sh]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+hammer snap /mnt/test
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Un répertoire contenant l'image du système de fichiers sera alors créé
+à la racine du PFS ayant pour nom la date du snapshot. 
+
