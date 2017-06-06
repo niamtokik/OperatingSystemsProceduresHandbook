@@ -1,0 +1,32 @@
+== Xen - Accès à la VM (xl)
+
+L'accès à la machine virtuelle se fait de plusieurs façons. Dans le cas
+du mode PV, il est possible d'avoir un accès direct depuis la console:
+
+[sh]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+xl console vmname
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Pour se détacher de la VM, le raccourcis clavier est `Ctrl ]`. Vous
+revenez alors à votre shell de départ.
+
+Avec le mode HVM, il est nécessaire de définir une autre méthode
+d'accès, cette fois-ci basé sur un affichage `vnc` ou `spice`. Ces 2
+protocoles sont utilisés pour rediriger l'écran virtuel (vga) de la
+machine virtuelle. Pour avoir accès à ces écrans, il est nécessaire
+d'avoir installer préalablement les paquets contenant les clients pour
+`vnc` et `spice`.
+
+.Connexion avec `vncviewer`
+[sh]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+vncviewer localhost
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.Connexion avec `spicy`
+[sh]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spicy localhost
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+

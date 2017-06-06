@@ -1,0 +1,13 @@
+== Xen - Introduction (HVM)
+
+La virtualisation hardware fonctionne comme un émulateur et permet
+d'être compatible avec la plus grande majorité des systèmes. Xen émule
+alors le hardware ou utilise l'existant (PCI-passthrought). Le système
+d'exploitation Windows, ou d'autres systèmes non compatible PV doivent
+utiliser ce mode de fonctionnement.
+
+Ce mode de fonctionnement n'offre pas de bonnes performances, et
+s'approche du fonctionnement d'un émulateur classique type `qemu`.
+
+ * http://netbsd.gw.com/cgi-bin/man-cgi?virtio
+

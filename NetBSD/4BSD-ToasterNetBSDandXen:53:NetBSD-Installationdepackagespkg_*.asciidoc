@@ -1,0 +1,29 @@
+== NetBSD - Installation de packages (pkg_*)
+
+.Configuration du dépôt par défaut
+[sh]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+PKGSRC=http://ftp.fr.netbsd.org/pub/pkgsrc/packages
+ARCH=$(uname -m)
+REL=$(uname -r)
+PKG_PATH=${PKGSRC}/NetBSD/${ARCH}/${REL}/
+echo 'PKG_PATH='${PKG_PATH} >> /etc/pkg_install.conf
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.Installation d'un package
+[sh]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+pkg_add vim nano
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.Suppression d'un package
+[sh]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+pkg_delete vim
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+ * http://netbsd.gw.com/cgi-bin/man-cgi?pkg_add
+ * http://netbsd.gw.com/cgi-bin/man-cgi?pkg_delete
+ * http://netbsd.gw.com/cgi-bin/man-cgi?pkg_install.conf
+ * http://netbsd.gw.com/cgi-bin/man-cgi?pkg_info
+

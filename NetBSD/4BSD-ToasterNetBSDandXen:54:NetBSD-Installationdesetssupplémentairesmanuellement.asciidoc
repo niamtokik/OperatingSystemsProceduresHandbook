@@ -1,0 +1,21 @@
+== NetBSD - Installation de sets supplémentaires (manuellement)
+
+[sh]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ARCH=$(uname -m)
+REL=$(uname -r)
+SITE=http://ftp.netbsd.org/pub/NetBSD
+REPO=${SITE}/NetBSD-${REL}/${ARCH}/binary/sets/
+# Création du répertoire INSTALL (standard)
+mkdir -p /usr/INSTALL
+cd /usr/INSTALL
+
+# Récupération du sets "comp.tgz" contenant le compilateur gcc
+# et différents outils
+ftp ${REPO}/comp.tgz
+
+# Extraction du set
+cd /
+tar zxvfpP /usr/INSTALL/comp.tgz
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+

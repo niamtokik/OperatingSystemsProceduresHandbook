@@ -1,0 +1,32 @@
+== Annexe - Liens
+
+=== Xen
+
+ * https://xenbits.xen.org/docs/4.6-testing/
+ * https://wiki.xen.org/wiki/Hypervisor
+ * https://wiki.xen.org/wiki/Hypercall
+ * https://xenbits.xen.org/docs/unstable/hypercall/index.html
+ * https://wiki.xenproject.org/wiki/Xen_Project_Beginners_Guide
+
+=== NetBSD/Xen
+
+ * https://wiki.netbsd.org/ports/xen/howto/
+ * https://wiki.netbsd.org/ports/xen/
+ * https://wiki.netbsd.org/tutorials/how_to_set_up_a_xen_dom0/
+ * https://wiki.netbsd.org/tutorials/how_to_set_up_a_guest_os_using_xen3/
+
+=== NetBSD
+
+ * http://netbsd.gw.com/cgi-bin/man-cgi?lvm
+ * https://www.netbsd.org/docs/guide/en/chap-build.html
+ * https://wiki.netbsd.org/tutorials/how_to_build_netbsd-current/
+ * https://www.netbsd.org/docs/guide/en/chap-kernel.html
+
+ * https://www.netbsd.org/docs/software/packages.html
+ * https://www.netbsd.org/docs/pkgsrc/
+
+=== NetBSD/LVM
+
+ * https://www.netbsd.org/docs/guide/en/chap-lvm.html
+ * https://wiki.netbsd.org/tutorials/how_to_use_lvm_on_netbsd/
+ * https://www.netbsd.org/~haad/eurobsdcon_paper.pdf

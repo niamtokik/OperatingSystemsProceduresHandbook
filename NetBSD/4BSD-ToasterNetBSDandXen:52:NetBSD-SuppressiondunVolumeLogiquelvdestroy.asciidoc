@@ -1,0 +1,8 @@
+== NetBSD - Suppression d'un Volume Logique (lvdestroy)
+
+[sh]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+lvm lvdestroy myLv
+lvm lvdestroy myLv2
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+

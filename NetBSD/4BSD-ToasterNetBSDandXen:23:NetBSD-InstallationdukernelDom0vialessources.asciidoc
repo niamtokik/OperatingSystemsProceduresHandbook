@@ -1,0 +1,25 @@
+== NetBSD - Installation du kernel Dom0 via les sources
+
+Il est aussi possible de compiler le kernel manuellement via les
+sources disponible depuis un
+http://ftp.fr.netbsd.org/pub/NetBSD/NetBSD-6.1.5/source/sets/src.tgz[tarball]
+ou depuis un http://cvsweb.netbsd.org/bsdweb.cgi/src/[dépot cvs].
+
+[sh]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+cd /usr/src
+cd sys/arch/amd64/conf
+config XEN3_DOM0
+cd ../compile/netbsd-XEN3_DOM0
+make depend && make
+cp netbsd /netbsd-xen
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+[NOTE]
+======================================================================
+Il est à noter que le kernel NetBSD pour Xen ne supporte pas l'ajout de
+module. Si un équipement a besoin d'être supporté et qu'il n'est pas
+présent dans la configuration kernel fournit dans l'arbre des sources,
+il est nécessaire de le rajouter manuellement.
+======================================================================
+

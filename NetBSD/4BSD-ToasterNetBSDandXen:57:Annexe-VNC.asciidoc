@@ -1,0 +1,31 @@
+== Annexe - VNC
+
+VNC est un protocole de contrôle de serveur à distance. De nombreux
+utilitaires existent pour pouvoir se connecter à ce type de
+service. Globalement, ils fournissent tous un utilitaire nommé
+`vncviewer`.
+
+[sh]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+vncviewer $host:$port
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+=== FreeBSD
+
+ * https://www.freshports.org/net/ssvnc/
+ * https://www.freshports.org/net/tigervnc/
+ * https://www.freshports.org/net/tightvnc/
+
+=== OpenBSD
+
+ * http://openports.se/x11/gtk-vnc
+ * http://openports.se/net/noVNC
+ * http://openports.se/net/ssvnc
+
+=== NetBSD
+
+ * http://pkgsrc.se/net/vnc
+ * http://pkgsrc.se/net/tigervnc
+ * http://pkgsrc.se/net/tightvnc
+ * http://pkgsrc.se/wip/realvnc
+

@@ -1,0 +1,11 @@
+== NetBSD - Utilisation de LVM (pv)
+
+Un PV (Physical Volume) est tout simplement disque ou un espace
+mémoire contenant une structure la définissant comme faisant partis
+LVM.
+
+[sh]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+lvm pv display
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+

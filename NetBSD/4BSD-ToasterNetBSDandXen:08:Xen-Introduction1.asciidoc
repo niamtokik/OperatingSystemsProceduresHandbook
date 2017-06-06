@@ -1,0 +1,41 @@
+== Xen - Introduction (1)
+
+Xen est une solution de virtualisation sous forme de micro-kernel. Il
+s'installe entre le matériel (CPU, RAM, Disque dur) et le kernel
+hôte. Cette technique de virtualisation se nomme hyperviseur.
+
+[txt]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  _____ _____ _____ _____       _____ _____ _____ __________    /\
+ |     |     |     |     |     |     |     |     |          |  /  \
+ | cpu | ram | hdd | ... |     | cpu | ram | hdd | ...      | /_  _\
+ |_ _ _| _ _ |_ _ _| _ _ |     |_ _ _|_ _ _| _ _ |_ _ _ _ _ |   ||
+ |                       | s   |                            | h ||
+ | kernel classique      | y   | kernel xen                 | y ||
+ |_______________________| s   |_ _ _ _ _ _ _ ______________| p ||
+ |                       | c   |             |              | e ||
+ | applications          | a   | kernel dom0 | kernel domU  | r ||
+ |_______________________| l   |_____________|______________| c ||
+			   l                 |              | a ||
+			    		     | applications | l ||
+					     |______________| l ||
+
+
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Un kernel classique est connecté directement au hardware. Quand un
+processus a besoin d'une ressource, le kernel classique valide la
+demande et vérifie si la ressource en question est disponible. Si
+cette ressource est libre, il donne alors l'accès à la ressource. Dans
+ce cas là, c'est le kernel qui est responsable des drivers et du
+cloisonnement entre les processus. Une application demande cette
+ressource à partir d'un `systemcall`.
+
+Le kernel Xen vient se greffer entre le kernel hôte modifié (domain-0
+aka dom0) et le matériel. Le kernel dom0 est un kernel ayant un accès
+complet au kernel Xen ainsi qu'au matériel. Il a le pouvoir créer des
+machines virtuelles. L'application qui a besoin d'une ressource
+demande la ressource au kernel domU à partir d'un `systemcall`. Le
+kernel domU reçoit la demande et refait une demande sous forme
+d'`hypercall` sur le kernel Xen.
+

@@ -1,0 +1,151 @@
+== NetBSD - Wedges (dkctl)
+
+NetBSD possède des fonctionnalités similaires à FreeBSD. L'utilitaire
+en question se nomme `dkctl` et permet de créer des wedges.
+
+.Configuration de 2 disques mémoire de 1024MB
+[sh]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+cd /tmp
+dd if=/dev/zero of=disk0.img count=1000 bs=1m
+dd if=/dev/zero of=disk1.img count=1000 bs=1m
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.Configuration des noeuds virtuels associés
+[sh]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+vnconfig vnd0 disk0.img
+vnconfig vnd1 disk1.img
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Un wedge définit un espace mémoire, il a donc besoin d'une adresse de
+départ (startblk) et d'une adresse de fin (configuré sous la forme
+de compteur). Un wedge a aussi besoin d'un type de partition. 
+Il peut être configuré pour recevoir une partition de type
+ffs, http://netbsd.gw.com/cgi-bin/man-cgi?raidctl[`raidframe`],
+http://netbsd.gw.com/cgi-bin/man-cgi?ccd[`ccd`],
+http://netbsd.gw.com/cgi-bin/man-cgi?cgd[`cgd`] et bien d'autres.
+
+.Configuration d'un wedge (ffs)
+[sh]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+dkctl vnd0 addwedge mywedge1 0 2048000 ffs
+dkctl vnd1 addwedge mywedge2 0 2048000 ffs
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+NOTE: un "block" représente 512 octets (soit 4096bits). Nous avons
+créé des fichiers contenant 1000 fois 1MB (`1MB = 1024*1024 =
+1'048'576`) soit `1'048'576'000`. La réprésentation de cette valeur en
+octet est de `1'048'576'000 / 512 = 2_048_000`. Le nombre de bloc à
+configurer pour récupérer l'espace disque complet sur les noeuds
+virtuels est donc de 2048000 blocs.
+
+.Configuration d'un wedge pour du chiffrement (cgd)
+[sh]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+dkctl vnd0 addwedge mywedge1 0 2048000 cgd
+dkctl vnd0 addwedge mywedge2 0 2048000 cgd
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+NOTE: Lors de la création d'un wedge, un fichier spécial `dk` est créé
+dans le répertoire `/dev`.
+
+.Lister les wedges disponibles
+[sh]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+dkctl vnd0 listwedges
+# dk0: mywedge, 2048 blocks at 0, type: ffs
+
+dkctl vnd1 listwedges
+# dk1: mywedge2, 2048 blocks at 0, type: ffs
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.Formatage du wedge
+[sh]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+# les wedges supportent les labels et peuvent donc être formaté
+# en donnant explicitement le nom du wedge.
+newfs NAME=mywedge1
+newfs /dev/dk2
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.Configuration du cache
+[sh]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+dkctl vnd0 setcache rw save
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+NOTE: La configuration du cache ne se fait que sur des disques
+physiques. Un message d'erreur devrait s'afficher lors du lancement de
+cette dernière commande.
+
+.Suppression d'un wedge
+[sh]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+dkctl vnd0 delwedge dk0
+dkctl vnd1 delwedge dk1
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+WARNING: La suppression d'un wedge via la commande `dkctl` ne se fait
+qu'à partir du nom du device spécial et non du label. Pour faire
+simple, dans notre exemple, il n'est pas possible de supprimer un
+wedge avec les noms `mywedge1` et `mywedge2`.
+
+.Utilisation de wedge avec `raidctl` (raid1)
+[sh]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+dkctl vnd0 addwedge mywedge0 0 2048 raidrame
+dkctl vnd1 addwedge mywedge1 0 2048 raidframe
+
+cat >> /tmp/myraid1.cfg << EOF
+START array
+# Nombre de ligne
+# | Nombre de colonne
+# | | Nombre de spare
+# | | |
+#/ / /
+1 2 0
+
+START disks
+/dev/dk0
+/dev/dk1
+
+START layout
+# sectPerSU SUsPerParityUnit SUsPerReconUnit RAID_level_5
+# Secteur par nombre de stripe
+# | Nombre de stripe par parité
+# | | Nombre de stripe par unité de recontruction
+# | | | Niveau de RAID (0, 1, 4, 5)
+# | | | |
+#/ / / / 
+32 1 1 1
+
+START queue
+fifo 10
+EOF
+
+raidctl -C /tmp/myraid1.cfg raid0
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+WARNING: L'argument `raid0` ne définit pas la version du raid, mais le
+device associé dans `/dev`. Dans notre cas, le device en question sera
+`/dev/raid0`.
+
+.Création du système de fichiers
+[sh]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+disklabel -i /dev/raid0
+newfs /dev/raid0a
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.Suppression du raid
+[sh]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+raidctl -u raid0
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+ * http://netbsd.gw.com/cgi-bin/man-cgi?dkctl
+ * http://netbsd.gw.com/cgi-bin/man-cgi?dk
+ * http://pbraun.nethence.com/unix/sysutils_bsd/raidframe.html
+ * https://abs0d.blogspot.fr/2011/08/setting-up-8tb-netbsd-file-server.html
+ 

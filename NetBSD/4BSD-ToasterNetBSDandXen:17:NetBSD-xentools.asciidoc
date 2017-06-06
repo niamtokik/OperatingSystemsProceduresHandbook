@@ -1,0 +1,16 @@
+== NetBSD - xentools
+
+`xentools` est un package permettant d'avoir accès aux utilitaire pour
+gérer les machines virtuelles Xen. En fonction du kernel qui sera
+utilisé par la suite, il est possible d'utiliser plusieurs versions:
+
+ * http://pkgsrc.se/sysutils/xentools33[xentools33]
+ * http://pkgsrc.se/sysutils/xentools41[xentools41]
+ * http://pkgsrc.se/sysutils/xentools42[xentools42]
+ * http://pkgsrc.se/sysutils/xentools45[xentools45]
+ * http://pkgsrc.se/sysutils/xentools46[xentools46]
+
+Les versions du kernel ainsi que les outils ont besoins d'être
+synchronisé au niveau des versions. Nous utiliserons donc les
+utilitaires Xen en version 4.6 (xentools46) pour la suite.
+

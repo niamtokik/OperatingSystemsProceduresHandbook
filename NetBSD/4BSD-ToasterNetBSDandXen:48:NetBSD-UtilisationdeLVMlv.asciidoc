@@ -1,0 +1,11 @@
+== NetBSD - Utilisation de LVM (lv)
+
+Un LV (Logical Volume) est l'équivalent d'une partition
+traditionnelle. Un LV représente une partie de mémoire allouée sur un
+VG.
+
+[sh]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+lvm lvdisplay
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+

@@ -1,0 +1,32 @@
+== Virtualisation - Émulateur
+
+L'émulation permet de simuler intégralement ou partiellement un
+système ou une architecture matérielle/logicielle sous forme d'un
+programme. Cette solution est utilisée dans plusieurs domaines:
+
+ * jeu vidéo (émulation de console/arcade)
+ * prototypage (matériel embarqué)
+ * test (développement d'application)
+
+[txt]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  _____ _____ ____________
+ |     |     |            |
+ | cpu | ram | ...        |
+ |_____|_____|____________|
+ |                        | s
+ | kernel                 | y
+ |________________________| s
+ |                        | c     /\
+ | application/émulateur  | a    /  \
+ |_ _ _ _ _ _ _ _ _ _ _ _ | l   /_  _\
+ |                        | l     ||
+ | machine virtuelle      |       ||
+ |________________________|       ||
+
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Quelques exemples de logiciels: http://www.qemu.org/[`qemu`],
+https://sourceforge.net/projects/dyna-gen/[`dynamips/dynagen`],
+https://www.virtualbox.org/[`virtualbox`] (sans module kernel).
+

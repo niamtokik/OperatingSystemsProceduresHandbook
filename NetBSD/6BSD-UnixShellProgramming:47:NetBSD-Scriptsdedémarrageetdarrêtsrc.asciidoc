@@ -1,0 +1,7 @@
+== NetBSD - Scripts de démarrage et d'arrêts (rc)
+
+ * /etc/rc
+ * /etc/rc.subr
+ * /etc/rc.conf
+ * rcorder
+

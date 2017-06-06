@@ -1,0 +1,37 @@
+== Virtualisation - Hyperviseur de type 2
+
+L'hyperviseur de type 2 est une formation de virtualisation
+s'implantant au niveau du kernel hôte, que ce soit directement intégré
+ou sous forme de kernel. C'est le kernel ou le module en question qui
+se charge de contrôler les ressources et d'utiliser les instructions
+CPU spécifiques (si elles sont disponibles).
+
+[txt]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  _____ _____ ___________________
+ |     |     |                   | s   c
+ | cpu | ram | ...               | y + p
+ |_____|_____|_ _ _ _ _ _ _ _ _ _| s   u
+ |          \\                   | c          /\
+ | kernel      module            | a   i     /  \
+ |__________//_ _ _ _ _ _ _ _ _ _| l   n    /_  _\
+             |                   | l   s      ||
+             | Machine Virtuelle |     t      ||
+             |___________________|     s      ||
+
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Cette solution est utilisée par un grand nombre de société d’hébergement
+pour réduire les coûts de déploiements de serveurs physiques, mais
+aussi par de nombreuses personnes à travers le monde du fait de sa
+simplicité de mise en place.
+
+Quelques exemples de logiciels:
+http://www.linux-kvm.org/page/Main_Page[`kvm`],
+http://www.bhyve.org/[`bhyve`],
+https://www.virtualbox.org/[`virtualbox`] (avec module kernel),
+https://www.microsoft.com/fr-fr/cloud-platform/desktop-virtualization[`microsoft
+virtual desktop`],
+https://www.vmware.com/support/pubs/gsx_pubs.html[`vmware gsx`],
+`vmware fusion`, `vmware workstation`.
+

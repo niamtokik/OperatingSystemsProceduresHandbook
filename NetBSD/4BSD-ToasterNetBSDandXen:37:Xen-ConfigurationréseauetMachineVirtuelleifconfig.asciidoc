@@ -1,0 +1,50 @@
+== Xen - Configuration réseau et Machine Virtuelle (ifconfig)
+
+Évidemment, une machine virtuelle isolée du monde ne sert qu'à peu de
+choses. Il est donc possible de connecter une machine virtuelle Xen à
+un réseau. Sous NetBSD, il faut créer un
+http://netbsd.gw.com/cgi-bin/man-cgi?bridge[`bridge`], qui viendra
+recevoir l'interface réseau virtuelle de la VM Xen.
+
+[sh]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ifconfig create bridge0
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Si la configuration
+https://xenbits.xen.org/docs/4.6-testing/man/xl.cfg.5.html[`xl.cfg`]
+déclare explicitement l'interface bridge0 comme étant le point de
+raccord de la machine virtuelle, lors de la création de cette
+dernière, l'interface virtuelle sera connectée automatiquement dessus.
+
+[txt]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+vif=["bridge=bridge0"]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Le http://netbsd.gw.com/cgi-bin/man-cgi?bridge[bridge] pourra alors
+être configuré pour accepter une autre interface physique, ou
+virtuelle permettant de donner l'accès au réseau à la machine qui
+vient d'être créée.
+
+[sh]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+brconfig bridge0 add em0
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+La configuration réseau reste relativement complexe, et de nombreuses
+options sont disponibles. La
+https://xenbits.xen.org/docs/4.6-testing/misc/xl-network-configuration.html[documentation
+officielle] donne des exemples et est un bon point de départ pour
+optimiser la configuration actuelle.
+
+[NOTE]
+======================================================================
+Une des particularités de Xen est de pouvoir partager depuis le
+système hôte des équipements ou du matériel directement branché. Cette
+fonctionnalité s'appelle
+https://xenbits.xen.org/docs/4.6-testing/misc/arm/passthrough.txt[`PCI
+passthrought`] et permet, entre autre, de donner accès directement à
+une ou plusieurs interfaces réseaux à une machine virtuelle.
+======================================================================
+

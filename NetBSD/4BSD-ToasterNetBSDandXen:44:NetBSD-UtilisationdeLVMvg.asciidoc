@@ -1,0 +1,11 @@
+== NetBSD - Utilisation de LVM (vg)
+
+Un VG (Virtual Group) est un groupement de PV. Il permet d'ajouter,
+modifier ou supprimer à la volée l'espace disque disponible sur un ou
+plusieurs PV.
+
+[sh]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+lvm vg display
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+

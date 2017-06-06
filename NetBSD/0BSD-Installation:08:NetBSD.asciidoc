@@ -1,0 +1,20 @@
+== NetBSD
+
+Ce que nous allons faire:
+
+ * présentation de l'installeur (semi-graphique)
+ * installation minimaliste
+ * configuration du système de base
+
+[sh]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+cd vm/netbsd
+ISO=NetBSD-7.0/amd64/installation/cdrom/boot.iso
+fetch -o netbsd.iso "http://10.83.116.1/NetBSD/${ISO}"
+./netbsd.sh
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+______________________________________________________________________
+Of course it runs NetBSD
+______________________________________________________________________
+

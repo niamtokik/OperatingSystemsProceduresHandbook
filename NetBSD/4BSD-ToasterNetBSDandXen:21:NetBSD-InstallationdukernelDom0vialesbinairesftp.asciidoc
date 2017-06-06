@@ -1,0 +1,18 @@
+== NetBSD - Installation du kernel Dom0 via les binaires (ftp)
+
+L'équipe NetBSD fournit le kernel NetBSD Dom0 précompilé pour les
+architectures
+http://ftp.fr.netbsd.org/pub/NetBSD/NetBSD-6.1.5/i386/binary/kernel/netbsd-XEN3_DOM0.gz[i386]
+et
+http://ftp.fr.netbsd.org/pub/NetBSD/NetBSD-6.1.5/amd64/binary/kernel/netbsd-XEN3_DOM0.gz[amd64].
+
+[sh]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ARCH=$(uname -m)
+REL=$(uname -r)
+TARGET=http://ftp.fr.netbsd.org/
+REPO=${TARGET}/pub/NetBSD/NetBSD-${REL}/${ARCH}/
+cd /usr/INSTALL
+ftp ${REPO}/binary/kernel/netbsd-XEN3_DOM0.gz
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+

@@ -1,0 +1,8 @@
+== Xen - Introduction (2)
+
+Le kernel Xen peut virtualiser les machines invités en utilisant 2
+modes:
+
+ * la ParaVirtualisation (PV)
+ * la Virtualisation Hardware (HVM)
+

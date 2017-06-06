@@ -1,0 +1,8 @@
+== NetBSD - xenkernel installation via les binaire (pkg_add)
+
+[sh]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+pkg_add xenkernel46
+cp /usr/pkg/xen46-kernel/xen.gz /
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+

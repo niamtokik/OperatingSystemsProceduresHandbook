@@ -1,0 +1,11 @@
+== NetBSD - Kernel NetBSD Dom0
+
+Étant donné que NetBSD sera notre système hôte ou domain0 (Dom0), ce
+dernier nécessite l'installation d'un kernel dédié. Le kernel en
+question est commun à toutes les versions de Xen et ne nécessite pas
+<de synchronisation de version.
+
+Le kernel NetBSD dom0 peut être récupéré sous forme de binaire/package
+via les repository officiels ou compiler via les sources présents dans
+la base.
+

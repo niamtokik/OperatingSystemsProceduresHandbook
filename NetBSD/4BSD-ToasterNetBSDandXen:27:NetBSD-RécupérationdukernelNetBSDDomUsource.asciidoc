@@ -1,0 +1,11 @@
+== NetBSD - Récupération du kernel NetBSD DomU (source)
+
+[sh]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+cd /usr/src
+cd sys/arch/amd64/conf
+config netbsd-XEN3_DOMU
+cd ../compile/netbsd-XEN3_DOMU
+make depend && make
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+

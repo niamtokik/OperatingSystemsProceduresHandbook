@@ -1,0 +1,20 @@
+== Virtualisation - Définition (1)
+
+La virtualisation est une technologie relativement ancienne qui est
+apparue pratiquement depuis la création de l'information dans les
+années 60.
+
+Le principe de la virtualisation peut même être dérivé du concept de
+simulation, qui est apparu dans les années 1930 avec la création du
+concept de "Machine de Turing Universelle", cette machine pouvant
+simuler n'importe quelle autre machine de Turing.
+
+La virtualisation permet donc de simuler des architectures logicielles
+ou matérielles en offrant un espace isoler du système principal
+(hôte).
+
+La virtualisation permet de mutualiser des ressources, mais aussi de
+faire de la simulation de systèmes simples ou d'architectures
+complexes, qu'ils soient liés au domaine de l'informatique ou à
+d'autres domaines scientifiques ou techniques.
+

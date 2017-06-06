@@ -1,0 +1,8 @@
+== NetBSD - Création d'un Volume Logique (lvcreate)
+
+[sh]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+lvm lvcreate -L1G -n myLv vgName
+lvm lvcreate -L2G -n myLv2 vgName
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+

@@ -1,0 +1,9 @@
+== Xen - Introduction (PVHVM)
+
+PVHVM est un mode de fonctionnement similaire au mode HVM avec l'ajout
+de drivers spécifiques. PVHVM active des optimisations sur le kernel
+invité facilitant les interruptions systèmes. Cette fonctionnalité est
+à activer au niveau du dom0.
+
+ * https://wiki.xen.org/wiki/Xen_Linux_PV_on_HVM_drivers
+

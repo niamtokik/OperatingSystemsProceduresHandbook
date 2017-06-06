@@ -1,0 +1,18 @@
+== NetBSD - Installation de xentools via les binaires (pkg_add)
+
+`xentools46` peut-être récupérer sous forme de package.
+
+[sh]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+pkg_add xentools46
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+[WARNING]:
+======================================================================
+Attention, la version de NetBSD-6.1.5 ne fournit pas xentools46
+(problème de compilation). Il est nécessaire de
+https://twitter.com/niamtokik/status/802833164326621184[compiler/patcher]
+à la main.
+======================================================================
+
+

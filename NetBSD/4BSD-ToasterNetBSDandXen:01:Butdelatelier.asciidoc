@@ -1,0 +1,8 @@
+== But de l'atelier
+
+ * Présentation de NetBSD
+ * Présentation de Xen
+ * Utilisation de LVM
+ * Configuration de NetBSD en Dom0
+ * Déploiement de VM
+

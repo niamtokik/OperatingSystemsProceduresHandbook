@@ -1,0 +1,15 @@
+== NetBSD - xenkernel installation via les sources (pkgsrc)
+
+Les packages `xenkernel` sont aussi disponibles via pkgsrc, tout comme
+OpenBSD et FreeBSD, NetBSD offre une méthode standardisé et simplifié
+pour compiler directement les sources.
+
+[sh]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+cd /usr/pkgsrc
+cd sysutils/xenkernel46
+make
+make install
+cp /usr/pkg/xen46-kernel/xen.gz /
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+

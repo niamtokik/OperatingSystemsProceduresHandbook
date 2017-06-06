@@ -1,0 +1,42 @@
+== Virtualisation - Hyperviseur de type 1
+
+L'hyperviseur de type 1 se place entre matériel et l'hôte, il prend en
+charge les ressources et les redistribues à la demande, que ce soit
+pour l'hôte ou pour les machines virtuelles invités. Cette technologie
+nécessite des modifications importantes au niveau du système
+hôte.
+
+[txt]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  _____ _____ _________________
+ |     |     |                 |  h
+ | cpu | ram | ...             |  y
+ |_____|_____|_________________|  p
+ |                             |  e     /\
+ | micro-kernel                |  r    /  \
+ | _ _ _ _ _ _  _______________|  c   /_  _\
+ |             |               |  a     ||
+ | kernel hôte | kernel invité |  l     ||
+ |_____________|_______________|  l     ||
+
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Cette solution est pratiquement utilisé que par les hébergeurs ou,
+pour certains projets spécifiques comme
+https://www.qubes-os.org/[Qubes OS].
+
+Quelques exemples de logiciels: https://www.xenproject.org/[`xen`],
+http://www.vmware.com/products/esxi-and-esx.html[`vmware esx`],
+https://www.oracle.com/virtualization/vm-server-for-x86/[`oracle vm`],
+`hyper-v`.
+
+[NOTE]
+======================================================================
+Les hyperviseurs utilisent dans une grande majorité des cas des
+fonctionnalités (sous forme d'instructions spécifiques) du CPU pour
+améliorer les performances. Les constructeurs Intel et AMD (pour les
+architectures x86) fournissent respectivement
+https://www-ssl.intel.com/content/dam/www/public/us/en/documents/product-specifications/vt-directed-io-spec.pdf[`VT/VT-x`]
+et https://support.amd.com/TechDocs/48882_IOMMU.pdf[`AMD-V`].
+======================================================================
+

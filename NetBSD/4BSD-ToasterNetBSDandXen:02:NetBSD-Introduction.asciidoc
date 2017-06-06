@@ -1,0 +1,12 @@
+== NetBSD - Introduction
+
+NetBSD est l'un des premiers descendants des systèmes BSD originels
+(4.2BSD, 4.3BSD et 4.4BSD) tout comme FreeBSD. NetBSD est un système
+d'exploitation ayant pour finalité la portabilité. Son minimaliste et
+la qualité de son code permet l'installation de cette distribution sur
+de nombreuses architectures, des plus importantes (supercalculateur)
+mais également les plus minimalistes (matériel embarqué). NetBSD a
+donné naissance à OpenBSD, en 1996, ce qui expliquera au fur et à
+mesure des explications les fortes ressemblances pour le management du
+système.
+

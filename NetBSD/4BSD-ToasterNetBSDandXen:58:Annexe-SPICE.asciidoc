@@ -1,0 +1,19 @@
+== Annexe - SPICE
+
+SPICE est un protocole relativement récent de contrôle de machine à
+distance. Il n'y a actuellement qu'un client disponible sur les
+distributions BSD, `spicy`.
+
+[sh]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spicy -h $host -p $port
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+=== FreeBSD
+
+ * https://www.freshports.org/deskutils/spice-gtk/
+
+=== OpenBSD
+
+ * http://openports.se/x11/spice-gtk
+

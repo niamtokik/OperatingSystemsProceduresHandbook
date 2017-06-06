@@ -1,0 +1,15 @@
+== Xen - Introduction (PV)
+
+La paravirtualisation sous Xen nécessite un kernel invité compatible
+avec les hypercalls. Le kernel invité permet d'avoir donc accès au
+kernel Xen via ces appels systèmes. De nombreux systèmes (open-source
+ou non) sont compatibles avec ce mode de fonctionnement et fournissent
+un kernel avec les fonctionnalités nécessaires pour communiquer avec
+le kernel Xen.
+
+Tout comme le système de jails sous FreeBSD, la paravirtualisation
+permet d'avoir des performances optimales.
+
+ * http://netbsd.gw.com/cgi-bin/man-cgi?xvif+4
+ * http://netbsd.gw.com/cgi-bin/man-cgi?xennet+4
+

@@ -1,0 +1,20 @@
+== Xen - Démarrage d'une VM (xl)
+
+Xen permet de créer une machine virtuelle depuis un fichier de
+configuration
+https://xenbits.xen.org/docs/4.6-testing/man/xl.cfg.5.html[`xl.conf`].
+
+[sh]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+xl create xl.cfg
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Cette commande crée une machine virtuelle basée sur les informations
+contenues dans le fichier `xl.cfg`. Pour s'attacher directement à la
+console après démarrage de la VM, le flag `-c` peut-être rajouté
+
+[sh]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+xl create -c xl.cfg
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+

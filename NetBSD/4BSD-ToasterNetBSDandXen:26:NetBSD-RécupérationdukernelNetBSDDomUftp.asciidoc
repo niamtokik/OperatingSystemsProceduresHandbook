@@ -1,0 +1,12 @@
+== NetBSD - Récupération du kernel NetBSD DomU (ftp)
+
+[sh]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ARCH=$(uname -m)
+REL=$(uname -r)
+TARGET=http://ftp.fr.netbsd.org/
+REPO=${REPOSITORY}/pub/NetBSD/NetBSD-${REL}/${ARCH}
+cd /usr/INSTALL
+ftp ${REPO}/binary/kernel/netbsd-XEN3_DOMU.gz
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+

@@ -1,0 +1,16 @@
+== NetBSD - Installation de xentools via les sources (pkgsrc)
+
+Tout comme FreeBSD et OpenBSD, NetBSD fournit un arbre de ports nommé
+`pkgsrc`. `xentools46` est disponible dans le sous répertoire
+`sysutils`.
+
+[sh]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+cd /usr/pkgsrc
+cd sysutils/xentools46
+make
+make install
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+ * http://pkgsrc.se/sysutils/xentools46
+

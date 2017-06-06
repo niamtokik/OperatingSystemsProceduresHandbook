@@ -1,0 +1,21 @@
+== Xen - Visualisation des VMs (xl)
+
+Les machines virtuelles en fonctionnement peuvent être visualisées au
+moyen de différentes commandes, ces dernières présentes dans le paquet
+`xentools`. La sous-commande `top` permet de voir l'activité des
+différentes machines virtuelles en cours d'utilisation.
+
+[sh]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+xl top
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Il est aussi possible de lister les machines virtuelles sans
+l'utilisation d'une commande interactive.
+
+[sh]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+xl list
+xl list -l
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+

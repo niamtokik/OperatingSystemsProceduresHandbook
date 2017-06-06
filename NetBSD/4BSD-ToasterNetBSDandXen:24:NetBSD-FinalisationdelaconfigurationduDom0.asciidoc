@@ -1,0 +1,34 @@
+== NetBSD - Finalisation de la configuration du Dom0
+
+Le kernel fonctionnant en dom0 nécessite l'accès à certains fichiers
+spéciaux permettant de contrôler le micro-kernel Xen. Le fichier
+`/dev/xen` a donc besoin d'être créé manuellement.
+
+[sh]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+cd /dev
+sh MAKEDEV xen
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+De plus, un service sous forme de daemon doit être lancé au démarrage
+pour pouvoir gérer les machines virtuelles et les différents états du
+kernel.
+
+.activation de `xencommons` au démarrage (/etc/rc.conf)
+[sh]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+xencommons=YES
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+`xencommons` est un script permettant de démarrer automatiquement tous
+les utilitaires nécessaire au bon fonctionnement de Xen comme
+`xenstored` et `xenconsoled`. Le package NetBSD n'installe pas ce
+script par défaut, laissant le choix à l'administrateur de créer le
+sien, mais fournit une version fonctionnelle en exemple que nous
+allons installer.
+
+[sh]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+cp -p /usr/pkg/share/examples/rc.d/xencommons /etc/rc.d
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+

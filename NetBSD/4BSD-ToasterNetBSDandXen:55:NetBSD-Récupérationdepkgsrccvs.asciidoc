@@ -1,0 +1,13 @@
+== NetBSD - Récupération de pkgsrc (cvs)
+
+`pkgsrc` est habituellement récupéré par `cvs`. `pkgsrc` peut-être
+utilisé sur plusieurs branches. La branche la plus utilisé est la
+branche freezé pendant 3mois (quaterly), nommée `pkgsrc-YYYYQX`,
+exemple: `pkgsrc-2016Q3`.
+
+[sh]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+cd /usr
+cvs -qz3 -danoncvs@anoncvs.fr.netbsd.org:/cvsroot co -rpkgsrc-2016Q3 pkgsrc
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+

@@ -1,0 +1,25 @@
+== NetBSD - Configuration des options de pkgsrc (mk.conf)
+
+`pkgsrc` permet de configurer simplement les sources avec certaines
+options et donne donc le moyen d'optimiser la création des paquets en
+fonction des besoins.
+
+.Lister les options supportées par un port
+[sh]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+cd /usr/pkgsrc/lang/python27
+make show-options
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.Configuration des options via `/etc/mk.conf`
+[sh]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+# désactivation du support graphique (x11) pour tous les packages par
+# défaut
+echo 'PKG_DEFAULT_OPTIONS=-x11' >> /etc/mk.conf
+
+# activation du support graphique (x11) seulement pour le package
+# python27
+echo 'PKG_OPTIONS.python27=x11' >> /etc/mk.conf
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+

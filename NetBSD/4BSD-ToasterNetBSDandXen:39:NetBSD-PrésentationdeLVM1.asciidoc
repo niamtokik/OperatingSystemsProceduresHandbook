@@ -1,0 +1,35 @@
+== NetBSD - Présentation de LVM (1)
+
+LVM (Logical Volume Management) est un outil qui a été créé pour
+simplifier le management de disques dur. Grandement utilisé dans le
+monde linux, NetBSD est l'un des seul systèmes BSD à avoir intégré ce
+mécanisme.
+
+[txt]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  ______       ______       ______       ______
+ |      |     |      |     |      |     |      |
+ | hdd1 |     | hddN |     | hdd2 |     | hddN |  Disque Dur
+ |______|     |______|     |______|     |______|
+  _|____________|_____       |            |
+ |                    |      |            |
+ | raidX (soft/hard)  |      |            |        RAID
+ |____________________|      |            |
+  _|____       _|____       _|____       _|____
+ |      |     |      |     |      |     |      |
+ | pv1  |     | pvN  |     | pv2  |     | pvN  |  Volume Physique
+ |______|     |______|     |______|     |______|
+  _|____________|____       _|____________|____
+ |                   |     |                   |
+ | Volume groupe A   |     | Volume Groupe B   |  Volume Groupe
+ |___________________|     |___________________|
+  _|___   _|___   _|___     _|___
+ |     | |     | |     |   |     |
+ | lv1 | | lv2 | | lvN |   | lvM |                Volume Logique
+ |_____| |_____| |_____|   |_____|
+
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Le but de LVM est d'offrir une plus grande flexibilité pour la gestion
+de l'espace disque.
+

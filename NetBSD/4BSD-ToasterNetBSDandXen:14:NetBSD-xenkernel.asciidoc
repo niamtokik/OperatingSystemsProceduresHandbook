@@ -1,0 +1,14 @@
+== NetBSD - xenkernel
+
+`xenkernel` est un package permettant d'avoir accès au micro-kernel
+xen. Plusieurs versions du kernel Xen sont actuellement supportées
+par NetBSD:
+
+ * http://pkgsrc.se/sysutils/xenkernel33[xenkernel33]
+ * http://pkgsrc.se/sysutils/xenkernel41[xenkernel41]
+ * http://pkgsrc.se/sysutils/xenkernel42[xenkernel42]
+ * http://pkgsrc.se/sysutils/xenkernel45[xenkernel45]
+ * http://pkgsrc.se/sysutils/xenkernel46[xenkernel46]
+
+Nous utiliserons ici le kernel Xen en version 4.6 (xenkernel46).
+

@@ -1,0 +1,10 @@
+== NetBSD - Kernel NetBSD DomU
+
+Les systèmes invités ou domainU (domU), dans le cas de la
+paravirtualisation, ont besoin d'un kernel dédié exploitant les
+hypercalls.
+
+Le kernel NetBSD domU peut être récupéré sous forme de binaire/package
+via les dépôts officiels ou compiler via les sources présents dans la
+base.
+

@@ -1,0 +1,8 @@
+== NetBSD - Modification d'un Volume Logique (lvextend)
+
+[sh]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+lvm lvextend -L+1G myLv
+lvm lvextend -L-1G myLv2
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+

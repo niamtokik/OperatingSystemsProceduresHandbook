@@ -1,0 +1,22 @@
+== Xen - Arrêt d'une VM (xl)
+
+Une machine virtuelle peut-être arrêté de plusieurs façons. Elle
+peut-être sauvegardé, c'est à dire que la machine est arrêté dans
+l'état où elle se trouve. Lors du redémarrage elle reprendra son état
+initial.
+
+[sh]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+xl save vmname
+xl restore vmname
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Une machine virtuelle peut aussi être complètement arrêté, lors du
+prochain lancement, elle sera alors relancé depuis le début.
+
+[sh]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+xl destroy vmname
+xl create vmname.cfg
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+

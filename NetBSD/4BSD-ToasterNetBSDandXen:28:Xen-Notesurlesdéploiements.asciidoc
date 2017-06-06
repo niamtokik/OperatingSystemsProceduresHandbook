@@ -1,0 +1,39 @@
+== Xen - Note sur les déploiements
+
+Xen est supporté par de nombreux systèmes, mais étant donné que Xen
+possède plusieurs modes de fonctionnement, chaque distribution a
+privilégié un seul.
+
+Toutes les distributions sont compatible avec HVM, étant donné que
+c'est de l'émulation. Par ailleurs, ce mode nécessitant des
+instructions processeurs particulières, nous pouvons montrer ce
+fonctionnement dans une machine virtuelle, il est recommandé d'utilisé
+un serveur physique.
+
+Une méthode pour savoir si votre machine virtuelle ou physique est
+compatible avec HVM est d'utiliser les outils de diagnostiques livrés
+avec le package `xentools`.
+
+[sh]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+xl info
+xl dmesg
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+L'instruction processeur permettant la compatibilité HVM est nommée
+`VMX` et doit s'afficher dans les logs de démarrage ou les
+informations.
+
+[sh]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+xl info | grep VMX
+xl dmesg | grep -e HVM -e SVM
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Plus d'informations sont disponibles sur la
+https://wiki.xenproject.org/wiki/Xen_Common_Problems#How_can_I_check_if_I.27m_able_to_run_Xen_HVM_.28fully_virtualized.29_guests.3F[FAQ
+officielle] de Xen
+
+ * https://website-humblec.rhcloud.com/nested-kvmvmx-or-guest-inside-guest/
+ * https://www.virtualbox.org/ticket/4032
+

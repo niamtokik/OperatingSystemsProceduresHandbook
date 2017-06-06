@@ -1,0 +1,6 @@
+== Virtualisation - Définition (2)
+
+Il existe plusieurs familles dans le monde de la virtualisation,
+ayant chacune ses avantages et ses inconvénients. Tout d'abord, la
+première forme de virtualisation est l'émulation.
+

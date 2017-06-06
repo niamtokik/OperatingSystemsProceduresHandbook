@@ -1,0 +1,19 @@
+== Xen - Management disque dur
+
+Xen supporte un grand nombre de format de disque dur, allant du format
+brut (`raw`), au stockage réseau (`iscsi`). Il supporte les formats de
+fichiers habituellement supporté par `qemu` et `vmware` (`qcow`,
+`qcow2`, `hvd`).
+
+[sh]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Sous NetBSD, pour des raisons de flexibilité, nous utiliserons plus
+des formats de fichiers raw directement issue de volume logique créé
+par LVM mais il est toujours possible d'utiliser d'autres format et
+d'autres méthodes de stockage. Les personnes intéressées par ces
+configurations peuvent se tourner vers la
+https://xenbits.xen.org/docs/4.6-testing/misc/xl-disk-configuration.txt[documentation
+officielle] qui donne un grand nombre d'exemple.
+

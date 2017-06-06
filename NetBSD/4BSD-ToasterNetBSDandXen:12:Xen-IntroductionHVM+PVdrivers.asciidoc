@@ -1,0 +1,13 @@
+== Xen - Introduction (HVM + PV drivers)
+
+Il possible d'utiliser le mode HVM avec des drivers spécifiques pour améliorer
+les performances de la virtualisation hardware. Le kernel invité n'a
+pas accès aux hypercalls, mais les drivers responsables du réseau, des
+disques ou du matériel y ont accès.
+
+Ce mode de fonctionnement offre un bon compromis en terme de
+performance pour les I/Os mais le kernel n'étant pas optimisé, les
+interruptions systèmes sont lentes.
+
+ * http://netbsd.gw.com/cgi-bin/man-cgi?virtio
+
