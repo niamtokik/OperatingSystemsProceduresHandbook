@@ -1,0 +1,20 @@
+== OpenBSD
+
+Ce que nous allons faire:
+
+ * présentation de l'installeur (texte)
+ * installation FDE (Full Disk Encryption)
+ * configuration du système de base
+
+[sh]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+cd vm/openbsd
+ISO=5.9/amd64/install59.iso
+fetch -o openbsd.iso "http://10.83.116.1/OpenBSD/${ISO}"
+./openbsd.sh
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+______________________________________________________________________
+Only two remote holes in the default install, in a heck of a long time!
+______________________________________________________________________
+

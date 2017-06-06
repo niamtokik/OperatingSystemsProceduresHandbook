@@ -1,0 +1,12 @@
+= BSD#2 - Configuration d'un firewall sous OpenBSD
+:author:    Mathieu Kerjouan <contact@steepath.eu>
+:twitter:   https://twitter.com/niamtokik
+:backend:   slidy
+:max-width: 50em
+:icons:
+:iconsdir: /usr/local/etc/asciidoc/images/icons
+:images:
+:imagesdir: ./img/
+:copyright: Mathieu Kerjouan <contact@steepath.eu>
+
+

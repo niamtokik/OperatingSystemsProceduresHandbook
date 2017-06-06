@@ -1,0 +1,144 @@
+== OpenBSD - RAID et Chiffrement Disques (bioctl)
+
+OpenBSD fournit une interface pour contrôler le RAID et le
+chiffrement sur des disques durs. Cet utilitaire se nomme `bioctl` et
+permet donc d'initialiser des disques pour des fonctionnalités de type
+raid0 (stripe), raid1 (mirror), raid5 (parité), concaténation et
+chiffrement.
+
+`bioctl` crée un volume via le driver scsi (`sdX`). Le formatage en
+question se fait alors sur ce nouveau device créé.
+
+.Création d'espace disque sous forme de fichiers
+[sh]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+dd if=/dev/zero of=/tmp/disk0.img count=500 bs=1k
+dd if=/dev/zero of=/tmp/disk1.img count=500 bs=1k
+dd if=/dev/zero of=/tmp/disk2.img count=500 bs=1k
+dd if=/dev/zero of=/tmp/disk3.img count=500 bs=1k
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.Création des noeuds virtuels basés sur les images créées
+[sh]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+vnconfig vnd0 /tmp/disk0.img
+vnconfig vnd1 /tmp/disk1.img
+vnconfig vnd2 /tmp/disk2.img
+vnconfig vnd3 /tmp/disk3.img
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+NOTE: pour lister les noeuds virtuels déjà actifs, il est possible
+d'utiliser la commande `vnconfig -l`.
+
+Après avoir créé les disques virtuels, il est nécessaire d'initialiser
+les slices et les partitions. La gestion de ces fonctionnalités, sous
+OpenBSD se fait via `softraid`, et est un type de partition spécial.
+
+.Initialisation des slices 
+[sh]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+fdisk -iy /dev/rvnd0
+fdisk -iy /dev/rvnd1
+fdisk -iy /dev/rvnd2
+fdisk -iy /dev/rvnd3
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+NOTE: `fdisk -i` initialise le slice par défaut d'OpenBSD. 
+
+.Initialisation des partitions
+[sh]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+printf "a\n\n\n\nRAID\nw\nq\n\n" | disklabel vdn0
+printf "a\n\n\n\nRAID\nw\nq\n\n" | disklabel vdn1
+printf "a\n\n\n\nRAID\nw\nq\n\n" | disklabel vdn2
+printf "a\n\n\n\nRAID\nw\nq\n\n" | disklabel vdn3
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+NOTE: `disklabel` récupère en entrée les informations générées par
+`printf`, dans notre cas, nous modifions la première partition (`a`) et
+ la configurons avec le type de format `RAID`.
+
+Il est maintenant possible de travailler avec les facilités
+`softraid`.
+
+.Création d'un mirroir (raid1)
+[sh]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+# bioctl -c 1 -l /dev/vnd0a,/dev/vdn1a softraid0
+# softraid0: RAID 0 volume attached as sd2
+DISK=$(bioctl -c 1 -l /dev/vnd0a,/dev/vdn1a softraid0 \
+            | awk '$NF ~/sd[0-9]+/ { print $NF }')
+
+# initialisation de la table des slices
+fdisk -iy /dev/$r{DISK}
+
+# création des partitions
+disklabel /dev/${DISK}
+
+# création du système de fichiers
+newfs /dev/${DISK}a
+
+# détachement du device bio
+bioctl -d ${DISK}
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.Création d'un volume strippé (raid0)
+[sh]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+# bioctl -c 0 -l /dev/vnd0a,/dev/vnd1a softraid0
+DISK=$(bioctl -c 0 -l /dev/vnd0a,/dev/vdn1a softraid0 \
+            | awk '$NF ~/sd[0-9]+/ { print $NF }')
+
+fdisk -iy /dev/r${DISK}
+disklabel /dev/${DISK}
+newfs /dev/${DISK}a
+bioctl -d ${DISK}
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.Création d'une concaténation de volumes 
+[sh]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+# bioctl -c c -l /dev/vnd0a,/dev/vnd1a softraid0
+DISK=$(bioctl -c c -l /dev/vnd0a,/dev/vdn1a softraid0 \
+            | awk '$NF ~/sd[0-9]+/ { print $NF }')
+
+fdisk /dev/r${DISK}
+disklabel /dev/${DISK}
+newfs /dev/${DISK}a
+bioctl -d ${DISK}
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.Création d'un volume de données distribué avec parité (raid5)
+[sh]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+# bioctl -c 5 -l /dev/vnd0a,/dev/vnd1a,/dev/vnd2a softraid0
+DISK=$(bioctl -c [ -l /dev/vnd0a,/dev/vdn1a,/dev/vnd2a softraid0 \
+            | awk '$NF ~/sd[0-9]+/ { print $NF }')
+
+fdisk /dev/r${DISK}
+disklabel /dev/${DISK}
+newfs /dev/${DISK}a
+bioctl -d ${DISK}
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.Création d'un volume chiffré
+[sh]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+bioctl -c C -l /dev/vnd3a softraid0
+DISK=$(bioctl -c 3 -l /dev/vnd3a softraid0 \
+            | awk '$NF ~/sd[0-9]+/ { print $NF }')
+fdisk /dev/r${DISK}
+disklabel /dev/${DISK}
+newfs /dev/${DISK}a
+bioctl -d ${DISK}
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.Suppresion d'un volume `bio`
+[sh]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+bioctl -d ${volume}
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+ * http://man.openbsd.org/OpenBSD-current/man8/bioctl.8
+ * http://man.openbsd.org/OpenBSD-current/man8/mount_vnd.8
+

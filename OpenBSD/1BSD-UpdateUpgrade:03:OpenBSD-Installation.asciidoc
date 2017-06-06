@@ -1,0 +1,4 @@
+== OpenBSD - Installation
+
+image:openbsd-59-installation.gif[]
+

@@ -1,0 +1,12 @@
+== OpenBSD - Upgrade via bsd.rd
+
+https://www.openbsd.org/faq/faq4.html#bsd.rd[`bsd.rd`] est le kernel
+ramdisk dédié pour l'installation d'OpenBSD. Il contient tous les
+outils nécessaires pour l'installation du système ou sa récupération
+en cas de problème. Lorsque vous installez votre système via un cdrom
+ou une clé usb, c'est ce kernel qui est utilisé et chargé en mémoire.
+
+Il y a donc plusieurs méthodes pour utiliser cette solution, mais
+nécessites toutes un accès à une console (excepté pour l'installeur
+automatique).
+

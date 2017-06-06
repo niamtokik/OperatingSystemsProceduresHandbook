@@ -1,0 +1,24 @@
+== OpenBSD - Firewalling (pflog)
+
+Packet Filter permet de voir en temps réel les paquets passant par
+l'interface. Cette fonctionnalité (logging) permet entre autre de
+valider la configuration du firewall en ayant un aperçu des paquets
+bloqués ou autorisés. Une interface virtuelle
+http://man.openbsd.org/OpenBSD-current/man4/pflog.4[pflog] est
+nécessaire pour cette fonctionnalité
+
+[sh]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tcpdump -i pflog0
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+http://man.openbsd.org/OpenBSD-current/man8/pflogd.8[pflogd] permet
+d'archiver ce qui est logué. Cet utilitaire sauvegarde les
+informations dans `/var/log/pflog` au format pcap. Pour lire ces
+fichiers, il faut donc utiliser tcpdump:
+
+[sh]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tcpdump -r /var/log/pflog
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+

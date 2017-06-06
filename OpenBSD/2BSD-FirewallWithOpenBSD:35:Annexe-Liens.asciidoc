@@ -1,0 +1,34 @@
+== Annexe - Liens
+
+ * Man pages:
+ ** http://man.openbsd.org/intro.4
+ ** http://man.openbsd.org/netintro.4
+ ** http://man.openbsd.org/OpenBSD-current/man8/ifconfig.8
+ ** http://man.openbsd.org/hostname.if.5
+ ** http://man.openbsd.org/netstat.1
+ ** http://man.openbsd.org/hosts.5
+ ** http://man.openbsd.org/rc.8
+ ** http://man.openbsd.org/tcpdump.8
+
+ * FAQ:
+ ** https://www.openbsd.org/faq/faq6.html
+ ** https://www.openbsd.org/faq/faq8.html
+
+ * Packet Filter:
+ ** https://www.openbsd.org/faq/pf/
+ ** https://www.freebsd.org/doc/handbook/firewalls-pf.html
+ ** https://www.netbsd.org/docs/network/pf.html
+ ** https://docs.oracle.com/cd/E53394_01/html/E54829/pfovw-intr.html
+ ** https://calomel.org/pf_config.html
+ ** http://www.benzedrine.ch/pf.html
+ ** https://home.nuug.no/~peter/pf/en/
+
+ * Linux Networking
+ ** https://www.inetdoc.net/guides/vm/vm.network.tun-tap.html
+ ** http://www.lanana.org/docs/device-list/
+
+ * Configuration machine virtuelle
+ ** https://wiki.archlinux.org/index.php/QEMU#Creating_bridge_manually
+ ** http://www.linux-kvm.org/page/Networking
+ ** https://en.wikibooks.org/wiki/QEMU/Networking
+

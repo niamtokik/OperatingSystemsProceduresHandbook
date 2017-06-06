@@ -1,0 +1,5 @@
+== Généralité - Physique
+
+La couche physique représente le flux de donnée transposé au monde
+réel sous forme d'ondes électromagnétiques ou lumineuses.
+

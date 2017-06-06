@@ -1,0 +1,36 @@
+== Annexe - OpenBSD (liens)
+
+=== Manual
+
+ * http://man.openbsd.org/OpenBSD-current/man1/help.1
+ * http://man.openbsd.org/afterboot.8
+
+ * Build:
+ ** http://man.openbsd.org/OpenBSD-current/man8/config.8
+ ** http://man.openbsd.org/OpenBSD-current/man1/cvs.1
+ ** http://man.openbsd.org/OpenBSD-current/man1/make.1
+
+ * Backup:
+ ** http://man.openbsd.org/OpenBSD-current/man5/changelist.5
+ ** http://man.openbsd.org/OpenBSD-current/man8/dump.8
+ ** http://man.openbsd.org/OpenBSD-current/man8/restore.8
+ ** http://man.openbsd.org/OpenBSD-current/man1/scp.1
+ ** http://man.openbsd.org/sftp.1
+ ** http://man.openbsd.org/OpenBSD-current/man1/ftp.1
+ 
+ * Ports:
+ ** http://man.openbsd.org/OpenBSD-current/man7/ports.7
+ ** http://man.openbsd.org/OpenBSD-current/man5/mk.conf.5
+ ** http://man.openbsd.org/bsd.port.mk.5
+ ** http://man.openbsd.org/port-modules.5
+ ** http://man.openbsd.org/dpb.1
+
+=== FAQ
+
+ * https://www.openbsd.org/faq/upgrade60.html
+
+=== External resources
+
+ * https://stable.mtier.org/
+ * https://bsdly.blogspot.fr/2012/07/keeping-your-openbsd-system-in-trim.html
+

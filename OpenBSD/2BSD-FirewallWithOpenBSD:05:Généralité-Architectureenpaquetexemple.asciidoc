@@ -1,0 +1,26 @@
+== Généralité - Architecture en paquet (exemple)
+
+Finalement, sa signification est basée sur les standards:
+
+[txt]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+02000000   => Protocole IP (réseau)
+4          => Version 4 du protocole IP
+5          => taille de l'en-tête (20 octets)
+00         => Service
+0021       => Taille total (33octets)
+a35f       => identification
+00         => drapeau
+00         => décallage
+40         => TTL
+11         => Protocole UDP (transport)
+0000       => Checksum
+7f000001   => adresse source (127.0.0.1)
+7f000001   => adresse destination 127.0.0.1)
+e038       => port Source (57400)
+115c       => port de destination (4444)
+000d       => taille
+fe20       => checksum
+746573740a => donnée (test\n)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+

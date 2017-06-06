@@ -1,0 +1,8 @@
+== Généralité - Transport
+
+La couche transport est la partie permettant d'offrir un service. 2
+protocoles sont utilisés sur cette couche: UDP ou TCP.
+
+ * UDP: sans connexion, aucunes garanties, prioritaire
+ * TCP: avec connexion, garanties (retransmission, checksum...)
+

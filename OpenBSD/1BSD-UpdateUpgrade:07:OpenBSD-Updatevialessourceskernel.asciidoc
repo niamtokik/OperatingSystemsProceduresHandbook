@@ -1,0 +1,29 @@
+== OpenBSD - Update via les sources (kernel)
+
+backup de l'ancien kernel fonctionnel
+
+[sh]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+cp -p /bsd /bsd.old
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Compilation et installation du kernel GENERIC:
+
+[sh]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+cd /usr/src/sys/arch/$(uname -p)/conf
+config GENERIC
+cd /usr/src/sys/arch/$(uname -p)/compile/GENERIC
+make && make install
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Pour ceux qui utilisent du multicore/multiprocesseur, GENERIC.MP:
+
+[sh]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+cd /usr/src/sys/arch/$(uname -p)/conf
+config GENERIC.MP
+cd /usr/src/sys/arch/$(uname -p)/compile/GENERIC.MP
+make && make install
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+

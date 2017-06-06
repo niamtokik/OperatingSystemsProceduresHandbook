@@ -1,0 +1,25 @@
+== OpenBSD - Récupérer une adresse IPv4 (dhcp)
+
+Dans le cadre d'une utilisation comme poste de travail, la
+configuration d'une adresse réseau se fait automatiquement. Le
+protocole utilisé pour IPv4 se nomme
+https://www.ietf.org/rfc/rfc2131.txt[DHCP] (Dynamic Host Configuration
+Protocol). Un serveur se trouvant sur le réseau "loue" (lease) une
+adresse IP à un client qui demande une adresse sur ce même réseau (Bail DHCP). La
+commande permettant de récupérer une adresse ip se nomme
+http://man.openbsd.org/OpenBSD-current/man8/dhclient.8[dhclient].
+
+[sh]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+dhclient em0
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Si le serveur possède l'information nécessaire et que le client
+l'accepte, cette configuration se trouve généralement dans
+http://man.openbsd.org/dhclient.leases.5[`/var/db/dhclient.leases.$interface`]
+
+[sh]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+cat /var/db/dhclient.leases.em0
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+

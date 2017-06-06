@@ -1,0 +1,28 @@
+== OpenBSD - Update base et package via openup
+
+https://www.mtier.org/[m:tier] fournit depuis maintenant plusieurs
+version d'OpenBSD un
+http://www.undeadly.org/cgi?action=article&sid=20110420080633[support
+sur le long terme], que ce soit pour les packages ou pour le core, via
+l'utilitaire https://www.mtier.org/solutions/apps/openup/[openup].
+
+[sh]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ftp https://stable.mtier.org/openup
+openup -c
+openup
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Il est aussi possible de passer par leur
+https://stable.mtier.org/[repository public] pour récupérer les
+packages à jour:
+
+[sh]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+REPO=https://stable.mtier.org
+ftp -o /etc/signify/mtier-60-pkg.pub ${REPO}/mtier-60-pkg.pub
+PKG_PATH=${REPO}/updates/$(uname -r)/$(arch -s):${PKG_PATH}
+export PKG_PATH
+pkg_add -u
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+

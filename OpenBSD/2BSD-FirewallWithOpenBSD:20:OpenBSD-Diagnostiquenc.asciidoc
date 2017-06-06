@@ -1,0 +1,30 @@
+== OpenBSD - Diagnostique (nc)
+
+http://man.openbsd.org/OpenBSD-current/man1/nc.1[nc] (netcat) est un
+outil permettant de contrôler la couche 4 (transport). Il permet de
+manipuler des
+http://man.openbsd.org/OpenBSD-current/man2/socket.2["sockets"], terme
+désignant grossièrement les structures de données présentent sur les
+couches transports et supérieurs.
+
+[sh]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+# scan tcp
+nc -zv $host $port
+
+# message tcp via netcat
+echo "test" | nc $host $port
+
+# serveur tcp via netcat
+echo "test" | nc -l $port
+
+# scan udp
+nc -zvu $host $port
+
+# message udp via netcat
+echo "test" | nc -u $host $port
+
+# serveur udp via netcat
+echo "test" | nc -lu $port
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+

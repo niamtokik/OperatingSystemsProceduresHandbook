@@ -1,0 +1,24 @@
+== OpenBSD - Update des ports (sources)
+
+Si vous n'avez pas l'arbre des ports, vous pouvez le récupérer et
+l'extraire dans `/usr/ports`.
+
+[sh]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+REL=$(uname -r | sed -Ee 's/\./_/' -e 's/.*/OPENBSD_&/')
+cd /usr
+cvs -danoncvs@anoncvs.eu.openbsd.org:/cvs -qz3 co -Pr${REL} ports
+cd ports
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Si vous l'avez déjà, une simple mise à jour de cvs via `cvs update`
+récupèrera automatiquement les changements. Dans le cas où vous auriez
+beaucoup de paquets, utiliser http://man.openbsd.org/dpb[dpb] serait
+plus approprié.
+
+[sh]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+cd /usr/ports
+cvs -qz3 up -dP
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+

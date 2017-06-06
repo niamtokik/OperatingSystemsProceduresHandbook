@@ -1,0 +1,32 @@
+== OpenBSD - Diagnostique (netstat)
+
+La commande
+http://man.openbsd.org/OpenBSD-current/man1/netstat.1[netstat] permet
+d'afficher différentes informations concernant la stack réseau.
+
+[sh]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+# afficher la table de routage
+netstat -nr
+netstat -nrv
+
+# afficher le statut des toutes les connexions
+netstat -na
+
+# afficher le statut de toutes les connexions (ipv4, tcp || udp)
+netstat -na -f inet
+netstat -na -f inet -p tcp
+netstat -na -f inet -p udp
+
+# afficher le statut de toutes les connexions (ipv6, tcp || udp)
+netstat -na -f inet6
+netstat -na -f inet6 -p tcp
+netstat -na -f inet6 -p udp
+
+# afficher les statistiques
+netstat -s
+netstat -sp ip
+netstat -sp tcp
+netstat -sp udp
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+

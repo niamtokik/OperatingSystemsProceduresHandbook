@@ -1,0 +1,53 @@
+== Annexe - Configuration Machine Virtuelle
+
+.Avec la commande `ip` (activation)
+[sh]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+# création d'une interface tap
+ip tuntap add tap0 mode tap
+
+# création d'un bridge
+ip link add bridge0 type bridge
+
+# branchement d'eth0 et tap0 sur le bridge
+ip link set tap0 master bridge0
+ip link set eth0 master bridge0
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.Avec la commande `ip` (désactivation)
+[sh]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ip link set tap0 nomaster
+ip link set eth0 nomaster
+ip link del tap0
+ip link del bridge0
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.Avec la commande `brctl`
+[sh]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+brctl addbr bridge0
+brctl addif tap0
+brctl addif eth0
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.Configurer QEMU/KVM avec bridge + tap
+[sh]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+# si freebsd/openbsd/netbsd
+sysctl net.inet.ip.forwarding=1 net.inet6.ip6.forwarding=1
+chmod g+rw /dev/tap0
+chown :${USER} /dev/tap0
+
+# si linux
+sysctl net.ipv4.ip_forward=1 net.ipv6.ip_forward=1
+mknod /dev/net/tap0 c 36 16 
+mknod /dev/net/tap1 c 36 17
+chmod g+rw /dev/net/tap0
+chmod g+rw /dev/net/tap1
+chown :${USER} /dev/net/tap0
+chown :${USER} /dev/net/tap1
+
+qemu -enable-kvm -net nic -netdev tap,ifname=tap0 /path/to/disk.img
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+

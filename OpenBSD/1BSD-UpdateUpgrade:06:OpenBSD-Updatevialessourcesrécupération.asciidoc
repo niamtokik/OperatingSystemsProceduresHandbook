@@ -1,0 +1,24 @@
+== OpenBSD - Update via les sources (récupération)
+
+Récupération des sources pour la base et xenocara
+
+[sh]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+REL=$(uname -r | sed -Ee 's/\./_/' -e 's/.*/OPENBSD_&/')
+cd /usr
+cvs -danoncvs@anoncvs.eu.openbsd.org:/cvs -qz3 co -Pr${REL} src
+cvs -danoncvs@anoncvs.eu.openbsd.org:/cvs -qz3 co -Pr${REL} xenocara
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+ou, si les données sont déjà présentes, mise à jour des sources pour
+la base et xenocara:
+
+[sh]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+REL=$(uname -r | sed -Ee 's/\./_/' -e 's/.*/OPENBSD_&/')
+cd /usr/src
+cvs -qz3 up -dP
+cd /usr/xenocara
+cvs -qz3 up -dP
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+

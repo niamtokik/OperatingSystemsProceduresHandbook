@@ -1,0 +1,7 @@
+== OpenBSD - Scripts de démarrage et d'arrêts (rc)
+
+ * /etc/rc
+ * /etc/rc.conf, /etc/rc.conf.local
+ * /etc/rc.d/rc.subr
+ * rcctl
+

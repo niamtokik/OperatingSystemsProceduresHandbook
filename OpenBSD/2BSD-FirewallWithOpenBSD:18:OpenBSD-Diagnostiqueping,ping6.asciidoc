@@ -1,0 +1,23 @@
+== OpenBSD - Diagnostique (ping, ping6)
+
+Le premier moyen pour effectuer un diagnostic afin de vérifier si le réseau est actif, est
+d'utiliser le protocole https://tools.ietf.org/html/rfc792[ICMP]
+(Internet Control Message Protocol) via la commande
+http://man.openbsd.org/OpenBSD-current/man8/ping.8[ping]. Ce protocole
+permet d'envoyer des paquets spéciaux donnant accès à diverses
+informations.
+
+[sh]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ping 127.0.0.1
+ping 192.168.42.1
+ping 8.8.8.8
+ping www.steepath.eu
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+[sh]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ping6 ::1
+ping6 google.fr
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+

@@ -1,0 +1,16 @@
+== OpenBSD - Firewalling (pf)
+
+http://man.openbsd.org/OpenBSD-current/man4/pf.4[Packet Filter] est un
+firewall basé sur https://www.phildev.net/ipf/[IPFilter] (Darren
+Reed), suite à différents problèmes de
+http://undeadly.org/cgi?action=article&sid=20010527142347[license], pf
+fut réécrit sur les cendres d'IPFilter en quelques jours.
+
+Packet Filter est un pare-feu à état, mature et moderne, réutilisé sur
+de nombreux systèmes:
+
+ * FreeBSD (pfsense, opnsense...)
+ * NetBSD (npf)
+ * MacOS
+ * Solaris
+

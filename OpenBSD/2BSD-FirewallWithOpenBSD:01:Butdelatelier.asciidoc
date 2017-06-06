@@ -1,0 +1,9 @@
+== But de l'atelier
+
+ * Comprendre les bases du fonctionnement d'un réseau
+ * Configurer le réseau sous OpenBSD
+ * Configurer le firewall Packet Filter
+ * Diagnostiquer un problème sur le réseau
+
+image::itcrowd-internet.gif[]
+

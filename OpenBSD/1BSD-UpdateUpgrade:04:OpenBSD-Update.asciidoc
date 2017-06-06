@@ -1,0 +1,12 @@
+== OpenBSD - Update
+
+L'update consiste à mettre à jour la version courante
+d'OpenBSD. L'équipe d'OpenBSD fournit des notices explicatives ainsi
+que des patchs sous forme
+https://www.openbsd.org/security.html[d'erratas].
+
+Par exemple, si vous utilisez la version 6.0 et qu'un bug a été
+détecté, un patch est fournit par l'équipe, ce patch est mis en ligne
+sur le site official ainsi que sur les différents repository. Aucune
+modification profonde du système n'est effectuée.
+

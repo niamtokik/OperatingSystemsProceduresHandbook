@@ -1,0 +1,5 @@
+== Généralité - Réseau
+
+La couche réseau est utilisée pour marquer un paquet. Le
+protocole réseau habituellement utilisé est IPv4 ou IPv6.
+

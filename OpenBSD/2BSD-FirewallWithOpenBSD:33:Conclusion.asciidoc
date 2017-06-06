@@ -1,0 +1,12 @@
+== Conclusion
+
+Cet atelier avait surtout pour but de remettre à jour sur la
+configuration d'un réseau et la présentation des protocoles. La
+configuration du firewall est un point essentiel dans de nombreux
+projets, cet équipement garantie la sécurité mais aussi la
+disponibilité des services.
+
+La redondance de cet équipement est pratiquement obligatoire, et nous
+verrons les solutions qui sont à notre disposition dans les projets
+ateliers.
+

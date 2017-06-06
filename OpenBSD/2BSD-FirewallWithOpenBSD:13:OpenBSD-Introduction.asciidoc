@@ -1,0 +1,14 @@
+== OpenBSD - Introduction
+
+OpenBSD est un système prévu pour la communication réseau. Ce système
+est d'ailleurs réputé pour la grande qualité de ses outils, utilisés
+partout dans le monde et ayant une grande importance dans
+l'administration des systèmes:
+
+ * https://www.openssh.com/[OpenSSH]
+ * http://www.openntpd.org/[OpenNTPD]
+ * http://www.openbgpd.org/[OpenBGPD]
+ * https://www.opensmtpd.org/[OpenSMTPD]
+ * https://www.libressl.org/[LibreSSL]
+ * et https://www.openbsd.org/innovations.html[bien d'autres]...
+

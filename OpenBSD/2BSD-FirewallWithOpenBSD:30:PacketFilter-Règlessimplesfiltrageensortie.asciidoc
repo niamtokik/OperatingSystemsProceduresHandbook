@@ -1,0 +1,14 @@
+== Packet Filter - Règles simples (filtrage en sortie)
+
+[txt]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+set skip on lo
+block
+pass in proto tcp to port { ssh, http, https }
+pass out proto tcp from port ssh user root
+pass out proto tcp from port { http, https } user www
+pass out proto tcp to port { domain, http, https } user root
+pass out proto udp to port domain user root
+pass out proto { udp, tcp } to port domain user _unbound
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+

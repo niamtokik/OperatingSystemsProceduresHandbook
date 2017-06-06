@@ -1,0 +1,24 @@
+== OpenBSD - Diagnostique (traceroute, traceroute6)
+
+http://man.openbsd.org/OpenBSD-current/man8/traceroute.8[traceroute]
+permet d'effectuer un diagnostic sur le chemin emprunter par un
+paquet. Il se base sur plusieurs protocole (ICMP, UDP et/ou TCP) pour
+permettre de "tracer" le chemin d'un paquet. Son fonctionnement est
+simple: quand un paquet est envoyé, un compteur de saut est
+configuré. À chaque passage sur un équipement, le compteur est
+décrémenté. Lorsque le compteur arrive à 0, un paquet ICMP est renvoyé
+à l'émetteur. Il est donc possible de savoir par quel équipement le
+paquet passe.
+
+[sh]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+traceroute google.fr
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+un exemple avec ping:
+
+[sh]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ping -t 1 google.fr
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+

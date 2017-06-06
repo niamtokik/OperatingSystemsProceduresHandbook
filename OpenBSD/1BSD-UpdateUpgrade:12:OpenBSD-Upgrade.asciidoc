@@ -1,0 +1,17 @@
+== OpenBSD - Upgrade
+
+L'upgrade consiste à passer d'une ancienne release vers la nouvelle
+release (par exemple 5.9 vers 6.0). Ce n'est pas une action
+anodyne. OpenBSD étant un système d'exploitation "artisanalle" des
+modifications profondes peuvent impactés le système.
+
+L'équipe d'OpenBSD fournit un
+https://www.openbsd.org/faq/upgrade60.html[guide] pour chaque upgrade,
+expliquant les précautions à prendre ainsi que les modifications
+effectuées.
+
+Avant une upgrade, il est important de s'assurer d'avoir des
+sauvegardes ainsi que d'avoir une méthodologie de rollback. Si vous
+upgradez depuis un serveur distant, l'accès à une console et à un
+média virtuel peux sauver votre journée.
+

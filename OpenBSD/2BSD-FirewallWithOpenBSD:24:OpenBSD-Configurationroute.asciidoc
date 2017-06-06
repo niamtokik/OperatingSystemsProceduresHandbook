@@ -1,0 +1,21 @@
+== OpenBSD - Configuration (route)
+
+http://man.openbsd.org/OpenBSD-current/man8/route.8[route] est un
+utilitaire permettant de gérer les
+http://man.openbsd.org/OpenBSD-current/man4/route.4[tables de routage
+du système]. Il peut afficher, créer, altérer ou supprimer les
+informations contenues dans ces tables. Une table de routage contient
+la route que doit prendre un paquet pour arriver à sa destination.
+
+[sh]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+# affiche les routes, similaire à netstat -rn
+route show
+
+# rajoute une route par défaut
+route add default 192.168.42.1
+
+# supprime la route par défaut
+route del default 192.168.42.1
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+

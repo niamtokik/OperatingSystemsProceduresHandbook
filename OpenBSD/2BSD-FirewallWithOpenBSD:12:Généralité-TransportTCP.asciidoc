@@ -1,0 +1,22 @@
+== Généralité - Transport (TCP)
+
+TCP négocie une connexion. Le client doit d'abord demander au serveur
+de se connecter (poignée de main en 3 étapes – Three Way Handshake). À la fin de cette
+étape, un état est gardé entre les deux serveurs, pouvant être arrêté
+explicitement (reset ou fin de connexion) ou implicitement (timeout).
+
+[sh]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tcpdump -evvvi lo0 tcp port 5555
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+[sh]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+nc -kl 5555
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+[sh]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+echo "test" | nc 127.0.0.1 5555
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+

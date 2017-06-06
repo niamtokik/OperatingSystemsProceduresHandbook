@@ -1,0 +1,15 @@
+== OpenBSD - Upgrade via bsd.rd (local)
+
+Une autre méthode est de récupérer directement le kernel `bsd.rd` via
+les dépôts officiels et de le copier à la racine. Après un
+redémarrage, lors de l'apparition du prompt du bootloader, ils suffit
+alors de booter directement sur le kernel `bsd.rd`.
+
+[sh]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+cd /
+cp -p bsd.rd bsd.rd.old
+ftp http://ftp.eu.openbsd.org/pub/OpenBSD/6.0/$(uname -q)/bsd.rd
+shutdown -r now
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+

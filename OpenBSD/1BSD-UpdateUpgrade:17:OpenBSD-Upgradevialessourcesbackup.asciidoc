@@ -1,0 +1,25 @@
+== OpenBSD - Upgrade via les sources (backup)
+
+Le projet OpenBSD ne fournit tel quel des solutions clés en main pour
+la journalisation des backups ou, comme d'autres OS, des outils pour
+créer des snapshots. Par ailleurs différents scripts de maintenances
+fonctionnent périodiquement.
+
+Les fichiers présents dans
+http://man.openbsd.org/OpenBSD-current/man5/changelist.5[`/etc/changelist`]
+sont sauvegardés à l'aide du script
+http://man.openbsd.org/OpenBSD-current/man8/daily.8[`daily`] vers le
+répertoire `/var/backup`. Par défaut, ce script est exécuté tous les
+jours à 1h30 du matin et se trouve dans la crontab de l'utilisateur
+`root`. Il est aussi possible d'avoir une copie de la racine en
+configurant la variable `ROOTBACKUP=1` dans le fichier
+`/etc/daily.local`.
+
+http://man.openbsd.org/OpenBSD-current/man8/dump.8[`dump`] et `rdump`
+permettent quant à eux de faire un dump des filesystems utilisés. Le
+dump peut être alors restauré via la commande
+http://man.openbsd.org/restore.8[`restore`].
+
+Enfin, de nombreux outils présents dans les ports existent, permettant
+d'avoir les fonctionnalités désirées.
+

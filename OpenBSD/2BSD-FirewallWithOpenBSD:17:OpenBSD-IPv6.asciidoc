@@ -1,0 +1,20 @@
+== OpenBSD - IPv6
+
+IPv6 est le successeur d'IPv4. IPv6 utilisé une adresse de 128bits au
+lieu de 32bits pour son prédécesseur. Les adresses IPv6 se configurent
+globalement de la même façon qu'une adresse IPv4:
+
+[sh]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ifconfig em0 inet6 fdf3:7c3f:205c:14a1::43/64 up
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+ou grâce aux fichiers de configurations:
+
+[sh]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+echo "inet6 fdf3:7c3f:205c:14a1::43/64" > /etc/hostname.em0
+echo "up" >> /etc/hostname.em0
+sh /etc/netstart em0
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+

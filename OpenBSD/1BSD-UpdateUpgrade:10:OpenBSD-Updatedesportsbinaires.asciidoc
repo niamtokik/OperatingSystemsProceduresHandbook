@@ -1,0 +1,22 @@
+== OpenBSD - Update des ports (binaires)
+
+Il est possible que certains package soit à updater. `pkg_add` permet
+de réaliser simplement cette tâche:
+
+[sh]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+pkg_add -u
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Dans le cas où vous auriez un parc avec des paquets spéciaux (options
+particulière buildé à la main) ou plusieurs machines à mettre à jour,
+il est préférable d'utiliser http://man.openbsd.org/dpb[dpb] qui est
+le builder sous OpenBSD.
+
+[sh]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+pkg_info -aP | perl -ane 'print $_ if $_ =~ m:^\w+/\w+:' > /tmp/pkg_list
+cd /usr/ports/infrastructure
+./dpb -P /tmp/pkg_list
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+

@@ -1,0 +1,14 @@
+== OpenBSD - Upgrade via les sources
+
+L'upgrade via les sources comporte de nombreux risques. Cette méthode
+est utilisable seulement par les personnes maitrisant déjà le
+système. Elle n'est pas forcement complexe mais nécessite de valider
+des étapes et d'avoir (encore une fois) l'assurance de récupérer la
+main sur le système. Une upgrade via les sources se déroule de la façon suivante:
+
+ 1. backup des données et lecture de la https://www.openbsd.org/60.html[release note]
+ 2. compilation, installation du nouveau kernel
+ 3. compilation, installation de l'userland, puis reboot
+ 4. upgrade /dev et le bootloader
+ 5. upgrade /etc et les firmware
+

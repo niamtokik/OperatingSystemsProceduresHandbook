@@ -1,0 +1,12 @@
+== OpenBSD - Firewalling (pf.conf)
+
+Le fichier de configuration de Packet Filter se trouve dans
+http://man.openbsd.org/OpenBSD-current/man5/pf.conf.5[`/etc/pf.conf`].
+
+[txt]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+pass
+block in from any to port 80
+block in from any to any port 443><1024
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+

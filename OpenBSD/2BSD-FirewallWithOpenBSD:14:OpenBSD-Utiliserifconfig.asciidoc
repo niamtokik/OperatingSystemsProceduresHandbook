@@ -1,0 +1,17 @@
+== OpenBSD - Utiliser ifconfig
+
+http://man.openbsd.org/OpenBSD-current/man8/ifconfig.8[ifconfig] est
+la commande de base utilisé par de nombreux systèmes pour configurer
+le réseau. La grande majorité des systèmes BSD utilisent ifconfig et
+permet de:
+
+ - afficher des informations
+ - créer des interfaces virtuelles
+ - configurer des interfaces réseaux physiques ou virtuelles
+
+[sh]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ifconfig
+ifconfig -a
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+

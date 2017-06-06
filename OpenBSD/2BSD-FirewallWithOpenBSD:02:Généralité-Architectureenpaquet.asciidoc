@@ -1,0 +1,14 @@
+== Généralité - Architecture en paquet
+
+Un paquet pourrait avoir cette définition:
+
+ * Une suite de bits (0 ou 1) transitant sur une interconnexion
+   d'équipement ;
+
+ * Une suite de bit avec un découpage logique en plusieurs parties ;
+
+ * Des protocoles et des structures de données sont définis par des
+   entités spécifiques (RFC, https://www.ietf.org/[IETF],
+   https://www.ieee.org[IEEE]...) garantissant une compréhension entre
+   les équipements.
+

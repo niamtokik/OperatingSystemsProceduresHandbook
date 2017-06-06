@@ -1,0 +1,22 @@
+== OpenBSD - Firewalling (pfctl)
+
+http://man.openbsd.org/OpenBSD-current/man8/pfctl.8[pfctl] est utilisé
+pour contrôler Packet Filter. Cette commande permet de voir l'état du
+firewall, les règles, les statistiques et permet aussi de
+démarrer/arrêter/recharger les règles de filtrage.
+
+[sh]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+# activer le firewall
+pfctl -e
+
+# désactiver le firewall
+pfctl -d
+
+# tester la configuration du firewall
+pfctl -nf /etc/pf.conf
+
+# afficher toutes les informations concernant le firewall
+pfctl -s all
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+

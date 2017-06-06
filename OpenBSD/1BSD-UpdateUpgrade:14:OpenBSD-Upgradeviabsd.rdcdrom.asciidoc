@@ -1,0 +1,25 @@
+== OpenBSD - Upgrade via bsd.rd (cdrom)
+
+La méthode classique est de récupérer les images ISO officielles, puis
+de la https://www.openbsd.org/faq/faq13.html#burnCD[graver] sur un
+cdrom ou sur un média bootable (clé usb). L'upgrade se fait alors en
+bootant sur ce média et en sélectionnant l'option "Upgrade" (`U`).
+
+[sh]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+# cdrom installeur 
+ftp http://ftp.eu.openbsd.org/pub/OpenBSD/6.0/$(uname -q)/cd60.iso
+cdio -f cdXc cd60.iso
+
+# cdrom installeur + distribution
+ftp http://ftp.eu.openbsd.org/pub/OpenBSD/6.0/$(uname -q)/install60.iso
+cdio -f cdXc install60.iso
+
+# image disque installeur + distribution
+ftp http://ftp.eu.openbsd.org/pub/OpenBSD/6.0/$(uname -q)/install60.fs
+dd if=install60.fs of=/dev/sdXc
+
+# reboot du système
+shutdown -r now
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+

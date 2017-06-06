@@ -1,0 +1,15 @@
+== OpenBSD - Configuration (sysctl)
+
+http://man.openbsd.org/OpenBSD-current/man8/sysctl.8[sysctl] n'est pas
+un outil directement lié au réseau, mais lié à la configuration du
+kernel. Le noyau étant le gardien de la stack réseau jusqu'à la couche
+transport, certains besoins nécessite sa configuration. Par exemple,
+l'action de router un paquet nécessite d'activer le transfert de
+paquet (forwarding):
+
+[sh]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+sysctl -a
+sysctl net.inet.ip.forwarding=1 net.inet6.ip6.forwarding=1
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+

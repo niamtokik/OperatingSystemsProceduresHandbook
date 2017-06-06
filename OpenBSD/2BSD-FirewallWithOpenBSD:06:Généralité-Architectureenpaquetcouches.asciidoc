@@ -1,0 +1,19 @@
+== Généralité - Architecture en paquet (couches)
+
+Le paquet peut alors être découpé en plusieurs couches contenant
+chacune des informations différentes en fonction des standards. Le
+modèle OSI définit en 7 couches:
+
+[txt]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  7 - Application
+  6 - Présentation
+  5 - Session
+  4 - Transport
+  3 - Réseau
+  2 - Lien de donnée
+  1 - Physique
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Un firewall agit habituellement sur les couches 2, 3 et 4.
+

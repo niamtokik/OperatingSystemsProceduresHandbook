@@ -1,0 +1,7 @@
+== Généralité - Liaison de donnée
+
+La liaison de donnée est utilisé pour faire un routage local, basé sur
+l'adresse MAC pour le protocole Ethernet. Cette couche fait références
+aux hubs ou switchs (commutateurs) pour les équipements mais aussi aux
+bridges pour le software et l'administration réseau.
+

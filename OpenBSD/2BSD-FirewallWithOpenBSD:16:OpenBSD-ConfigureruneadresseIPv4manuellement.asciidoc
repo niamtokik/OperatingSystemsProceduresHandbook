@@ -1,0 +1,31 @@
+== OpenBSD - Configurer une adresse IPv4 (manuellement)
+
+Dans le cas d'une utilisation serveur, la configuration manuelle et
+statique d'une adresse IP est recommandée. Pour se faire, nous pouvons
+utiliser
+http://man.openbsd.org/OpenBSD-current/man8/ifconfig.8[ifconfig]:
+
+[sh]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ifconfig em0 192.168.42.3 255.255.255.0 up
+# ou
+ifconfig em0 192.168.42.3/24 up
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+ou les fichiers de configurations:
+
+[sh]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+echo "inet 192.168.42.3 255.255.255.0" > /etc/hostname.em0
+echo "up" >> /etc/hostname.em0
+sh /etc/netstart em0
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Une interface peut avoir plusieurs adresses IP, nommée alias (interface virtuelle):
+
+[sh]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ifconfig em0 alias 192.168.42.3/24
+ifconfig em0 alias 192.168.43.1/24
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+

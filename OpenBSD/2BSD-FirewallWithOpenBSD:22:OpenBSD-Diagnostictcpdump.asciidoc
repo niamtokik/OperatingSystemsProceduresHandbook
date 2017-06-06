@@ -1,0 +1,26 @@
+== OpenBSD - Diagnostic (tcpdump)
+
+http://man.openbsd.org/OpenBSD-current/man8/tcpdump.8[tcpdump] est un
+outil de monitoring, il permet de voir les paquets transitant sur une
+interface.
+
+[sh]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+# afficher les paquets en transit sur l'interface $int
+tcpdump -i ${int}
+
+# afficher les paquets en transit sur $int avec l'adresse MAC (ethernet)
+tcpdump -ei ${int}
+
+# afficher seulement les paquets en transit sur le port 80 en TCP (HTTP)
+tcpdump -i ${int} tcp port 80
+tcpdump -i ${int} tcp port http
+
+# afficher seulement les paquets en transit sur le port 53 en UDP (DNS)
+tcpdump -i ${int} udp port 53
+tcpdump -i ${int} udp port domain
+
+# afficher plus d'information sur les paquets en transit
+tcpdump -e -vvvv -XX -i ${int}
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
