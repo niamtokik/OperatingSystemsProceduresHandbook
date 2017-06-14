@@ -1,14 +1,14 @@
 == FreeBSD - Upgrade
 
-FreeBSD sépare l'upgrade en 2 catégorie, l'upgrade mineur
+FreeBSD sépare l'upgrade en 2 catégories, l'upgrade mineur
 (minor-upgrade) et les upgrades majeurs (major-upgrade).
 
 L'upgrade mineur consiste à upgrader la version de FreeBSD vers une
-version mineur. Par exemple, de la 10.1 vers la 10.2, ou de
-la 10.2 vers la 10.3. Cette upgrade comporte peu de risque.
+version mineure. Par exemple, de la 10.1 vers la 10.2, ou de
+la 10.2 vers la 10.3. Cet upgrade comporte peu de risques.
 
-L'upgrade majeur consiste à upgrader une version majeur de FreeBSD
-vers une autre version majeur. Par exemple 9.3 vers 10.1 ou encore
-10.3 vers 11.0. Cette upgrade comporte des risques car de nombreux
+L'upgrade majeur consiste à upgrader une version majeure de FreeBSD
+vers une autre version majeure. Par exemple 9.3 vers 10.1 ou encore
+10.3 vers 11.0. Cet upgrade comporte des risques car de nombreux
 changements sont apportés.
 

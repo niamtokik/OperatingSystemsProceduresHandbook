@@ -1,7 +1,7 @@
 == Unix - Qu'est-ce qu'un processus?
 
 Un processus est un programme en cours d'exécution. Il possède un état
-définis par le kernel (en cours de création, en cours d'exécution, en
+défini par le kernel (en cours de création, en cours d'exécution, en
 sommeil, arrêté ou zombifié). Lors du lancement, il lui est aussi
 attribué un identifiant unique (PID). Vu qu'un processus est un
 programme exécuté, il possède des attributs lié à l'utilisateur et au
@@ -19,7 +19,7 @@ exécuté avant l'autre, ordre basé sur un ordonnanceur (scheduler).
 sleep 100 &
 
 # la variable spéciale $! permet d'afficher le PID de la dernière
-# commande mis en tache de fond
+# commande mise en tache de fond
 echo $!
 
 # on affiche les informations du processus fonctionnant en tâche de

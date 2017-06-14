@@ -1,8 +1,8 @@
 == FreeBSD - Update ports (poudrière)
 
 https://www.freebsd.org/cgi/man.cgi?query=poudriere[poudrière] est
-builder relativement récent permettant de packager à la volée une
-liste de package.
+un builder relativement récent permettant de packager à la volée une
+liste de packages.
 
 [sh]
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^

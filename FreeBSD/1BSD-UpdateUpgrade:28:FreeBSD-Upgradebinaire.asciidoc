@@ -1,6 +1,6 @@
 == FreeBSD - Upgrade (binaire)
 
-Cette méthode comporte de nombreux risque et n'est pas recommandée
+Cette méthode comporte de nombreux risques et n'est pas recommandée
 pour la mise à jour d'un serveur, mais plutôt pour la mise à jour des
 jails. Dans tous les cas, cette méthodologie reste fonctionnelle mais
 comporte de nombreux risques.
@@ -24,7 +24,7 @@ installons ensuite le nouveau kernel précédemment téléchargé.
 cd /boot
 cp -rp kernel kernel.old
 cd /
-tar xJvfp /usr/rel/kernel.txz
+tar xJvpf /usr/rel/kernel.txz
 reboot
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -35,15 +35,15 @@ finalement, après un reboot, nous pouvons installer l'userland.
 cd /
 for i in base doc lib32
 do
-  tar xJvfp /usr/rel/${i}.txz
+  tar xJvpf /usr/rel/${i}.txz
 done
 reboot
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-pour finir, les tâches classiques après une upgrade:
+pour finir, les tâches classiques après un upgrade:
 
 [sh]
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-mergemaster -a
+mergemaster -iF
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 

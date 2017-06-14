@@ -1,16 +1,16 @@
-== Unix - Qu'est-ce qu'un programme?
+== Unix - Qu'est-ce qu'un programme ?
 
 Un programme est une suite d'instructions. Ces instructions sont
-définis par l'architecture du système et plus particulièrement du
+définies par l'architecture du système et plus particulièrement du
 CPU. Le système d'exploitation (qui est lui-même un programme) et son
 environnement définissent des règles, des méthodes et des standards
-lors de l'exécution des instructions contenu dans le programme
+lors de l'exécution des instructions contenues dans le programme
 exécuté.
 
 Par exemple, pour qu'un programme puisse être exécuté sur une
 plateforme Unix moderne, il est nécessaire qu'il possède un format
 spécifique définissant les caractéristiques du programmes (la première
-instruction à lancé, la mémoire à initialiser, ou encore les
+instruction à lancer, la mémoire à initialiser, ou encore les
 bibliothèques externes appelées par l'application). Ce format ce nomme
 actuellement ELF (Executable and Linkable Format). Ces informations
 sont accessible via les commandes
@@ -25,7 +25,7 @@ objdump -x /bin/ls
 
 Une autre commande utile est
 https://www.freebsd.org/cgi/man.cgi?query=nm[`nm`] et permet de lister
-les symboles (adresse et nom d'une fonction) contenu dans un
+les symboles (adresse et nom d'une fonction) contenus dans un
 programme.
 
 [sh]

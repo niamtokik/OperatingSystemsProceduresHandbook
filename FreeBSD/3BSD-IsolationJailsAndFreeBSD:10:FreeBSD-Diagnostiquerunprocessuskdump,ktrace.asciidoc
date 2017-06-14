@@ -1,8 +1,8 @@
-== FreeBSD - Diagnostiquer un processus (kdump,ktrace)
+== FreeBSD - Diagnostiquer un processus (kdump, ktrace)
 
 https://www.freebsd.org/cgi/man.cgi?query=ktrace[`ktrace`] permet de
-tracer les actions du kernel opéré sur un processus, il génère un
-fichier binaire `ktrace.out`, lisible avec
+tracer les actions du kernel opérées par un processus. Elle génère un
+fichier binaire `ktrace.out` lisible avec
 https://www.freebsd.org/cgi/man.cgi?query=kdump[`kdump`]. Son
 fonctionnement est équivalent à la commande `strace` sous linux.
 

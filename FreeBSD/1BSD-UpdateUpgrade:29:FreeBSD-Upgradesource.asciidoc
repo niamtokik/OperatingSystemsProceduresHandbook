@@ -9,8 +9,8 @@ binaires sur les dépôts officiels.
 cd /usr
 svnlite co https://svn.freebsd.org/base/releng/11.0 src
 cd src
-make buildkernel
 make buildworld
+make buildkernel
 make installkernel
 reboot
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -23,7 +23,8 @@ cd /usr/src
 make installworld
 make check-old
 make delete-old
-sysmerge -a
+make delete-old-libs
+mergemaster -iF
 reboot
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
