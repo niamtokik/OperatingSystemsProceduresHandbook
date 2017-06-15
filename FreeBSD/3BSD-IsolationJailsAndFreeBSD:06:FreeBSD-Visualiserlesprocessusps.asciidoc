@@ -1,12 +1,12 @@
 == FreeBSD - Visualiser les processus (ps)
 
 la commande https://www.freebsd.org/cgi/man.cgi?query=ps[`ps`] permet
-de visualiser les processus présent sur la machine en cours
+de visualiser les processus présents sur la machine en cours
 d'exécution.
 
 [sh]
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-# montre seulement les processus lié à son utilisateur
+# montre seulement les processus liés à son utilisateur
 ps
 ps -aU ${USER}
 

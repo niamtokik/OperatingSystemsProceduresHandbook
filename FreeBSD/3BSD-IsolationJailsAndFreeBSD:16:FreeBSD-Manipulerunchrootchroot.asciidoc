@@ -1,7 +1,7 @@
 == FreeBSD - Manipuler un chroot (chroot)
 
-A quoi sert un changement de racine? Tout d'abord un changement de
-racine n'a pas pour but d'augmenter la sécurité d'un processus lancé,
+A quoi sert un changement de racine ? Tout d'abord, un changement de
+racine n'a pas pour but d'augmenter la sécurité d'un processus lancé
 mais de l'isoler logiquement du reste du système. Le processus avec
 une racine différente aura toujours accès aux informations concernant
 le système.

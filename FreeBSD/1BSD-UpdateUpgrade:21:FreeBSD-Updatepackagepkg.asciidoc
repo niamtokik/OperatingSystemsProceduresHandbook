@@ -9,6 +9,6 @@ pkg update && pkg upgrade
 
 [NOTE] Si vous utilisez les repository FreeBSD officiels, ces derniers
 suivent la version courante des ports. Si vous désirez utiliser des
-logiciels freezé pendant plusieurs mois, il est possible d'automatiser
+logiciels freezés pendant plusieurs mois, il est possible d'automatiser
 le build avec poudrière.
 

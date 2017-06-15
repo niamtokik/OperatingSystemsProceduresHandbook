@@ -6,7 +6,7 @@ du PID.
 
 [sh]
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-# envois le signal Hangup au processus portant le nom "cron"
+# envoie le signal Hangup au processus portant le nom "cron"
 killall -HUP cron
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 

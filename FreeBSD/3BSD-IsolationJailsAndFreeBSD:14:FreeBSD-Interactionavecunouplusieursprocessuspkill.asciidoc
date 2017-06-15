@@ -6,7 +6,7 @@ l'utilisateur.
 
 [sh]
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-# envois le signal Hangup au processus
+# envoie le signal Hangup au processus
 pkill -HUP cron
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 

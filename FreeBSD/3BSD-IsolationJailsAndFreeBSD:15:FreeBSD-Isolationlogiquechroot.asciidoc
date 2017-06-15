@@ -5,8 +5,8 @@ Un https://www.freebsd.org/cgi/man.cgi?query=chroot[`chroot`]
 de changer simplement l'emplacement de référence d'un processus.
 
 La racine (`/`) est le point le plus haut de votre système de
-fichier. Lors de l'exécution d'un programme, le système utilisera donc
-`/` comme référence si il a besoin d'agir sur le système de fichier.
+fichiers. Lors de l'exécution d'un programme, le système utilisera donc
+`/` comme référence si il a besoin d'agir sur le système de fichiers.
 
 Le changement de racine permet de changer de racine, donc, de changer
 `/` en, par exemple `/home/chroot`. Le processus lancé verra alors
